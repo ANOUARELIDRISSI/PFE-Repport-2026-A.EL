@@ -4,11 +4,11 @@
 \begingroup
 \setstretch{1.08}
 
-This thesis presents the design and implementation of a reasoning multimodal Graph-RAG platform entitled \textit{Knowledge Graph Exploration and Querying Platform with RAG}. The system combines four complementary capabilities: autonomous web crawling over political sources, dense semantic search over the collected corpus, structured traversal of a Neo4j knowledge graph containing automatically extracted political entities and relations, and grounded answer synthesis supported by the Mistral language model.
+This thesis presents the design and implementation of a multimodal Graph-RAG platform entitled \textit{Knowledge Graph Exploration and Querying Platform with RAG}. Developed in the context of political intelligence, the system combines autonomous web crawling, dense semantic search, structured traversal of a Neo4j knowledge graph, and grounded answer synthesis supported by the Mistral language model. Its objective is to transform heterogeneous political information into a traceable and exploitable knowledge layer.
 
 The project addresses the limitations of classical retrieval-augmented generation when applied to relational political data. Standard RAG can retrieve relevant passages, but it struggles with multi-hop questions, entity disambiguation, temporal interpretation, and explicit relationship tracking. By integrating vector retrieval with graph-structured evidence, the proposed platform improves the ability to answer complex analytical questions while preserving traceability to source documents.
 
-The implemented architecture includes a three-level crawler, an administrative scheduler, NLP extraction services, deterministic entity resolution, graph persistence, document storage, local vector retrieval, and a user-facing interface for exploration and consultation. The crawler is not limited to a single reference source: it monitors curated RSS feeds, performs query-driven Google News discovery, downloads and parses PDF reports with Docling and PyMuPDF fallback, and exposes operational controls through the administration dashboard. The report also presents the design principles, technical choices, evaluation approach, observed results, and future perspectives of the system.
+The implemented architecture includes a three-level crawler, an administrative scheduler, NLP extraction services, deterministic entity resolution, graph persistence, document storage, local vector retrieval, and a React interface for exploration and consultation. The crawler monitors curated RSS feeds, performs query-driven Google News discovery, and parses PDF reports. The platform was evaluated on factual, relational, temporal, and comparative questions using RAGAS-inspired metrics, showing the value of combining retrieval, graph evidence, and reflexive reasoning.
 
 \noindent\rule[2pt]{\textwidth}{0.5pt}
 
@@ -16,4 +16,3 @@ The implemented architecture includes a three-level crawler, an administrative s
 
 \noindent\rule[2pt]{\textwidth}{0.5pt}
 \endgroup
-

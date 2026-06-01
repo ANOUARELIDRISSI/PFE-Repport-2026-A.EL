@@ -1,0 +1,22 @@
+﻿flowchart LR
+    classDef input fill:#E3F2FD,stroke:#1A237E,stroke-width:1.5px,color:#1A237E
+    classDef process fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20
+    classDef decision fill:#FFFDE7,stroke:#BF360C,stroke-width:1.5px,color:#3E2723
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1.5px,color:#4A148C
+
+    subgraph ONE[One-hop reasoning]
+        direction LR
+        Q1[Who is actor A?]:::input --> N1[Retrieve actor node]:::process --> A1[Direct answer]:::output
+    end
+
+    subgraph MULTI[Multi-hop reasoning]
+        direction LR
+        Q2[How are A and C connected?]:::input --> N2[Resolve A and C]:::process --> P2[Traverse A -> B -> C]:::process --> A2[Path-based answer]:::output
+    end
+
+    subgraph REFLEX[Reflexive agentic reasoning]
+        direction LR
+        Q3[Complex political query]:::input --> S3[Initial search plan]:::process --> E3{Evidence sufficient?}:::decision
+        E3 -- No --> R3[Refine entities, hops, or sources]:::process --> S3
+        E3 -- Yes --> A3[Cited final synthesis]:::output
+    end

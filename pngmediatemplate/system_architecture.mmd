@@ -1,0 +1,39 @@
+graph LR
+    subgraph "Data Acquisition"
+        AS[Autonomous Crawler]
+        NS[News Scrapers]
+    end
+
+    subgraph "Ingestion & Processing"
+        IW[Ingestion Workers]
+        EX[Extraction Pipeline - NLP]
+        WD[Wikidata Resolution]
+    end
+
+    subgraph "Storage Layer"
+        MD[(MongoDB - Raw/Chunks)]
+        NJ[(Neo4j - KG)]
+        RD[(Redis - Cache/Embeds)]
+        ZV[(ZVec - Vector DB)]
+    end
+
+    subgraph "Reasoning Engine"
+        RE[Graph-RAG Engine]
+        MM[Multi-hop Reasoning]
+        RF[Reflexive Reasoning]
+    end
+
+    subgraph "Interface"
+        FE[React Frontend]
+        API[FastAPI Backend]
+    end
+
+    AS & NS --> IW
+    IW --> EX
+    EX --> WD
+    WD --> MD & NJ
+    MD & NJ --> RE
+    RD & ZV --> RE
+    RE --> MM & RF
+    MM & RF --> API
+    API --> FE

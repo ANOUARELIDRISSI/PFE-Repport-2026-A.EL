@@ -1,0 +1,22 @@
+﻿flowchart LR
+    classDef executive fill:#E3F2FD,stroke:#1A237E,stroke-width:2px,color:#1A237E,font-weight:bold
+    classDef admin fill:#FFFDE7,stroke:#BF360C,stroke-width:1.5px,color:#3E2723
+    classDef tech fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20
+
+    DG[General Management]:::executive
+
+    subgraph ADMIN[Administrative Department]
+        direction TB
+        RH[Human Resources]:::admin
+        FIN[Finance]:::admin
+    end
+
+    subgraph RD[R&D Department]
+        direction TB
+        IL[Software Engineering]:::tech
+        SD[Data Science]:::tech
+        CS[Cybersecurity]:::tech
+    end
+
+    DG --> ADMIN
+    DG --> RD

@@ -1,0 +1,25 @@
+stateDiagram-v2
+    [*] --> Idle
+    
+    state "User Interaction" as UI {
+        Idle --> UserTyping : Input Received
+        UserTyping --> Submitting : Enter / Send Clicked
+    }
+    
+    state "Request Lifecycle" as Request {
+        Submitting --> API_Request : POST /api/v1/chat
+        API_Request --> Processing : Backend Lifespan
+        Processing --> Streaming : SSE / Stream Response
+        Streaming --> Received : Chunk Received
+        Received --> Streaming : More Chunks
+        Received --> Finalizing : Stream End
+    }
+    
+    state "Post-Processing" as Post {
+        Finalizing --> Rendering : Markdown + Graph Data
+        Rendering --> Idle : Success
+        Finalizing --> ErrorState : Failure
+        ErrorState --> Idle : Reset
+    }
+    
+    note right of Streaming : Reflexive Reasoning traces<br/>are displayed in real-time

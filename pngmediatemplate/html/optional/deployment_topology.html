@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Deployment Topology</title><style>
+body{margin:0;width:1600px;height:900px;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#111216}*{box-sizing:border-box}.canvas{position:relative;width:1600px;height:900px;padding:40px 70px}h1{margin:0;text-align:center;font-size:34px}.sub{width:980px;margin:10px auto 0;text-align:center;color:#5a606b;font-size:17px;font-weight:650;line-height:1.35}.band{position:absolute;border:2px solid #d9dde5;border-radius:10px;background:#f7f8fa99}.label{position:absolute;top:-14px;left:20px;padding:5px 10px;border:1.5px solid #cfd3dc;border-radius:999px;background:#fff;color:#5a606b;font-size:12px;font-weight:800}.card{position:absolute;width:250px;border:2px solid #cfd3dc;border-radius:8px;background:#fff;box-shadow:0 10px 22px #10111410;text-align:center}.wide{width:320px}.head{padding:12px 14px;background:#eceff3;border-bottom:1.5px solid #cfd3dc;font-size:18px;font-weight:780}.body{padding:10px 14px 14px;font-size:13px;line-height:1.35;font-weight:650}.note{position:absolute;left:220px;right:220px;bottom:24px;text-align:center;color:#5a606b;font-size:15px;font-weight:650;line-height:1.35}svg{position:absolute;inset:0;width:1600px;height:900px;pointer-events:none}.link{stroke:#7d8696;stroke-width:2.2;fill:none;marker-start:url(#start);marker-end:url(#arrow);stroke-linecap:round;stroke-linejoin:round}.b1{left:80px;top:150px;width:1440px;height:170px}.b2{left:80px;top:365px;width:1440px;height:210px}.b3{left:80px;top:615px;width:1440px;height:220px}.ingress{left:140px;top:190px}.frontend{left:440px;top:190px}.backend{left:740px;top:190px}.admin{left:1040px;top:190px}.ingestion{left:190px;top:405px}.reason{left:490px;top:405px}.api{left:790px;top:405px}.auth{left:1090px;top:405px}.mongo{left:180px;top:655px}.neo{left:470px;top:655px}.zvec{left:760px;top:655px}.redis{left:1050px;top:655px}
+</style></head><body><main class="canvas"><h1>Deployment Topology</h1><div class="sub">Containerized services communicate over a shared network with isolated data volumes.</div>
+<div class="band b1"><span class="label">edge and UI</span></div><div class="band b2"><span class="label">application services</span></div><div class="band b3"><span class="label">data services</span></div>
+<svg viewBox="0 0 1600 900"><defs><marker id="start" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="5" refY="5" orient="auto" markerUnits="strokeWidth"><circle cx="5" cy="5" r="3" fill="#7d8696"/></marker><marker id="arrow" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 Z" fill="#7d8696"/></marker></defs>
+<path class="link" d="M390 240 L440 240"/>
+<path class="link" d="M690 240 L740 240"/>
+<path class="link" d="M990 240 L1040 240"/>
+<path class="link" d="M265 315 L315 315 L315 405"/>
+<path class="link" d="M565 315 L615 315 L615 405"/>
+<path class="link" d="M865 315 L915 315 L915 405"/>
+<path class="link" d="M1165 315 L1215 315 L1215 405"/>
+<path class="link" d="M315 540 L315 620 L305 620 L305 655"/>
+<path class="link" d="M615 540 L615 620 L595 620 L595 655"/>
+<path class="link" d="M915 540 L915 620 L885 620 L885 655"/>
+<path class="link" d="M1215 540 L1215 620 L1175 620 L1175 655"/>
+</svg>
+<section class="card ingress"><div class="head">Nginx / Gateway</div><div class="body">TLS termination, routing, and static asset delivery.</div></section>
+<section class="card frontend"><div class="head">Frontend</div><div class="body">React UI served through Nginx.</div></section>
+<section class="card backend"><div class="head">Backend API</div><div class="body">FastAPI routes and streaming responses.</div></section>
+<section class="card admin"><div class="head">Admin UI</div><div class="body">Operational dashboard and controls.</div></section>
+<section class="card ingestion"><div class="head">Ingestion Workers</div><div class="body">Scraping, extraction, chunking, embedding.</div></section>
+<section class="card reason"><div class="head">Reasoning Engine</div><div class="body">Hybrid retrieval, graph expansion, synthesis.</div></section>
+<section class="card api"><div class="head">API Services</div><div class="body">Auth, graph, documents, analytics APIs.</div></section>
+<section class="card auth"><div class="head">Auth Service</div><div class="body">Users, tokens, and role enforcement.</div></section>
+<section class="card mongo"><div class="head">MongoDB</div><div class="body">Documents, chunks, records, sessions.</div></section>
+<section class="card neo"><div class="head">Neo4j</div><div class="body">Entities, relations, temporal facts.</div></section>
+<section class="card zvec"><div class="head">ZVec</div><div class="body">Vector storage and similarity search.</div></section>
+<section class="card redis"><div class="head">Redis</div><div class="body">Cache, reasoning traces, sessions.</div></section>
+<div class="note">Each service runs in its own container with isolated volumes for stateful components.</div>
+</main></body></html>

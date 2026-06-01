@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+\documentclass[12pt,a4paper,oneside]{book}
+
+\input{Packages}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=blue,
+    pdfauthor={ANOUAR EL IDRISSI},
+    pdftitle={Knowledge Graph Exploration and Querying Platform with RAG},
+    pdfpagemode=UseOutlines
+}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+
+\include{Frontmatter/Page_de_garde}
+\afterpage{\blankpage}
+
+\frontmatter
+
+\input{Frontmatter/Dedication}
+\input{Frontmatter/Acknowledgements}
+\input{Frontmatter/AbstractEN}
+\input{Frontmatter/AbstractFR}
+
+% ------------------------------------------------------------------
+% Arabic abstract disabled for pdfLaTeX compilation.
+% Arabic Unicode text and right-to-left typesetting require XeLaTeX.
+%
+% To enable the Arabic abstract:
+% 1. Change the compiler to XeLaTeX.
+% 2. Uncomment the following line:
+%
+% \input{Frontmatter/AbstractAR}
+% ------------------------------------------------------------------
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\input{Endmatter/Acronyms}
+
+
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{Table of Contents}
+
+\hypersetup{pageanchor=true}
+\mainmatter
+
+% General Introduction
+\input{Frontmatter/GeneralIntroduction}
+
+\input{Chapters/chapter1_framework_state_of_art}
+\input{Chapters/chapter2_requirements_foundations}
+\input{Chapters/chapter3_system_design}
+\input{Chapters/chapter4_implementation}
+\input{Chapters/chapter5_evaluation_conclusion}
+
+\input{Endmatter/References}
+
+\end{document}

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detailed Use Case Model</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #5f6070;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #a8a8b5;
+      --deep: #343541;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 44px 72px;
+      background: linear-gradient(180deg, rgba(247, 247, 248, 0.92), rgba(255, 255, 255, 0.98));
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      width: 1180px;
+      margin: 9px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.32;
+      font-weight: 560;
+    }
+
+    .system {
+      position: absolute;
+      left: 366px;
+      top: 150px;
+      width: 1348px;
+      height: 850px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .system-title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 780;
+      color: var(--deep);
+    }
+
+    .actor {
+      position: absolute;
+      left: 84px;
+      width: 220px;
+      min-height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border: 2px solid var(--strong-border);
+      border-radius: 999px;
+      background: var(--panel);
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(32, 33, 35, 0.045);
+      font-size: 20px;
+      font-weight: 760;
+      line-height: 1.16;
+      z-index: 4;
+    }
+
+    .actor.user { top: 320px; }
+    .actor.admin { top: 650px; }
+
+    .role-note {
+      position: absolute;
+      left: 92px;
+      width: 204px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.25;
+    }
+
+    .rn1 { top: 422px; }
+    .rn2 { top: 752px; }
+
+    .cluster {
+      position: absolute;
+      width: 588px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: rgba(247, 247, 248, 0.62);
+    }
+
+    .cluster h2 {
+      margin: 18px 0 0;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 780;
+      color: var(--deep);
+    }
+
+    .analytical {
+      left: 438px;
+      top: 210px;
+      height: 408px;
+    }
+
+    .operational {
+      left: 1080px;
+      top: 210px;
+      height: 408px;
+    }
+
+    .shared {
+      left: 438px;
+      top: 656px;
+      width: 1230px;
+      height: 238px;
+    }
+
+    .usecase {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 54px;
+      padding: 10px 16px;
+      border: 2px solid var(--strong-border);
+      border-radius: 999px;
+      background: var(--panel);
+      text-align: center;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 740;
+      line-height: 1.15;
+      box-shadow: 0 8px 18px rgba(32, 33, 35, 0.04);
+      z-index: 4;
+    }
+
+    .analytical .u1 { left: 54px; top: 86px; width: 220px; }
+    .analytical .u2 { right: 54px; top: 86px; width: 220px; }
+    .analytical .u3 { left: 54px; top: 176px; width: 220px; }
+    .analytical .u4 { right: 54px; top: 176px; width: 220px; }
+    .analytical .u5 { left: 54px; top: 266px; width: 220px; }
+    .analytical .u6 { right: 54px; top: 266px; width: 220px; }
+
+    .operational .u1 { left: 54px; top: 86px; width: 220px; }
+    .operational .u2 { right: 54px; top: 86px; width: 220px; }
+    .operational .u3 { left: 54px; top: 176px; width: 220px; }
+    .operational .u4 { right: 54px; top: 176px; width: 220px; }
+    .operational .u5 { left: 54px; top: 266px; width: 220px; }
+    .operational .u6 { right: 54px; top: 266px; width: 220px; }
+
+    .shared .u1 { left: 64px; top: 94px; width: 230px; }
+    .shared .u2 { left: 356px; top: 94px; width: 230px; }
+    .shared .u3 { left: 648px; top: 94px; width: 230px; }
+    .shared .u4 { left: 940px; top: 94px; width: 230px; }
+
+    .dependency {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 32px;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      z-index: 5;
+    }
+
+    .d1 { left: 842px; top: 362px; }
+    .d2 { left: 842px; top: 540px; }
+    .d3 { left: 1366px; top: 540px; }
+
+    .guard {
+      position: absolute;
+      left: 126px;
+      top: 556px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 740;
+      z-index: 5;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dash {
+      stroke-dasharray: 8 10;
+    }
+
+    .thin { stroke-width: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Detailed use case model">
+    <h1>Detailed Use Case Model</h1>
+    <p class="subtitle">Analytical workflows are available to authenticated users, while operational controls are reserved for administrators.</p>
+
+    <div class="actor user">Authenticated User</div>
+    <div class="role-note rn1">analyst, researcher, journalist, or decision-support user</div>
+    <div class="actor admin">System Administrator</div>
+    <div class="role-note rn2">privileged user with operational control</div>
+    <div class="guard">role guard</div>
+
+    <section class="system">
+      <div class="system-title">Analytical Intelligence System</div>
+    </section>
+
+    <section class="cluster analytical">
+      <h2>Analytical Use Cases</h2>
+      <div class="usecase u1">Ask cited questions</div>
+      <div class="usecase u2">Review reasoning trace</div>
+      <div class="usecase u3">Manage chat sessions</div>
+      <div class="usecase u4">Explore graph entities</div>
+      <div class="usecase u5">Analyze graph paths</div>
+      <div class="usecase u6">Inspect source documents</div>
+    </section>
+
+    <section class="cluster operational">
+      <h2>Operational Use Cases</h2>
+      <div class="usecase u1">Monitor health metrics</div>
+      <div class="usecase u2">Manage users</div>
+      <div class="usecase u3">Trigger scraping jobs</div>
+      <div class="usecase u4">Control scheduler</div>
+      <div class="usecase u5">Run ingestion backfill</div>
+      <div class="usecase u6">Trigger reindexing</div>
+    </section>
+
+    <section class="cluster shared">
+      <h2>Domain Analysis Views</h2>
+      <div class="usecase u1">Track bills and votes</div>
+      <div class="usecase u2">Review committees</div>
+      <div class="usecase u3">Analyze trends and risks</div>
+      <div class="usecase u4">Review finance signals</div>
+    </section>
+
+    <div class="dependency d1">include</div>
+    <div class="dependency d2">uses graph</div>
+    <div class="dependency d3">admin only</div>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 304 366 C 360 366 400 386 438 414"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 304 366 C 380 528 402 718 438 774"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 304 696 C 640 650 900 600 1080 560"></path>
+
+      <path class="connector dash" marker-end="url(#arrow)" d="M 194 650 L 194 424"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 690 328 L 934 328"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 690 508 C 780 510 850 510 934 418"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1334 508 L 1574 508"></path>
+    </svg>
+  </main>
+</body>
+</html>

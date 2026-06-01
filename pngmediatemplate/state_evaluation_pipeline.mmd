@@ -1,0 +1,31 @@
+stateDiagram-v2
+    [*] --> DatasetPreparation : Ground Truth / Queries
+    
+    state "Metric Computation (Mistral Judge)" as Metrics {
+        [*] --> Faithfulness
+        [*] --> AnswerRelevancy
+        [*] --> ContextPrecision
+        [*] --> ContextRecall
+        
+        Faithfulness --> ScoreAggregation
+        AnswerRelevancy --> ScoreAggregation
+        ContextPrecision --> ScoreAggregation
+        ContextRecall --> ScoreAggregation
+    }
+    
+    DatasetPreparation --> RAG_Execution : Run Pipeline
+    RAG_Execution --> Metrics : Generated Response + Context
+    
+    state "Comparative Analysis" as Comparison {
+        [*] --> ModeStandard
+        [*] --> ModeMultiHop
+        [*] --> ModeReflexive
+        
+        ModeStandard --> DeltaAnalysis
+        ModeMultiHop --> DeltaAnalysis
+        ModeReflexive --> DeltaAnalysis
+    }
+    
+    Metrics --> Comparison : Aggregated Scores
+    Comparison --> ValidationReport : Final Results
+    ValidationReport --> [*]

@@ -1,0 +1,106 @@
+\chapter{Some subject you want to expand on}
+\label{chap:Some subject you want to expand on} 
+
+
+You can add more appendices depending on the subjects.
+%You can decide which code snippets to use in the main report and which to add here in the annex
+    
+    \lstset{style=mystyle} %this style is already defined in Packages.tex
+    
+    \begin{lstlisting}[language=bash, caption= Bash example]
+    
+    [root@host ~]# You can change the language and caption.
+
+    \end{lstlisting}
+
+
+
+    \begin{lstlisting}[language=python, caption= Python example]
+    
+    # Solve the quadratic equation ax**2 + bx + c = 0
+
+    # import complex math module
+    import cmath
+    
+    a = 1
+    b = 5
+    c = 6
+    
+    # calculate the discriminant
+    d = (b**2) - (4*a*c)
+    
+    # find two solutions
+    sol1 = (-b-cmath.sqrt(d))/(2*a)
+    sol2 = (-b+cmath.sqrt(d))/(2*a)
+    
+    print('The solution are {0} and {1}'.format(sol1,sol2))
+
+    \end{lstlisting}
+
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|m{5cm}|m{10cm}|}
+        \hline
+          Column1 & Column2 \\
+        \hline
+          Element11 & Element21 \\
+        \hline
+          Element12 & Element22 \\
+        \hline
+          Element13 & Element23 \\
+        \hline
+    \end{tabular}
+    \caption{Table Example}
+\end{table}
+
+
+
+
+\begin{longtable}[c]{| m{4.4cm} | m{11cm} |}
+\caption{Long table Example}\\
+ \hline
+
+ Cell & Description  \\ 
+ \hline
+ \endfirsthead
+
+ \hline
+ 
+ Cell & Description  \\ 
+ \hline
+ \endhead
+
+        \hline
+          Element11 & Element21 \\
+        \hline
+          Element12 & Element22 \\
+        \hline
+          Element13 & Element23 \\
+        \hline
+          Element14 & Element24 \\
+        \hline
+          Element15 & Element25 \\
+        \hline
+          Element16 & Element26 \\
+        \hline
+          Element17 & Element27 \\
+        \hline
+          Element18 & Element28 \\
+        \hline
+          Element19 & Element29 \\
+        \hline
+          Element110 & Element210 \\
+        \hline
+          Element111 & Element211 \\
+        \hline
+          Element112 & Element212 \\
+        \hline
+          Element113 & Element213 \\
+        \hline
+          Element114 & Element214 \\
+        \hline
+
+ \end{longtable}
+

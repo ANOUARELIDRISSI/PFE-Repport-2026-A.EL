@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCIENTIAE Organizational Structure</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #6e6e80;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --soft-2: #f1f1f3;
+      --border: #d9d9e3;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1400px;
+      height: 900px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1400px;
+      height: 900px;
+      padding: 56px 70px;
+      background:
+        linear-gradient(180deg, rgba(247, 247, 248, 0.78), rgba(255, 255, 255, 0.96));
+    }
+
+    .title {
+      margin: 0;
+      text-align: center;
+      font-size: 34px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .box {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 92px;
+      padding: 18px 24px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 25px;
+      font-weight: 670;
+      line-height: 1.18;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(32, 33, 35, 0.06);
+    }
+
+    .box.root {
+      left: 548px;
+      top: 166px;
+      width: 304px;
+      min-height: 112px;
+      background: #ffffff;
+      border-color: #b8b8c2;
+      font-size: 29px;
+      font-weight: 760;
+    }
+
+    .box.department {
+      top: 382px;
+      width: 382px;
+      min-height: 118px;
+      background: var(--soft);
+      font-size: 26px;
+    }
+
+    .admin { left: 160px; }
+    .rd { left: 858px; }
+
+    .box.leaf {
+      top: 654px;
+      width: 230px;
+      min-height: 108px;
+      font-size: 23px;
+      font-weight: 620;
+      background: #ffffff;
+    }
+
+    .hr { left: 74px; }
+    .finance { left: 384px; }
+    .software { left: 684px; }
+    .data { left: 934px; }
+    .cyber { left: 1170px; width: 210px; }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1400px;
+      height: 900px;
+      pointer-events: none;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .junction {
+      fill: var(--line);
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="SCIENTIAE organizational structure">
+    <h1 class="title">SCIENTIAE Organizational Structure</h1>
+    <p class="subtitle">Management, support functions, and research and development poles</p>
+
+    <svg viewBox="0 0 1400 900" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+      <path class="connector" marker-end="url(#arrow)" d="M 700 278 L 351 382"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 700 278 L 1049 382"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 351 500 L 187 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 351 500 L 501 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 805 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 1051 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 1275 654"></path>
+    </svg>
+
+    <section class="box root">General<br>Management</section>
+    <section class="box department admin">Administrative<br>Department</section>
+    <section class="box department rd">Research and Development<br>Department</section>
+    <section class="box leaf hr">Human<br>Resources</section>
+    <section class="box leaf finance">Finance</section>
+    <section class="box leaf software">Software<br>Engineering</section>
+    <section class="box leaf data">Data Science<br>Engineering</section>
+    <section class="box leaf cyber">Cybersecurity<br>Engineering</section>
+  </main>
+</body>
+</html>

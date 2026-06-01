@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph vs Relational Traversal</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #5f6070;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --soft-2: #f1f1f3;
+      --border: #d9d9e3;
+      --strong-border: #a8a8b5;
+      --deep: #343541;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 44px 72px;
+      background:
+        linear-gradient(180deg, rgba(247, 247, 248, 0.92), rgba(255, 255, 255, 0.98));
+    }
+
+    .title {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      width: 980px;
+      margin: 9px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.38;
+      font-weight: 560;
+    }
+
+    .question {
+      position: absolute;
+      left: 470px;
+      top: 126px;
+      width: 860px;
+      min-height: 54px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--strong-border);
+      border-radius: 12px;
+      background: var(--panel);
+      color: var(--deep);
+      font-size: 21px;
+      font-weight: 760;
+      box-shadow: 0 10px 24px rgba(32, 33, 35, 0.04);
+    }
+
+    .column {
+      position: absolute;
+      top: 208px;
+      width: 770px;
+      height: 690px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .graph { left: 88px; }
+    .relational { right: 88px; }
+
+    .column h2 {
+      margin: 24px 0 0;
+      text-align: center;
+      font-size: 29px;
+      font-weight: 780;
+    }
+
+    .column .note {
+      width: 604px;
+      margin: 8px auto 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.34;
+      font-weight: 560;
+    }
+
+    .badge {
+      position: absolute;
+      top: 104px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 760;
+      z-index: 4;
+    }
+
+    .badge.left { left: 68px; }
+    .badge.center { left: 292px; }
+    .badge.right { right: 68px; }
+
+    .node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 170px;
+      min-height: 78px;
+      padding: 14px 16px;
+      border: 2px solid var(--strong-border);
+      background: var(--panel);
+      box-shadow: 0 10px 24px rgba(32, 33, 35, 0.045);
+      text-align: center;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 760;
+      line-height: 1.14;
+      z-index: 3;
+    }
+
+    .round { border-radius: 999px; }
+    .table { border-radius: 9px; background: var(--soft); }
+    .join { background: #ffffff; border-style: dashed; }
+
+    .graph .a { left: 66px; top: 236px; }
+    .graph .b { left: 300px; top: 374px; }
+    .graph .c { right: 66px; top: 236px; }
+    .graph .fact { left: 288px; top: 534px; width: 195px; min-height: 76px; }
+
+    .relational .ta { left: 52px; top: 218px; width: 174px; }
+    .relational .tb { left: 298px; top: 362px; width: 178px; }
+    .relational .tc { right: 52px; top: 218px; width: 174px; }
+    .relational .j1 { left: 210px; top: 505px; width: 350px; min-height: 58px; font-size: 18px; }
+    .relational .j2 { left: 210px; top: 576px; width: 350px; min-height: 58px; font-size: 18px; }
+
+    .step {
+      position: absolute;
+      width: 302px;
+      min-height: 52px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(247, 247, 248, 0.92);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.25;
+      z-index: 4;
+    }
+
+    .step strong {
+      color: var(--deep);
+      font-weight: 780;
+    }
+
+    .graph .s1 { left: 42px; top: 444px; }
+    .graph .s2 { right: 42px; top: 444px; }
+    .relational .s1 { left: 42px; top: 444px; }
+    .relational .s2 { right: 42px; top: 444px; }
+
+    .edge-label {
+      position: absolute;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .el1 { left: 252px; top: 306px; }
+    .el2 { right: 254px; top: 306px; }
+    .el3 { left: 226px; top: 318px; }
+    .el4 { right: 226px; top: 318px; }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dash { stroke-dasharray: 9 10; }
+    .thin { stroke-width: 1.8; }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Academic comparison of graph traversal and relational joins">
+    <h1 class="title">Graph Traversal vs Relational Join Reconstruction</h1>
+    <p class="subtitle">Two data models can answer the same connected-data question, but they encode and recover relationships differently.</p>
+
+    <div class="question">Analytical question: how is Entity A connected to Entity C?</div>
+
+    <section class="column graph">
+      <h2>Graph Model</h2>
+      <p class="note">Entities are vertices; relations are explicit edges that may carry type, source, confidence, and time metadata.</p>
+      <div class="badge left">vertices</div>
+      <div class="badge center">typed edges</div>
+      <div class="badge right">path query</div>
+
+      <div class="node round a">Entity A</div>
+      <div class="node round b">Entity B</div>
+      <div class="node round c">Entity C</div>
+      <div class="node table fact">A -> B -> C path</div>
+
+      <div class="step s1"><strong>Step 1.</strong> Start from an entity and follow stored adjacency links.</div>
+      <div class="step s2"><strong>Step 2.</strong> Return a path, neighborhood, or explanation subgraph.</div>
+      <div class="edge-label el1">relates_to</div>
+      <div class="edge-label el2">affiliated_with</div>
+    </section>
+
+    <section class="column relational">
+      <h2>Relational Model</h2>
+      <p class="note">Entities and relations are normalized into tables; paths are reconstructed by joining keys across tables.</p>
+      <div class="badge left">entity table</div>
+      <div class="badge center">bridge table</div>
+      <div class="badge right">entity table</div>
+
+      <div class="node table ta">Entity Table A</div>
+      <div class="node table tb">Relation Table</div>
+      <div class="node table tc">Entity Table C</div>
+      <div class="node join j1">Join A with relation rows</div>
+      <div class="node join j2">Join relation rows with C</div>
+
+      <div class="step s1"><strong>Step 1.</strong> Match primary and foreign keys to rebuild one hop.</div>
+      <div class="step s2"><strong>Step 2.</strong> Add more joins or bridge tables as path length grows.</div>
+      <div class="edge-label el3">foreign key</div>
+      <div class="edge-label el4">foreign key</div>
+    </section>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 324 472 C 372 510 406 548 432 572"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 626 472 C 578 510 544 548 520 572"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 474 654 L 474 732"></path>
+
+      <path class="connector dash" marker-end="url(#arrow)" d="M 1088 456 C 1138 500 1174 532 1218 562"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 1470 456 C 1418 500 1382 532 1342 562"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1288 636 L 1288 703"></path>
+    </svg>
+  </main>
+</body>
+</html>

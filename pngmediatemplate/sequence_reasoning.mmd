@@ -1,0 +1,31 @@
+sequenceDiagram
+    participant User as Geopolitical Analyst
+    participant API as FastAPI Backend
+    participant Agent as Agentic Reasoning Engine
+    participant KG as Neo4j (Graph)
+    participant Vector as ZVec (Vector DB)
+    participant LLM as Mistral Large
+
+    User->>API: Submit Complex Query
+    API->>Agent: Initialize Agentic Reasoning
+    Agent->>LLM: Generate Search Plan (Decomposition)
+    LLM-->>Agent: Plan: [Search Entities, Traverse Hops, Find Chunks]
+    
+    par Knowledge Retrieval
+        Agent->>KG: Execute Multi-hop Traversal (Cypher)
+        KG-->>Agent: Relational Triples
+    and Semantic Retrieval
+        Agent->>Vector: Semantic Similarity Search
+        Vector-->>Agent: Contextual Text Chunks
+    end
+
+    Agent->>LLM: Preliminary Synthesis & Audit
+    Note over Agent: Audit: Is the evidence sufficient?
+    LLM-->>Agent: Refined Search Required (e.g., temporal check)
+    Agent->>KG: Targeted Temporal Traversal
+    KG-->>Agent: Final Evidence
+
+    Agent->>LLM: Final Answer Generation (with Citations)
+    LLM-->>Agent: Grounded Narrative
+    Agent-->>API: Response + Reasoning Trace
+    API-->>User: Visual Answer + Interactive Graph

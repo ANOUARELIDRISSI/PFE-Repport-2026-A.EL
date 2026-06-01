@@ -1,0 +1,24 @@
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+
+\begingroup
+\setstretch{1.08}
+
+\begin{otherlanguage}{french}
+Ce rapport présente le projet de fin d'études réalisé au sein de la société \textbf{Scientiae} et portant sur la conception et la mise en œuvre d'une plateforme \textit{Graph-RAG} multimodale pour l'exploration et l'interrogation d'un graphe de connaissances avec génération de réponses fondées. Le système combine quatre capacités complémentaires~: un crawl web autonome sur des sources politiques, une recherche sémantique dense sur le corpus collecté, un parcours structuré d'un graphe de connaissances \textbf{Neo4j} contenant des entités et relations politiques extraites automatiquement, et une synthèse de réponses appuyée sur les preuves à l'aide du modèle \textbf{Mistral}. L'objectif est de transformer l'information politique non structurée en une couche de connaissance traçable, exploitable et analysable.
+
+Le projet répond aux limites de la génération augmentée par récupération classique lorsqu'elle est appliquée à des données politiques relationnelles. Le RAG standard peut retrouver des passages pertinents, mais il peine sur les questions multi-sauts, la désambiguïsation d'entités, l'interprétation temporelle et le suivi explicite des relations. En intégrant la récupération vectorielle à des preuves structurées sous forme de graphe, la plateforme proposée améliore la capacité à répondre à des questions analytiques complexes tout en préservant la traçabilité vers les documents sources.
+
+L'architecture retenue sépare la collecte des données, l'orchestration asynchrone, le traitement du langage naturel et les stockages intermédiaires, avant la publication dans \textbf{Neo4j} et l'indexation des segments dans \textbf{ZVec}. La chaîne de collecte couvre la surveillance de flux \textbf{RSS} sélectionnés, la découverte d'actualités via \textbf{Google News}, le téléchargement et l'analyse de rapports \textbf{PDF}, ainsi qu'un tableau de bord d'administration pour la planification et la supervision. La chaîne de traitement comprend le nettoyage, l'extraction d'entités et de relations, la résolution déterministe des référents, le stockage documentaire dans \textbf{MongoDB}, puis l'interrogation via une interface \textbf{React} avec plusieurs modes de raisonnement (\texttt{rag}, \texttt{cot}, \texttt{reflexive}) et un enrichissement possible par recherche web en direct.
+
+La plateforme a été évaluée sur un banc de quatorze questions classées (factuelles, relationnelles, temporelles, comparatives) à l'aide de métriques de type \textbf{RAGAS}, après optimisation des prompts. Les résultats montrent une progression nette du mode \textbf{RAG} vers le mode réflexif, tandis que le rappel du contexte demeure le principal levier d'amélioration. Le graphe de connaissances et la plateforme qui l'entoure constituent une couche réutilisable pour l'aide à la décision, l'analyse politique et l'exploitation structurée de l'information.
+\end{otherlanguage}
+
+\noindent\rule[2pt]{\textwidth}{0.5pt}
+
+\begin{otherlanguage}{french}
+{\textbf{Mots-clés~:}} Graph-RAG, graphe de connaissances, Neo4j, Mistral, crawl autonome, intelligence politique, traitement du langage naturel, extraction de relations, génération augmentée par récupération, systèmes distribués.
+\end{otherlanguage}
+
+\noindent\rule[2pt]{\textwidth}{0.5pt}
+\endgroup

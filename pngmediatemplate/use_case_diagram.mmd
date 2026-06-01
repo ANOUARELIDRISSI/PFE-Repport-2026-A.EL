@@ -1,0 +1,31 @@
+flowchart LR
+    subgraph "Actors"
+        PA[Geopolitical Analyst]
+        AR[Academic Researcher]
+        SA[System Administrator]
+    end
+
+    subgraph "Political Graph RAG System"
+        UC1(Relational Multi-hop Query)
+        UC2(Interactive Graph Exploration)
+        UC3(Source Evidence Inspection)
+        UC4(Longitudinal Trend Analysis)
+        UC5(Entity Profile Comparison)
+        UC6(Autonomous Ingestion Management)
+        UC7(Pipeline Health Monitoring)
+    end
+
+    PA --> UC1
+    PA --> UC2
+    PA --> UC3
+    
+    AR --> UC4
+    AR --> UC5
+    AR --> UC3
+
+    SA --> UC6
+    SA --> UC7
+
+    style PA fill:#f9f,stroke:#333
+    style AR fill:#bbf,stroke:#333
+    style SA fill:#dfd,stroke:#333

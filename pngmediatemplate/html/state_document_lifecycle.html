@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Lifecycle State Model</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #5f6070;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #a8a8b5;
+      --deep: #343541;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 44px 72px;
+      background: linear-gradient(180deg, rgba(247, 247, 248, 0.92), rgba(255, 255, 255, 0.98));
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      width: 1180px;
+      margin: 9px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.32;
+      font-weight: 560;
+    }
+
+    .stage {
+      position: absolute;
+      top: 188px;
+      width: 258px;
+      height: 292px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 10px 24px rgba(32, 33, 35, 0.035);
+      z-index: 4;
+    }
+
+    .s1 { left: 94px; }
+    .s2 { left: 402px; }
+    .s3 { left: 710px; }
+    .s4 { left: 1018px; }
+    .s5 { left: 1326px; }
+
+    .stage h2 {
+      margin: 22px 18px 0;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 780;
+      line-height: 1.15;
+      color: var(--deep);
+    }
+
+    .stage .body {
+      margin: 18px auto 0;
+      width: 205px;
+      min-height: 88px;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      border: 2px solid var(--strong-border);
+      border-radius: 10px;
+      background: var(--soft);
+      text-align: center;
+      font-size: 16px;
+      font-weight: 740;
+      line-height: 1.16;
+    }
+
+    .stage .meta {
+      width: 214px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.28;
+      font-weight: 620;
+    }
+
+    .flags {
+      position: absolute;
+      left: 140px;
+      top: 552px;
+      width: 1520px;
+      min-height: 152px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .flags h2 {
+      margin: 20px 0 0;
+      text-align: center;
+      color: var(--deep);
+      font-size: 23px;
+      font-weight: 780;
+    }
+
+    .flag {
+      position: absolute;
+      top: 78px;
+      width: 266px;
+      min-height: 52px;
+      display: grid;
+      place-items: center;
+      padding: 10px 14px;
+      border: 2px solid var(--strong-border);
+      border-radius: 999px;
+      background: var(--soft);
+      text-align: center;
+      font-size: 15px;
+      font-weight: 760;
+      line-height: 1.15;
+      z-index: 4;
+    }
+
+    .f1 { left: 82px; }
+    .f2 { left: 404px; }
+    .f3 { left: 726px; }
+    .f4 { left: 1048px; }
+
+    .outcome {
+      position: absolute;
+      top: 760px;
+      width: 420px;
+      min-height: 92px;
+      display: grid;
+      place-items: center;
+      padding: 16px 22px;
+      border: 2px solid var(--strong-border);
+      border-radius: 12px;
+      background: var(--panel);
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(32, 33, 35, 0.04);
+      font-size: 20px;
+      font-weight: 780;
+      line-height: 1.18;
+      z-index: 4;
+    }
+
+    .ready { left: 450px; }
+    .skip { right: 450px; background: var(--soft); }
+
+    .explain {
+      position: absolute;
+      left: 240px;
+      bottom: 42px;
+      width: 1320px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .label {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      z-index: 5;
+    }
+
+    .l1 { left: 370px; top: 314px; }
+    .l2 { left: 678px; top: 314px; }
+    .l3 { left: 986px; top: 314px; }
+    .l4 { left: 1294px; top: 314px; }
+    .l5 { left: 1160px; top: 728px; }
+    .l6 { left: 704px; top: 728px; }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dash { stroke-dasharray: 8 10; }
+    .thin { stroke-width: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Document lifecycle state model">
+    <h1>Document Lifecycle State Model</h1>
+    <p class="subtitle">A document becomes retrievable evidence only after acquisition, normalization, quality gating, extraction, and chunk indexing have completed.</p>
+
+    <section class="stage s1">
+      <h2>1. Acquired</h2>
+      <div class="body">Raw document stored</div>
+      <div class="meta">source URL, title, date, source name, scraped metadata</div>
+    </section>
+
+    <section class="stage s2">
+      <h2>2. Normalized</h2>
+      <div class="body">Clean text and metadata aligned</div>
+      <div class="meta">HTML/PDF noise removed; fields mapped to a common schema</div>
+    </section>
+
+    <section class="stage s3">
+      <h2>3. Accepted</h2>
+      <div class="body">Quality and relevance gate passed</div>
+      <div class="meta">low-quality or non-political documents are skipped</div>
+    </section>
+
+    <section class="stage s4">
+      <h2>4. Enriched</h2>
+      <div class="body">Entities, relations, and records extracted</div>
+      <div class="meta">graph facts and structured records are produced</div>
+    </section>
+
+    <section class="stage s5">
+      <h2>5. Indexed</h2>
+      <div class="body">Chunks embedded and linked to entities</div>
+      <div class="meta">document_chunks and ZVec vectors support retrieval</div>
+    </section>
+
+    <section class="flags">
+      <h2>Implementation Checkpoints</h2>
+      <div class="flag f1">documents collection<br>created</div>
+      <div class="flag f2">graph_extracted = true</div>
+      <div class="flag f3">structured_extracted = true</div>
+      <div class="flag f4">chunks_created = true</div>
+    </section>
+
+    <div class="outcome ready">Ready for retrieval<br>and answer synthesis</div>
+    <div class="outcome skip">Skipped or deferred<br>when quality is insufficient</div>
+
+    <div class="explain">The lifecycle is idempotent: completed checkpoints prevent repeated processing, while reset scripts can clear derived artifacts and replay extraction without re-scraping source documents.</div>
+
+    <div class="label l1">parse</div>
+    <div class="label l2">gate</div>
+    <div class="label l3">extract</div>
+    <div class="label l4">embed</div>
+    <div class="label l5">quality fail</div>
+    <div class="label l6">all checkpoints complete</div>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 352 334 L 402 334"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 660 334 L 710 334"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 968 334 L 1018 334"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1276 334 L 1326 334"></path>
+
+      <path class="connector thin" marker-end="url(#arrow)" d="M 223 480 L 350 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 531 480 L 672 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 839 480 L 994 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1455 480 L 1316 630"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 900 704 L 690 760"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 840 480 C 1020 548 1220 640 1248 760"></path>
+    </svg>
+  </main>
+</body>
+</html>

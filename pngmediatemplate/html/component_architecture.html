@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Component Architecture</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #5f6070;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #a8a8b5;
+      --deep: #343541;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 42px 70px;
+      background: linear-gradient(180deg, rgba(247, 247, 248, 0.92), rgba(255, 255, 255, 0.98));
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      width: 1040px;
+      margin: 9px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.36;
+      font-weight: 560;
+    }
+
+    .band {
+      position: absolute;
+      left: 86px;
+      width: 1628px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .band h2 {
+      position: absolute;
+      left: 24px;
+      top: 16px;
+      margin: 0;
+      color: var(--deep);
+      font-size: 21px;
+      font-weight: 780;
+    }
+
+    .band .note {
+      position: absolute;
+      right: 24px;
+      top: 18px;
+      width: 590px;
+      margin: 0;
+      color: var(--muted);
+      text-align: right;
+      font-size: 14px;
+      line-height: 1.28;
+      font-weight: 600;
+    }
+
+    .ui { top: 128px; height: 148px; }
+    .api { top: 302px; height: 160px; }
+    .core { top: 488px; height: 184px; }
+    .data { top: 700px; height: 172px; }
+    .ops { top: 900px; height: 104px; }
+
+    .box {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 58px;
+      padding: 10px 16px;
+      border: 2px solid var(--strong-border);
+      border-radius: 9px;
+      background: var(--panel);
+      text-align: center;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 750;
+      line-height: 1.16;
+      box-shadow: 0 9px 22px rgba(32, 33, 35, 0.045);
+      z-index: 4;
+    }
+
+    .box.soft { background: var(--soft); }
+    .box.small { min-height: 50px; font-size: 14px; }
+    .box.wide { width: 236px; }
+    .box.xwide { width: 290px; }
+
+    .ui .b1 { left: 74px; top: 68px; }
+    .ui .b2 { left: 338px; top: 68px; }
+    .ui .b3 { left: 602px; top: 68px; }
+    .ui .b4 { left: 866px; top: 68px; }
+    .ui .b5 { left: 1130px; top: 68px; }
+    .ui .b6 { left: 1394px; top: 68px; }
+
+    .api .gateway { left: 76px; top: 76px; width: 260px; }
+    .api .r1 { left: 382px; top: 70px; width: 178px; }
+    .api .r2 { left: 584px; top: 70px; width: 178px; }
+    .api .r3 { left: 786px; top: 70px; width: 178px; }
+    .api .r4 { left: 988px; top: 70px; width: 178px; }
+    .api .r5 { left: 1190px; top: 70px; width: 178px; }
+    .api .r6 { left: 1392px; top: 70px; width: 178px; }
+
+    .core .reason { left: 78px; top: 82px; width: 264px; }
+    .core .retrieve { left: 386px; top: 82px; width: 246px; }
+    .core .graph { left: 676px; top: 82px; width: 246px; }
+    .core .llm { left: 966px; top: 82px; width: 246px; }
+    .core .web { left: 1256px; top: 82px; width: 246px; }
+
+    .domain {
+      position: absolute;
+      left: 1110px;
+      top: 18px;
+      width: 466px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(247, 247, 248, 0.94);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 740;
+    }
+
+    .data .ingest { left: 76px; top: 76px; width: 250px; }
+    .data .extract { left: 362px; top: 76px; width: 250px; }
+    .data .mongo { left: 684px; top: 76px; width: 198px; }
+    .data .neo { left: 920px; top: 76px; width: 198px; }
+    .data .zvec { left: 1156px; top: 76px; width: 198px; }
+    .data .redis { left: 1392px; top: 76px; width: 170px; }
+
+    .ops .o1 { left: 156px; top: 40px; width: 230px; }
+    .ops .o2 { left: 442px; top: 40px; width: 230px; }
+    .ops .o3 { left: 728px; top: 40px; width: 230px; }
+    .ops .o4 { left: 1014px; top: 40px; width: 230px; }
+    .ops .o5 { left: 1300px; top: 40px; width: 230px; }
+
+    .legend {
+      position: absolute;
+      right: 88px;
+      top: 96px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      display: none;
+    }
+
+    .core .note {
+      display: none;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dash { stroke-dasharray: 8 10; }
+    .thin { stroke-width: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Layered component architecture">
+    <h1>Layered Component Architecture</h1>
+    <p class="subtitle">A modular architecture separates interface, API orchestration, reasoning, ingestion, persistence, and observability.</p>
+    <div class="legend">Solid arrows: runtime flow | Dashed arrows: operational/ingestion flow</div>
+
+    <section class="band ui">
+      <h2>Web Client</h2>
+      <p class="note">A React interface exposes analytical workflows through dedicated pages and a shared API client.</p>
+      <div class="box small wide b1">Chat & Sessions</div>
+      <div class="box small wide b2">Graph Explorer</div>
+      <div class="box small wide b3">Legislative Views</div>
+      <div class="box small wide b4">Insights & Finance</div>
+      <div class="box small wide b5">Documents</div>
+      <div class="box small wide b6">Admin Console</div>
+    </section>
+
+    <section class="band api">
+      <h2>API Boundary</h2>
+      <p class="note">FastAPI centralizes authentication, route modules, streaming answers, and operational endpoints under a versioned API prefix.</p>
+      <div class="box gateway">FastAPI Gateway<br>/api/v1</div>
+      <div class="box soft small r1">Auth</div>
+      <div class="box soft small r2">Query & Chat</div>
+      <div class="box soft small r3">Entities & Graph</div>
+      <div class="box soft small r4">Documents</div>
+      <div class="box soft small r5">Legislative & Finance</div>
+      <div class="box soft small r6">Admin & Ingest</div>
+    </section>
+
+    <section class="band core">
+      <h2>Reasoning Core</h2>
+      <p class="note">The backend combines semantic retrieval, graph traversal, web search, and LLM synthesis according to the selected reasoning mode.</p>
+      <div class="domain">Configurable ontology | extractors | relation schema</div>
+      <div class="box reason">Reasoning Engine<br>RAG / CoT / Reflexive</div>
+      <div class="box soft retrieve">Hybrid Retrieval<br>ZVec + lexical reranking</div>
+      <div class="box soft graph">Graph Expansion<br>Neo4j traversal</div>
+      <div class="box soft llm">LLM Services<br>planning & synthesis</div>
+      <div class="box soft web">Web Search<br>fresh external context</div>
+    </section>
+
+    <section class="band data">
+      <h2>Ingestion and Persistence</h2>
+      <p class="note">Scraped and imported evidence is normalized, extracted, chunked, embedded, and written to the appropriate persistence layer.</p>
+      <div class="box ingest">Scraper / Cron<br>RSS, topics, PDFs</div>
+      <div class="box extract">Extraction Pipeline<br>entities, relations, records</div>
+      <div class="box soft mongo">MongoDB<br>documents & records</div>
+      <div class="box soft neo">Neo4j<br>entities & edges</div>
+      <div class="box soft zvec">ZVec<br>chunk vectors</div>
+      <div class="box soft redis">Redis<br>cache</div>
+    </section>
+
+    <section class="band ops">
+      <h2>Observability</h2>
+      <div class="box soft small o1">Prometheus Metrics</div>
+      <div class="box soft small o2">Grafana Dashboards</div>
+      <div class="box soft small o3">Jaeger Traces</div>
+      <div class="box soft small o4">Exporters</div>
+      <div class="box soft small o5">Admin Health Checks</div>
+    </section>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 900 276 C 900 294 294 294 294 376"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 294 442 L 294 572"></path>
+
+      <path class="connector thin" marker-end="url(#arrow)" d="M 430 602 L 474 602"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 720 602 L 764 602"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1010 602 L 1054 602"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1300 602 L 1344 602"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 596 672 C 628 718 716 732 782 776"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 798 672 L 782 776"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1090 672 L 1018 776"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 414 808 L 450 808"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 750 808 750 810 772 810"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 830 760 930 760 1008 810"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 940 742 1120 748 1244 810"></path>
+
+      <path class="connector dash" marker-end="url(#arrow)" d="M 448 872 L 448 940"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 782 872 L 782 940"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 1018 872 L 1018 940"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 1260 872 L 1260 940"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 1478 872 L 1478 940"></path>
+    </svg>
+  </main>
+</body>
+</html>

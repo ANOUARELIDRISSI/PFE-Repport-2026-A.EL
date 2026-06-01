@@ -1,0 +1,57 @@
+classDiagram
+    class GeopoliticalEntity {
+        +String id
+        +String name
+        +EntityType type
+        +Float confidence
+        +JSON properties
+        +resolveViaWikidata()
+    }
+
+    class Relation {
+        +String source_id
+        +String target_id
+        +RelationType type
+        +Float sentiment_score
+        +Float confidence
+        +DateTime valid_from
+        +DateTime valid_to
+    }
+
+    class Document {
+        +String id
+        +String title
+        +String content
+        +String source_url
+        +DateTime published_date
+        +String document_type
+    }
+
+    class DocumentChunk {
+        +String chunk_id
+        +String text
+        +Vector embedding
+        +Float importance_score
+    }
+
+    class LegislativeBill {
+        +String bill_id
+        +String title
+        +BillStatus status
+        +String sponsor_id
+    }
+
+    class FinancialTransaction {
+        +String id
+        +Float amount
+        +String donor_id
+        +String recipient_id
+        +DateTime date
+    }
+
+    GeopoliticalEntity "1" -- "*" Relation : participates_in
+    Document "1" -- "*" DocumentChunk : composed_of
+    DocumentChunk "*" -- "*" GeopoliticalEntity : mentions
+    GeopoliticalEntity "1" -- "*" LegislativeBill : sponsors
+    GeopoliticalEntity "1" -- "*" FinancialTransaction : involved_in
+    Relation "1" -- "*" Document : evidenced_by

@@ -1,0 +1,30 @@
+stateDiagram-v2
+    [*] --> Discovered : Autonomous Discovery (DDG/RSS)
+    Discovered --> Scraping : Agentic Scraper Triggered
+    
+    state Scraping {
+        [*] --> RawFetch
+        RawFetch --> Normalizing : HTML/PDF/Video
+        Normalizing --> MarkdownOutput : Trafilatura/Docling/Whisper
+    }
+    
+    Scraping --> QualityControl : Normalized MD Produced
+    
+    QualityControl --> Discarded : Score < 0.3
+    QualityControl --> Extraction : Score >= 0.3
+    
+    state Extraction {
+        [*] --> JointNLP : Mistral MIPROv2
+        JointNLP --> EntityResolution : Wikidata Mapping
+        EntityResolution --> GraphMapping : Neo4j Cypher
+    }
+    
+    Extraction --> Indexing : Structural Data Ready
+    
+    state Indexing {
+        [*] --> VectorEmbedding : all-MiniLM-L6-v2
+        VectorEmbedding --> ZVecPersistence
+        ZVecPersistence --> MetadataStorage : MongoDB
+    }
+    
+    Indexing --> [*] : Document Ready for RAG

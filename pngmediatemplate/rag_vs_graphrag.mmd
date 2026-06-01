@@ -1,0 +1,20 @@
+﻿flowchart LR
+    classDef query fill:#E3F2FD,stroke:#1A237E,stroke-width:1.5px,color:#1A237E
+    classDef store fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1.5px,color:#4A148C
+    classDef weak fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#B71C1C
+    classDef strong fill:#E8F5E9,stroke:#2E7D32,stroke-width:1.5px,color:#1B5E20
+    classDef llm fill:#FFFDE7,stroke:#F57F17,stroke-width:1.5px,color:#3E2723
+
+    subgraph CLASSICAL[Classical RAG: flat semantic retrieval]
+        direction LR
+        CQ[User Query]:::query --> CE[Embedding]:::query --> CV[(Vector Index)]:::store --> CC[Text Chunks]:::weak --> CL[LLM Answer]:::llm
+    end
+
+    subgraph GRAPH[Graph RAG: semantic + relational retrieval]
+        direction LR
+        GQ[User Query]:::query --> GE[Entity Extraction]:::query --> KG[(Knowledge Graph)]:::store
+        KG --> GA[Entity A]:::strong --> GR1[Typed Relation]:::strong --> GB[Entity B]:::strong --> GR2[Typed Relation]:::strong --> GC[Entity C]:::strong
+        GQ --> VS[Vector Search]:::query --> EV[Evidence Chunks]:::strong
+        GC --> GL[Grounded Answer]:::llm
+        EV --> GL
+    end

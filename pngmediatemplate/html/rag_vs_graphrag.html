@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classical RAG vs Graph-RAG</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #6e6e80;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #b8b8c2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 54px 76px;
+      background:
+        linear-gradient(180deg, rgba(247, 247, 248, 0.86), rgba(255, 255, 255, 0.98));
+    }
+
+    .title {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .query {
+      position: absolute;
+      left: 738px;
+      top: 154px;
+      width: 324px;
+      min-height: 96px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--strong-border);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 12px 30px rgba(32, 33, 35, 0.055);
+      text-align: center;
+    }
+
+    .query strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.18;
+    }
+
+    .query span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 620;
+    }
+
+    .column {
+      position: absolute;
+      top: 318px;
+      width: 720px;
+      height: 548px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .classic { left: 76px; }
+    .graph { right: 76px; }
+
+    .column-title {
+      position: absolute;
+      left: 0;
+      top: 28px;
+      width: 100%;
+      text-align: center;
+      font-size: 29px;
+      font-weight: 780;
+    }
+
+    .column-kicker {
+      position: absolute;
+      left: 42px;
+      right: 42px;
+      top: 70px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .step {
+      position: absolute;
+      left: 60px;
+      width: 600px;
+      min-height: 86px;
+      padding: 16px 24px 16px 92px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(32, 33, 35, 0.045);
+    }
+
+    .s1 { top: 138px; }
+    .s2 { top: 260px; }
+    .s3 { top: 382px; }
+
+    .index {
+      position: absolute;
+      left: 22px;
+      top: 18px;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--strong-border);
+      border-radius: 50%;
+      color: var(--muted);
+      font-size: 21px;
+      font-weight: 760;
+      background: var(--soft);
+    }
+
+    .step h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .step p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.32;
+      font-weight: 560;
+    }
+
+    .bottom {
+      position: absolute;
+      left: 240px;
+      right: 240px;
+      bottom: 54px;
+      min-height: 96px;
+      padding: 20px 34px;
+      border: 2px solid var(--strong-border);
+      border-radius: 12px;
+      background: var(--panel);
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(32, 33, 35, 0.05);
+    }
+
+    .bottom strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .bottom span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 560;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dash { stroke-dasharray: 10 12; }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Difference between classical RAG and Graph-RAG">
+    <h1 class="title">Classical RAG vs Graph-RAG</h1>
+    <p class="subtitle">The core difference is not the LLM, but how external knowledge is represented and retrieved.</p>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+      <path class="connector" marker-end="url(#arrow)" d="M 738 220 C 540 236, 318 270, 246 318"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1062 220 C 1260 236, 1482 270, 1554 318"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 436 866 C 540 910, 668 924, 760 918"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1364 866 C 1260 910, 1132 924, 1040 918"></path>
+
+      <path class="connector dash" d="M 900 308 L 900 870"></path>
+    </svg>
+
+    <section class="query">
+      <div>
+        <strong>User Question</strong>
+        <span>political, temporal, or multi-hop analysis</span>
+      </div>
+    </section>
+
+    <section class="column classic">
+      <div class="column-title">Classical RAG</div>
+      <div class="column-kicker">Retrieves text passages that are semantically close to the query.</div>
+
+      <article class="step s1">
+        <div class="index">1</div>
+        <h3>Represent corpus as chunks</h3>
+        <p>Documents are split and embedded into a vector index.</p>
+      </article>
+
+      <article class="step s2">
+        <div class="index">2</div>
+        <h3>Retrieve similar passages</h3>
+        <p>The system returns top-k chunks based mainly on semantic similarity.</p>
+      </article>
+
+      <article class="step s3">
+        <div class="index">3</div>
+        <h3>Generate from retrieved context</h3>
+        <p>The answer is grounded in passages, but relationships may remain implicit.</p>
+      </article>
+    </section>
+
+    <section class="column graph">
+      <div class="column-title">Graph-RAG</div>
+      <div class="column-kicker">Retrieves evidence through entities, relations, communities, and text.</div>
+
+      <article class="step s1">
+        <div class="index">1</div>
+        <h3>Represent corpus as a graph</h3>
+        <p>Entities, events, claims, and relations are extracted from the documents.</p>
+      </article>
+
+      <article class="step s2">
+        <div class="index">2</div>
+        <h3>Traverse relational evidence</h3>
+        <p>Retrieval can follow links across actors, places, events, and time periods.</p>
+      </article>
+
+      <article class="step s3">
+        <div class="index">3</div>
+        <h3>Generate with structured grounding</h3>
+        <p>The answer can combine local evidence with broader graph context.</p>
+      </article>
+    </section>
+
+    <section class="bottom">
+      <strong>When Graph-RAG helps</strong>
+      <span>Classical RAG is strong for direct evidence lookup. Graph-RAG is better suited to geopolitical questions that require entity disambiguation, relation traversal, provenance, and multi-hop reasoning.</span>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+classDiagram
+    class DatabaseConnector {
+        <<Interface>>
+        +connect()
+        +close()
+    }
+
+    class MongoDBConnector {
+        +get_collection(name)
+        +insert_one(data)
+        +find_many(query)
+    }
+
+    class Neo4jConnector {
+        +execute_query(query, params)
+        +verify_connectivity()
+    }
+
+    class ZVecConnector {
+        +search_vectors(vector, k)
+        +insert_vectors(vectors)
+    }
+
+    class BaseService {
+        <<Abstract>>
+        #logger
+    }
+
+    class ReasoningEngine {
+        -plan_phase()
+        -retrieve_phase()
+        -synthesize_phase()
+        +reason(query, mode)
+    }
+
+    class ExtractionService {
+        +extract_graph(text)
+        +extract_structured(text)
+    }
+
+    class EmbeddingService {
+        -model
+        +encode(text)
+        +encode_batch(texts)
+    }
+
+    class EntityResolutionService {
+        +normalize_entity(entity)
+        +resolve_via_wikidata(name)
+    }
+
+    DatabaseConnector <|-- MongoDBConnector
+    DatabaseConnector <|-- Neo4jConnector
+    DatabaseConnector <|-- ZVecConnector
+
+    BaseService <|-- ReasoningEngine
+    BaseService <|-- ExtractionService
+    BaseService <|-- EmbeddingService
+    BaseService <|-- EntityResolutionService
+
+    ReasoningEngine --> ZVecConnector : uses
+    ReasoningEngine --> Neo4jConnector : uses
+    ReasoningEngine --> EmbeddingService : uses
+
+    ExtractionService --> EntityResolutionService : uses
+    ExtractionService --> MongoDBConnector : persists
+    ExtractionService --> Neo4jConnector : persists

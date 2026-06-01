@@ -1,0 +1,37 @@
+flowchart LR
+    subgraph "Client Layer (React)"
+        FE[Full-Stack UI]
+        State[React Context / useChat]
+    end
+
+    subgraph "Application Layer (FastAPI)"
+        BE[Reasoning API]
+        Agent[Agentic Reasoner]
+        NLP[Mistral Extraction]
+    end
+
+    subgraph "Multi-Modality Persistence"
+        MD[(MongoDB<br/>Metadata & JSON)]
+        NJ[(Neo4j<br/>Knowledge Graph)]
+        RD[(Redis<br/>Cache & Traces)]
+        ZV[(ZVec<br/>Vector Store)]
+    end
+
+    subgraph "External Integration"
+        LLM[Mistral Large API]
+        WD[Wikidata API]
+        News[News Sources / PDFs]
+    end
+
+    FE --> BE
+    BE --> Agent
+    Agent --> NLP
+    NLP --> LLM
+    
+    Agent --> NJ
+    Agent --> ZV
+    Agent --> RD
+    BE --> MD
+    
+    NLP --> WD
+    News --> BE

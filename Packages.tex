@@ -1,0 +1,179 @@
+
+\usepackage{iftex}
+\ifXeTeX
+  \usepackage{fontspec}
+  \usepackage{polyglossia}
+  \setdefaultlanguage{english}
+  \setotherlanguage{french}
+  \setotherlanguage{arabic}
+  \setmainfont{TeX Gyre Pagella}
+  \setsansfont{TeX Gyre Heros}
+  \setmonofont{TeX Gyre Cursor}
+  \IfFontExistsTF{Amiri}{%
+    \newfontfamily\arabicfont[Script=Arabic,Scale=1.06]{Amiri}%
+  }{%
+    \IfFontExistsTF{Noto Naskh Arabic}{%
+      \newfontfamily\arabicfont[Script=Arabic,Scale=1.06]{Noto Naskh Arabic}%
+    }{%
+      \newfontfamily\arabicfont[Script=Arabic,Scale=1.06]{Arabic Typesetting}%
+    }%
+  }%
+  \providecommand{\textarabic}[1]{\foreignlanguage{arabic}{#1}}%
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage[english,french]{babel}
+  \usepackage{tgpagella}
+  \newcommand{\textenglish}[1]{#1}%
+  \newcommand{\textarabic}[1]{#1}%
+  \newenvironment{Arabic}{}{}%
+\fi
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{grffile}
+\graphicspath{{Figures/}{Logos/}{images/}{diagrams/}{Screenshots/}}
+% svg package removed: Overleaf/pdflatex uses PNG/PDF figures only (no shell-escape)
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{mdframed}
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{silence}
+\WarningFilter{tracklang}{No `datatool' support for dialect}
+\WarningFilter{latex}{Infinite glue shrinkage found in box being split}
+\usepackage{afterpage}
+\usepackage[acronym]{glossaries}
+
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.6cm,
+    bottom=2.6cm
+}
+
+\setlength{\headheight}{16pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+\onehalfspacing
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\setlength{\emergencystretch}{3em}
+\hbadness=10000
+\hfuzz=1pt
+\setlength{\tabcolsep}{4.5pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\setlength{\LTcapwidth}{\textwidth}
+\renewcommand{\tabularxcolumn}[1]{>{\raggedright\arraybackslash}m{#1}}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{codegray}{rgb}{0.45,0.45,0.45}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.95}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=6pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Code Listing}
+\renewcommand{\lstlistlistingname}{List of Code Listings}
+
+\definecolor{primary}{HTML}{1A237E}
+\definecolor{accent}{HTML}{0277BD}
+\definecolor{success}{HTML}{2E7D32}
+\definecolor{warning}{HTML}{BF360C}
+\definecolor{lightblue}{HTML}{E3F2FD}
+\definecolor{lightgreen}{HTML}{E8F5E9}
+\definecolor{lightyellow}{HTML}{FFFDE7}
+\definecolor{subtle}{HTML}{546E7A}
+
+\newmdenv[backgroundcolor=lightblue,linecolor=accent,linewidth=1.5pt,
+  leftline=true,topline=false,rightline=false,bottomline=false,
+  innerleftmargin=10pt,innerrightmargin=8pt,innertopmargin=7pt,innerbottommargin=7pt,
+  skipabove=8pt,skipbelow=8pt]{infobox}
+\newmdenv[backgroundcolor=lightgreen,linecolor=success,linewidth=1.5pt,
+  leftline=true,topline=false,rightline=false,bottomline=false,
+  innerleftmargin=10pt,innerrightmargin=8pt,innertopmargin=7pt,innerbottommargin=7pt,
+  skipabove=8pt,skipbelow=8pt]{successbox}
+\newmdenv[backgroundcolor=lightyellow,linecolor=warning,linewidth=1.2pt,
+  leftline=true,topline=false,rightline=false,bottomline=false,
+  innerleftmargin=10pt,innerrightmargin=8pt,innertopmargin=7pt,innerbottommargin=7pt,
+  skipabove=8pt,skipbelow=8pt]{riskbox}
+
+\newcommand{\reportchapter}[3]{%
+  \chapter{#2}%
+  \vspace{-0.2cm}
+  \begin{center}
+    {\small\itshape\color{subtle}#3}
+  \end{center}
+  \vspace{0.25cm}
+}
+
+\newenvironment{dedication}
+  {
+   \clearpage
+   \thispagestyle{empty}
+   \vspace*{\stretch{1}}
+   \begin{center}
+   {\Huge\bfseries Dedication\par}
+   \vspace{1cm}
+   \itshape
+   \begin{minipage}{1\textwidth}
+   \raggedright
+  }
+  {
+   \end{minipage}
+   \end{center}
+   \vspace{\stretch{2}}
+   \clearpage
+  }
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+}
+

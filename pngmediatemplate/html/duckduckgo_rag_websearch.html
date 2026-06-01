@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG + DuckDuckGo Web Search</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #6e6e80;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #b8b8c2;
+      --deep: #343541;
+      --web-soft: #fff8ef;
+      --web-border: #d4a574;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 54px 76px;
+      background: linear-gradient(180deg, rgba(247, 247, 248, 0.86), rgba(255, 255, 255, 0.98));
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 760;
+    }
+
+    .subtitle {
+      margin: 10px auto 0;
+      width: 900px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.32;
+      font-weight: 560;
+    }
+
+    .node {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      min-height: 88px;
+      padding: 18px 24px;
+      border: 2px solid var(--strong-border);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(32, 33, 35, 0.045);
+      text-align: center;
+      font-size: 22px;
+      font-weight: 690;
+      line-height: 1.2;
+    }
+
+    .node small {
+      display: block;
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 560;
+      color: var(--muted);
+    }
+
+    .soft { background: var(--soft); }
+
+    .q { left: 220px; top: 168px; width: 280px; }
+    .rag { left: 660px; top: 168px; width: 380px; }
+    .ans { left: 1200px; top: 168px; width: 320px; }
+
+    .web-lane {
+      position: absolute;
+      left: 96px;
+      top: 340px;
+      width: 1608px;
+      height: 520px;
+      border: 2px solid var(--web-border);
+      border-radius: 14px;
+      background: rgba(255, 252, 247, 0.96);
+      z-index: 2;
+    }
+
+    .web-lane h2 {
+      position: absolute;
+      left: 32px;
+      top: 28px;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 780;
+      color: var(--deep);
+    }
+
+    .web-lane .tag {
+      position: absolute;
+      left: 340px;
+      top: 32px;
+      padding: 6px 14px;
+      border: 1px solid var(--web-border);
+      border-radius: 999px;
+      background: #fff;
+      color: #9a3412;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-wrap {
+      position: absolute;
+      right: 48px;
+      top: 24px;
+      width: 280px;
+      height: 96px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--web-border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .logo-wrap img {
+      max-height: 56px;
+      max-width: 220px;
+    }
+
+    .web-desc {
+      position: absolute;
+      left: 32px;
+      top: 88px;
+      width: 980px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+      font-weight: 560;
+    }
+
+    .web-desc strong {
+      color: var(--ink);
+      font-weight: 720;
+    }
+
+    .web-box {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      min-height: 72px;
+      padding: 14px 20px;
+      border: 2px solid var(--web-border);
+      border-radius: 10px;
+      background: var(--web-soft);
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.22;
+      z-index: 4;
+    }
+
+    .web-box span {
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: 560;
+      color: var(--muted);
+    }
+
+    .b1 { left: 48px; top: 200px; width: 260px; }
+    .b2 { left: 348px; top: 200px; width: 300px; }
+    .b3 { left: 688px; top: 200px; width: 280px; }
+    .b4 { left: 1008px; top: 200px; width: 280px; }
+
+    .web-note {
+      position: absolute;
+      left: 48px;
+      top: 320px;
+      width: 1510px;
+      padding: 22px 28px;
+      border: 2px dashed var(--web-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink);
+      font-weight: 560;
+    }
+
+    .web-note strong { font-weight: 740; }
+
+    .footer {
+      position: absolute;
+      left: 96px;
+      top: 900px;
+      width: 1608px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.4;
+      font-weight: 560;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+
+    .connector-web {
+      stroke: #c9955a;
+      stroke-width: 2.4;
+      stroke-dasharray: 10 7;
+    }
+
+    .label-opt {
+      position: absolute;
+      left: 818px;
+      top: 302px;
+      z-index: 5;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--web-border);
+      color: #9a3412;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="RAG with optional DuckDuckGo web search">
+    <h1>Hybrid RAG + Live Web Search</h1>
+    <p class="subtitle">General query flow with an optional DuckDuckGo layer for recent public web evidence.</p>
+
+    <div class="node q">User question<small>Chat interface</small></div>
+    <div class="node soft rag">Hybrid RAG platform<small>Retrieve · reason · synthesize</small></div>
+    <div class="node ans">Cited answer<small>Sources + trace</small></div>
+
+    <div class="label-opt">optional</div>
+
+    <section class="web-lane">
+      <h2>Web search layer</h2>
+      <div class="tag">Focus</div>
+      <div class="logo-wrap">
+        <img src="../../Logos/duckduckgo.svg" alt="DuckDuckGo">
+      </div>
+
+      <p class="web-desc">
+        <strong>DuckDuckGo</strong> is a privacy-oriented search engine (no user profiling, no commercial API key).
+        Modern AI agents use it to complement indexed knowledge with fresh web pages.
+      </p>
+
+      <div class="web-box b1">Web On / Off<small>Chat toggle</small></div>
+      <div class="web-box b2">DuckDuckGoSearchRun<small>HTML results + Instant Answer fallback</small></div>
+      <div class="web-box b3">Live web snippets<small>Merged at synthesis time</small></div>
+      <div class="web-box b4">AI Search (admin)<small>Topic discovery → ingestion</small></div>
+
+      <div class="web-note">
+        <strong>When it runs:</strong> user enables Web search, a reflexive audit needs external evidence,
+        the question signals recency (<em>latest</em>, <em>breaking</em>…), or an administrator launches topic discovery.
+        Web results stay separate from the local corpus in the LLM context, then fuse into one cited answer.
+      </div>
+    </section>
+
+    <p class="footer">
+      Internal RAG remains the primary path; DuckDuckGo adds supplementary evidence until the same sources are ingested into the platform.
+    </p>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+        <marker id="arrow-web" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#c9955a"></path>
+        </marker>
+      </defs>
+      <path class="connector" marker-end="url(#arrow)" d="M 500 212 L 652 212"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1040 212 L 1196 212"></path>
+      <path class="connector connector-web" marker-end="url(#arrow-web)" d="M 850 256 C 850 298, 850 318, 850 340"></path>
+    </svg>
+  </main>
+</body>
+</html>

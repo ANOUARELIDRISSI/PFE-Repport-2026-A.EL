@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reasoning Modes</title>
+  <style>
+    :root {
+      --ink: #202123;
+      --muted: #6e6e80;
+      --line: #8e8ea0;
+      --panel: #ffffff;
+      --soft: #f7f7f8;
+      --border: #d9d9e3;
+      --strong-border: #b8b8c2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 1800px;
+      height: 1050px;
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 54px 74px;
+      background:
+        linear-gradient(180deg, rgba(247, 247, 248, 0.86), rgba(255, 255, 255, 0.98));
+    }
+
+    .title {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .lane {
+      position: absolute;
+      left: 96px;
+      width: 1608px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .rag { top: 168px; height: 206px; }
+    .cot { top: 424px; height: 240px; }
+    .reflexive { top: 714px; height: 260px; }
+
+    .lane-label {
+      position: absolute;
+      left: 34px;
+      top: 26px;
+      width: 270px;
+    }
+
+    .lane-label h2 {
+      margin: 0;
+      font-size: 27px;
+      font-weight: 780;
+      line-height: 1.16;
+    }
+
+    .lane-label p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 560;
+    }
+
+    .node {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      min-height: 82px;
+      padding: 16px 20px;
+      border: 2px solid var(--strong-border);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(32, 33, 35, 0.045);
+      text-align: center;
+      color: var(--ink);
+      font-size: 21px;
+      font-weight: 690;
+      line-height: 1.18;
+    }
+
+    .process { background: var(--soft); }
+    .answer { background: #ffffff; border-color: #9b9ba8; }
+
+    .small { width: 218px; }
+    .medium { width: 264px; }
+    .wide { width: 314px; }
+
+    .rag .q { left: 362px; top: 90px; }
+    .rag .r { left: 676px; top: 90px; }
+    .rag .a { left: 1016px; top: 90px; }
+
+    .cot .plan { left: 336px; top: 106px; }
+    .cot .retrieve { left: 626px; top: 106px; }
+    .cot .follow { left: 938px; top: 106px; }
+    .cot .answer { left: 1284px; top: 106px; }
+
+    .reflexive .plan { left: 326px; top: 116px; }
+    .reflexive .retrieve { left: 626px; top: 116px; }
+    .reflexive .decision {
+      left: 948px;
+      top: 116px;
+      width: 224px;
+      min-height: 82px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+    .reflexive .decision span {
+      display: block;
+      font-size: 21px;
+      font-weight: 720;
+      line-height: 1.22;
+    }
+
+    .reflexive .next { left: 1234px; top: 36px; }
+    .reflexive .answer { left: 1270px; top: 174px; }
+
+    .tag {
+      position: absolute;
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      min-width: 48px;
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .no { left: 1196px; top: 798px; }
+    .yes { left: 1214px; top: 894px; }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+    }
+
+    .connector {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas" aria-label="Reasoning modes">
+    <h1 class="title">Reasoning Modes</h1>
+    <p class="subtitle">Three retrieval strategies: strict RAG, chain-of-thought retrieval, and reflexive evidence audit.</p>
+
+    <section class="lane rag">
+      <div class="lane-label">
+        <h2>RAG</h2>
+        <p>Single retrieval pass using the original question only.</p>
+      </div>
+      <div class="node small q">Original question</div>
+      <div class="node process medium r">Retrieve vector chunks</div>
+      <div class="node answer wide a">Synthesize cited answer</div>
+    </section>
+
+    <section class="lane cot">
+      <div class="lane-label">
+        <h2>Chain of Thought</h2>
+        <p>Planning and follow-up searches extend the reasoning chain.</p>
+      </div>
+      <div class="node process small plan">Plan sub-questions</div>
+      <div class="node process medium retrieve">Retrieve chunks + graph facts</div>
+      <div class="node process wide follow">Choose next entities or topics</div>
+      <div class="node answer medium answer">Combine chain into answer</div>
+    </section>
+
+    <section class="lane reflexive">
+      <div class="lane-label">
+        <h2>Reflexive</h2>
+        <p>An audit step decides whether evidence is sufficient before synthesis.</p>
+      </div>
+      <div class="node process small plan">Plan research path</div>
+      <div class="node process medium retrieve">Retrieve evidence + graph relations</div>
+      <div class="node decision"><span>Evidence sufficient?</span></div>
+      <div class="node process wide next">Search missing evidence</div>
+      <div class="node answer medium answer">Final synthesis</div>
+      <div class="tag no">No</div>
+      <div class="tag yes">Yes</div>
+    </section>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        </marker>
+      </defs>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 676 299 L 772 299"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 940 299 L 1112 299"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 554 550 L 720 550"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 890 550 L 1034 550"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1252 550 L 1380 550"></path>
+
+      <path class="connector" marker-end="url(#arrow)" d="M 532 855 L 722 855"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 890 855 L 1038 855"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1172 835 L 1348 796"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1320 818 C 1124 748, 830 752, 792 816"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1172 892 L 1378 892"></path>
+    </svg>
+  </main>
+</body>
+</html>

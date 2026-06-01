@@ -1,0 +1,50 @@
+erDiagram
+    DOCUMENT {
+        string id PK
+        string title
+        string source_url
+        datetime published_date
+        float quality_score
+        boolean graph_extracted
+        boolean structured_extracted
+        boolean chunks_created
+    }
+
+    ENTITY_MENTION {
+        string id PK
+        string entity_id FK
+        string document_id FK
+        string entity_name
+        string entity_type
+    }
+
+    RELATION_ASSERTION {
+        string id PK
+        string from_id FK
+        string to_id FK
+        string type
+        string document_id FK
+        float confidence
+        string evidence
+    }
+
+    DOCUMENT_CHUNK {
+        string chunk_id PK
+        string document_id FK
+        string chunk_text
+        vector embedding
+        string section_header
+    }
+
+    BILL {
+        string bill_id PK
+        string title
+        string status
+        string document_id FK
+    }
+
+    DOCUMENT ||--o{ ENTITY_MENTION : "contains"
+    DOCUMENT ||--o{ RELATION_ASSERTION : "provides evidence for"
+    DOCUMENT ||--o{ DOCUMENT_CHUNK : "segmented into"
+    DOCUMENT ||--o{ BILL : "reports on"
+    ENTITY_MENTION }o--|| DOCUMENT : "references"

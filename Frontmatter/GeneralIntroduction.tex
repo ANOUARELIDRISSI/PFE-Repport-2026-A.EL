@@ -1,0 +1,37 @@
+\chapter*{General Introduction}
+\addcontentsline{toc}{chapter}{General Introduction}
+
+\section*{Context}
+
+The digital transformation of political communication has produced an unprecedented volume of public information. News agencies, parliamentary bodies, governmental institutions, research organizations, and civil society actors publish large numbers of articles, reports, and official documents every day. These sources contain valuable signals about actors, events, institutions, alliances, conflicts, financial links, and temporal changes, but most of this information remains embedded in unstructured text.
+
+For analysts, journalists, and researchers, the difficulty is no longer only to access information, but to connect dispersed facts and interpret them in a reliable way. Keyword search can retrieve documents, and classical retrieval-augmented generation can summarize passages, yet both approaches remain limited when the question requires entity disambiguation, multi-hop reasoning, temporal filtering, and explicit source attribution.
+
+This difficulty is amplified by the rhythm of political information. Relevant evidence may appear first in an RSS entry, then in a full news article, then in an institutional report or policy PDF. A platform designed for political intelligence must therefore do more than consume a static dataset. It must continuously discover, collect, normalize, and evaluate heterogeneous sources while preserving the provenance of every fact. In this project, that role is fulfilled by an autonomous crawler composed of several complementary levels: curated RSS monitoring, query-driven news discovery, PDF report ingestion, and administrative controls for scheduled collection.
+
+The project was developed in this context as a sovereign decision-support platform. Its purpose is not to replace the analyst, but to reduce the cost of moving from scattered documents to structured evidence. The system collects public political information, stores it in MongoDB, extracts entities and relations with Mistral, publishes graph structures in Neo4j, indexes textual chunks in ZVec, and exposes the results through a React/Vite interface. The resulting platform gives the user both a conversational reasoning interface and direct access to the underlying sources, graph, documents, and operational indicators.
+
+\section*{Problem Statement}
+
+Political intelligence analysis often depends on relational questions. A user may need to understand how two actors are connected, which events created a diplomatic shift, how an institution evolved over time, or which documents support a specific claim. These questions cannot be answered robustly by treating documents as isolated text fragments. They require a representation that combines textual evidence with structured relations.
+
+This project addresses that problem through a multimodal Graph-RAG system. The system combines dense semantic retrieval, a Neo4j knowledge graph, entity and relation extraction, and an LLM-based reasoning layer. The goal is to transform a large corpus of political news into an exploitable knowledge layer that supports grounded, explainable, and temporally aware analysis.
+
+A second challenge concerns data acquisition itself. Many Graph-RAG systems assume that the corpus already exists and focus only on retrieval and generation. In this project, the corpus is produced by the platform. The crawler must avoid duplicates, preserve source metadata, handle heterogeneous formats, operate politely with external websites, and provide enough operational visibility for an administrator to supervise ingestion. This makes crawling and ingestion a central contribution of the project rather than a peripheral utility.
+
+The final challenge is trust. Political analysis is sensitive because a generated answer may influence interpretation of institutions, actors, or conflicts. The system must therefore expose its evidence, separate raw documents from extracted relations, preserve timestamps, and make retrieval behavior auditable. This need explains the combination of MongoDB for documents, Neo4j for explicit relations, ZVec for local semantic search, and observability tools for operational monitoring.
+
+\section*{Objectives}
+
+The project pursues three main objectives. The first objective is to design and implement a knowledge graph construction pipeline capable of extracting political entities, events, and relations from heterogeneous news sources. The second objective is to build a Graph-RAG reasoning engine that combines vector retrieval with graph traversal and cited answer synthesis. The third objective is to evaluate the contribution of graph-structured evidence compared with classical RAG, especially for relational and multi-hop political questions.
+
+These objectives are translated into concrete engineering goals. The platform must collect data autonomously from RSS feeds, Google News queries, direct URLs, and PDF sources. It must normalize the collected material into document records that can be processed by the same extraction pipeline. It must resolve entities deterministically through canonical names and stable identifiers, without depending on a Wikidata backbone as the main source of truth. It must also provide an administration interface where ingestion status, scheduler state, logs, source filters, and backfill operations can be controlled without modifying code.
+
+From a user perspective, the objective is to provide an integrated analytical workspace. The analyst can ask questions in natural language, inspect sources, explore graph neighborhoods, follow political trends, consult documents, and observe system health. From an engineering perspective, the objective is to build a modular pipeline in which crawling, extraction, graph publication, chunking, embedding, retrieval, and evaluation remain separable and testable.
+
+The expected contribution is therefore both methodological and practical. Methodologically, the project studies how autonomous crawling, knowledge graph construction, and retrieval-augmented generation can be combined in a single political intelligence workflow. Practically, it delivers an executable platform where source acquisition, evidence structuring, semantic search, graph exploration, and answer generation are connected through working backend services and frontend controls.
+
+\section*{Report Structure}
+
+This report is organized into five chapters. Chapter 1 introduces the host organization and the theoretical foundations of knowledge graphs, RAG, Graph-RAG, and political NLP. Chapter 2 defines the problem, requirements, project methodology, user needs, and foundational technologies. Chapter 3 presents the system design, data flow, domain model, and reasoning architecture. Chapter 4 describes the implementation details, persistence layers, interface, deployment, and observability choices. Chapter 5 presents the evaluation protocol, results, interpretation, limitations, and future work.
+

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domain Data Model</title>
+  <style>
+    :root {
+      --ink: #101114;
+      --muted: #555b66;
+      --line: #8b91a0;
+      --border: #cfd3dc;
+      --soft: #f5f6f8;
+      --panel: #ffffff;
+      --shade: #eceff3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 1800px;
+      height: 1050px;
+      background: #fff;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 42px 70px 34px;
+      background:
+        linear-gradient(#fff, #fff) padding-box,
+        radial-gradient(circle at 50% 0%, #f7f8fa 0, #fff 48%) border-box;
+    }
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      line-height: 1.16;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      width: 1060px;
+      margin: 12px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+    svg.links {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1800px;
+      height: 1050px;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .model {
+      position: absolute;
+      width: 316px;
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 14px 28px rgba(16, 17, 20, 0.08);
+      overflow: hidden;
+    }
+    .model.wide { width: 360px; }
+    .head {
+      padding: 14px 18px 12px;
+      background: var(--shade);
+      border-bottom: 2px solid var(--border);
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 760;
+      text-align: center;
+    }
+    .meta {
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 700;
+      text-align: center;
+      background: #fafafa;
+    }
+    ul {
+      list-style: none;
+      padding: 14px 20px 16px;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+    li { margin: 6px 0; }
+    code {
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 0.92em;
+    }
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    .relation-label {
+      position: absolute;
+      padding: 5px 10px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      color: #252932;
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 760;
+      z-index: 4;
+      white-space: nowrap;
+    }
+    .storage {
+      position: absolute;
+      padding: 11px 16px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: #fafafa;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 760;
+      text-align: center;
+      line-height: 1.25;
+      box-shadow: 0 10px 20px rgba(16, 17, 20, 0.05);
+    }
+    .note {
+      position: absolute;
+      left: 268px;
+      right: 268px;
+      bottom: 26px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+    .document { left: 110px; top: 190px; }
+    .chunk { left: 110px; top: 552px; }
+    .entity { left: 742px; top: 176px; width: 372px; }
+    .relation { left: 742px; top: 544px; width: 372px; }
+    .structured { left: 1318px; top: 218px; width: 352px; }
+    .vector { left: 1318px; top: 592px; width: 352px; }
+    .mongo-a { left: 134px; top: 888px; width: 286px; }
+    .neo { left: 790px; top: 888px; width: 278px; }
+    .mongo-b { left: 1362px; top: 888px; width: 278px; }
+    .l1 { left: 455px; top: 330px; }
+    .l2 { left: 522px; top: 592px; }
+    .l3 { left: 1144px; top: 334px; }
+    .l4 { left: 792px; top: 512px; }
+    .l5 { left: 823px; top: 465px; }
+    .l6 { left: 219px; top: 466px; }
+    .l7 { left: 1136px; top: 748px; }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <h1>Domain Data Model</h1>
+    <div class="subtitle">The analytical domain is represented as evidence documents, semantic chunks, graph entities, relation assertions, structured records, and vector records.</div>
+
+    <svg class="links" viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        </marker>
+      </defs>
+      <path d="M426 324 C545 318, 620 302, 742 298" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M426 416 C568 456, 644 512, 742 612" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M928 456 L928 544" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M268 474 L268 552" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M426 690 C650 815, 1110 842, 1318 714" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M268 800 L268 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M928 788 L928 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1494 810 L1494 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+    </svg>
+
+    <section class="model document">
+      <div class="head">Document</div>
+      <div class="meta">MongoDB source evidence</div>
+      <ul>
+        <li><code>id</code>, <code>title</code>, <code>content</code></li>
+        <li><code>source_url</code>, <code>source_name</code></li>
+        <li><code>published_date</code>, <code>scraped_at</code></li>
+        <li><code>graph_extracted</code>, <code>structured_extracted</code></li>
+      </ul>
+    </section>
+
+    <section class="model chunk">
+      <div class="head">DocumentChunk</div>
+      <div class="meta">MongoDB retrieval unit</div>
+      <ul>
+        <li><code>chunk_id</code>, <code>document_id</code></li>
+        <li><code>chunk_text</code>, <code>enriched_text</code></li>
+        <li><code>section_header</code>, <code>word_count</code></li>
+        <li><code>entity_ids</code> link text to graph nodes</li>
+      </ul>
+    </section>
+
+    <section class="model entity">
+      <div class="head">GeopoliticalEntity</div>
+      <div class="meta">Neo4j canonical node</div>
+      <ul>
+        <li><code>id</code>, <code>name</code>, <code>canonical_name</code></li>
+        <li><code>POLITICIAN</code>, <code>PARTY</code>, <code>COUNTRY</code></li>
+        <li><code>ORGANIZATION</code>, <code>INSTITUTION</code>, <code>EVENT</code></li>
+        <li><code>MINISTRY</code>, <code>COMMITTEE</code>, <code>FOREIGN_ACTOR</code></li>
+      </ul>
+    </section>
+
+    <section class="model relation">
+      <div class="head">RelationAssertion</div>
+      <div class="meta">Neo4j edge and MongoDB assertion</div>
+      <ul>
+        <li><code>from_entity_id</code>, <code>to_entity_id</code></li>
+        <li><code>relation_type</code>, <code>confidence</code></li>
+        <li><code>evidence</code>, <code>source_doc_ids</code></li>
+        <li><code>valid_from</code>, <code>valid_to</code> for temporal relations</li>
+      </ul>
+    </section>
+
+    <section class="model structured">
+      <div class="head">StructuredRecord</div>
+      <div class="meta">MongoDB analytical collections</div>
+      <ul>
+        <li><code>bills</code>, <code>votes</code>, <code>committees</code></li>
+        <li><code>contributions</code>, <code>conflict_flags</code></li>
+        <li>stored with <code>document_id</code> provenance</li>
+        <li>bills and donors are not graph node labels</li>
+      </ul>
+    </section>
+
+    <section class="model vector">
+      <div class="head">VectorRecord</div>
+      <div class="meta">ZVec semantic index</div>
+      <ul>
+        <li><code>chunk_id</code>, embedding vector</li>
+        <li><code>content</code> stores enriched text</li>
+        <li><code>metadata.document_id</code></li>
+        <li><code>metadata.entity_ids</code></li>
+      </ul>
+    </section>
+
+    <div class="relation-label l1">mentions / grounds</div>
+    <div class="relation-label l2">extracted assertions</div>
+    <div class="relation-label l4">relation vocabulary</div>
+    <div class="relation-label l5">connects entities</div>
+    <div class="relation-label l6">composed of</div>
+    <div class="relation-label l7">embedded as</div>
+
+    <div class="storage mongo-a">MongoDB<br><span class="tag">documents and chunks</span></div>
+    <div class="storage neo">Neo4j<br><span class="tag">entities and relationships</span></div>
+    <div class="storage mongo-b">MongoDB + ZVec<br><span class="tag">records and vectors</span></div>
+
+    <div class="note">The model separates raw evidence, graph topology, structured analytical records, and semantic retrieval vectors while preserving document-level provenance across every derived artifact.</div>
+  </main>
+</body>
+</html>

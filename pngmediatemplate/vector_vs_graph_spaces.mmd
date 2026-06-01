@@ -1,0 +1,20 @@
+flowchart LR
+    subgraph "Vector Latent Space"
+        V1(Concept: Sanction) -. "Distance = Meaning" .- V2(Concept: Embargo)
+        V3(Concept: Treaty)
+    end
+
+    subgraph "Graph Topology"
+        G1[Country A] -- "Imposes" --> G2[Embargo]
+        G2 -- "Affects" --> G3[Country B]
+    end
+
+    V1 -- "1. Seed Search" --> G1
+    V2 -- "1. Seed Search" --> G2
+    V3 -- "1. Seed Search" --> G3
+    G1 -- "2. Multi-hop Traversal" --> G3
+
+    style V1 fill:#bbf,stroke:#333
+    style V2 fill:#bbf,stroke:#333
+    style G1 fill:#dfd,stroke:#333
+    style G3 fill:#dfd,stroke:#333

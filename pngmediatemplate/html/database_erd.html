@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physical Persistence Schema</title>
+  <style>
+    :root {
+      --ink: #111216;
+      --muted: #555b66;
+      --line: #8b91a0;
+      --border: #cfd3dc;
+      --soft: #f6f7f9;
+      --head: #eceff3;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 1800px;
+      height: 1050px;
+      background: #fff;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .canvas {
+      position: relative;
+      width: 1800px;
+      height: 1050px;
+      padding: 42px 62px 30px;
+      background: #fff;
+    }
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 36px;
+      line-height: 1.15;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 12px auto 0;
+      width: 1100px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 1800px;
+      height: 1050px;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .table {
+      position: absolute;
+      width: 292px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 0 12px 26px rgba(16, 17, 20, 0.075);
+    }
+    .table.main {
+      width: 350px;
+      left: 725px;
+      top: 170px;
+      box-shadow: 0 18px 38px rgba(16, 17, 20, 0.11);
+    }
+    .title {
+      padding: 12px 16px 11px;
+      background: var(--head);
+      border-bottom: 2px solid var(--border);
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 780;
+      text-align: center;
+    }
+    .role {
+      padding: 8px 14px;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 760;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 12px 18px 14px;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+    li { margin: 5px 0; }
+    code {
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 0.92em;
+    }
+    .key {
+      display: inline-block;
+      min-width: 30px;
+      margin-right: 5px;
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .cluster {
+      position: absolute;
+      border: 2px solid #d9dde5;
+      border-radius: 10px;
+      background: rgba(246, 247, 249, 0.65);
+    }
+    .cluster-label {
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      padding: 5px 12px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .label {
+      position: absolute;
+      padding: 5px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: #282c34;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 780;
+      white-space: nowrap;
+      z-index: 5;
+    }
+    .note {
+      position: absolute;
+      left: 260px;
+      right: 260px;
+      bottom: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+    .documents { left: 725px; top: 170px; }
+    .mentions { left: 175px; top: 170px; }
+    .relations { left: 175px; top: 520px; }
+    .chunks { left: 632px; top: 610px; }
+    .vectors { left: 1046px; top: 610px; }
+    .structured { left: 1312px; top: 165px; width: 322px; }
+    .chat { left: 1312px; top: 520px; width: 322px; }
+    .c1 { left: 138px; top: 130px; width: 380px; height: 705px; }
+    .c2 { left: 600px; top: 576px; width: 605px; height: 258px; }
+    .c3 { left: 1280px; top: 130px; width: 390px; height: 705px; }
+    .l1 { left: 505px; top: 260px; }
+    .l2 { left: 500px; top: 630px; }
+    .l3 { left: 823px; top: 550px; }
+    .l4 { left: 982px; top: 706px; }
+    .l5 { left: 1122px; top: 276px; }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <h1>Physical Persistence Schema</h1>
+    <div class="subtitle">MongoDB stores source evidence, derived analytical records, runtime state, and retrieval chunks; Neo4j and ZVec complement it with graph topology and vector search.</div>
+
+    <div class="cluster c1"><span class="cluster-label">extraction evidence</span></div>
+    <div class="cluster c2"><span class="cluster-label">retrieval index</span></div>
+    <div class="cluster c3"><span class="cluster-label">domain and runtime collections</span></div>
+
+    <svg viewBox="0 0 1800 1050" aria-hidden="true">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        </marker>
+      </defs>
+      <path d="M725 282 C650 276, 560 272, 467 270" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M725 372 C640 425, 540 520, 467 620" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M900 508 L862 610" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M924 742 C970 742, 1005 742, 1046 742" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1075 282 C1152 278, 1225 276, 1312 276" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+    </svg>
+
+    <section class="table main documents">
+      <div class="title">documents</div>
+      <div class="role">source collection and pipeline checkpoint state</div>
+      <ul>
+        <li><span class="key">PK</span><code>id</code> unique sparse</li>
+        <li><code>title</code>, <code>content</code>, <code>source_url</code></li>
+        <li><code>source</code>, <code>source_name</code>, <code>published_date</code></li>
+        <li><code>graph_extracted</code>, <code>structured_extracted</code></li>
+        <li><code>chunks_created</code>, <code>quality_score</code></li>
+      </ul>
+    </section>
+
+    <section class="table mentions">
+      <div class="title">entity_mentions</div>
+      <div class="role">one entity occurrence per document</div>
+      <ul>
+        <li><span class="key">IX</span><code>entity_id</code></li>
+        <li><span class="key">FK</span><code>document_id</code></li>
+        <li><code>entity_name</code>, <code>entity_type</code></li>
+        <li><code>source_name</code>, <code>published_date</code></li>
+        <li><code>created_at</code></li>
+      </ul>
+    </section>
+
+    <section class="table relations">
+      <div class="title">relation_assertions</div>
+      <div class="role">relation evidence mirrored from graph extraction</div>
+      <ul>
+        <li><span class="key">IX</span><code>from_entity_id</code>, <code>to_entity_id</code></li>
+        <li><code>relation_type</code>, <code>confidence</code></li>
+        <li><code>evidence</code>, <code>status</code></li>
+        <li><code>source_doc_ids</code>, <code>created_at</code></li>
+      </ul>
+    </section>
+
+    <section class="table chunks">
+      <div class="title">document_chunks</div>
+      <div class="role">semantic retrieval units stored in MongoDB</div>
+      <ul>
+        <li><span class="key">PK</span><code>chunk_id</code> unique sparse</li>
+        <li><span class="key">FK</span><code>document_id</code></li>
+        <li><code>chunk_text</code>, <code>enriched_text</code></li>
+        <li><code>chunk_index</code>, <code>section_header</code></li>
+        <li><code>entity_ids</code>, <code>source_name</code></li>
+      </ul>
+    </section>
+
+    <section class="table vectors">
+      <div class="title">ZVec vectors</div>
+      <div class="role">external vector index, not a MongoDB collection</div>
+      <ul>
+        <li><span class="key">PK</span><code>chunk_id</code></li>
+        <li><code>embedding</code>, <code>content</code></li>
+        <li><code>metadata.document_id</code></li>
+        <li><code>metadata.entity_ids</code></li>
+        <li><code>metadata.published_date</code></li>
+      </ul>
+    </section>
+
+    <section class="table structured">
+      <div class="title">structured records</div>
+      <div class="role">MongoDB analytical collections from extraction step 2</div>
+      <ul>
+        <li><code>bills</code>: <code>id</code>, <code>status</code>, <code>chamber</code></li>
+        <li><code>votes</code>: <code>id</code>, <code>bill_id</code>, <code>date</code></li>
+        <li><code>committees</code>: <code>id</code>, <code>chamber</code></li>
+        <li><code>contributions</code>: <code>donor_id</code>, <code>recipient_id</code></li>
+        <li><code>conflict_flags</code>: <code>severity</code>, <code>created_at</code></li>
+      </ul>
+    </section>
+
+    <section class="table chat">
+      <div class="title">runtime collections</div>
+      <div class="role">application state and audit records</div>
+      <ul>
+        <li><code>users</code>: <code>id</code>, <code>email</code>, <code>is_admin</code></li>
+        <li><code>chat_sessions</code>: <code>id</code>, <code>updated_at</code></li>
+        <li><code>chat_messages</code>: <code>session_id</code>, <code>timestamp</code></li>
+        <li><code>query_history</code>: <code>created_at</code></li>
+      </ul>
+    </section>
+
+    <div class="label l1">contains</div>
+    <div class="label l2">provides evidence</div>
+    <div class="label l3">segmented into</div>
+    <div class="label l4">embedded as</div>
+    <div class="label l5">extracts records</div>
+    <div class="note">The schema is intentionally document-centered: every derived collection keeps provenance through document, chunk, session, or entity identifiers, while specialized stores handle graph traversal and vector similarity.</div>
+  </main>
+</body>
+</html>

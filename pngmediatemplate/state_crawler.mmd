@@ -1,0 +1,38 @@
+stateDiagram-v2
+    [*] --> Idle
+    
+    state "Discovery Phase" as Discovery {
+        [*] --> TopicSearch
+        TopicSearch --> URLCollection : DuckDuckGo / RSS
+        URLCollection --> TypeIdentification : HTML vs PDF vs Video
+    }
+    
+    Idle --> Discovery : Triggered (Cron/Manual)
+    
+    state "Normalization Phase" as Normalization {
+        [*] --> Ingestion
+        Ingestion --> WebParsing : If HTML
+        Ingestion --> PDFConversion : If PDF (Docling)
+        Ingestion --> Transcription : If Video/Audio
+        
+        WebParsing --> MD_Output
+        PDFConversion --> MD_Output
+        Transcription --> MD_Output
+    }
+    
+    Discovery --> Normalization : URLs Collected
+    
+    state "Extraction Phase" as Extraction {
+        [*] --> NLPPipeline
+        NLPPipeline --> JointExtraction : Mistral MIPROv2
+        JointExtraction --> EntityResolution : Wikidata Reference
+    }
+    
+    Normalization --> Extraction : Normalized MD
+    
+    Extraction --> QualityCheck
+    
+    QualityCheck --> Saving : Score > 0.3
+    QualityCheck --> Idle : Score < 0.3 (Discard)
+    
+    Saving --> Idle : Persistence Complete

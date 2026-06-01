@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant Admin as System Administrator
+    participant Discovery as Discovery Engine (DDG/RSS)
+    participant Crawler as Autonomous Multi-modal Crawler
+    participant Extractor as Extraction Layer (Docling/Trafilatura)
+    participant NLP as Joint NLP Pipeline (Mistral)
+    participant DB as Unified Storage (Mongo/Neo4j)
+
+    Admin->>Discovery: Configure Topics (Politics, Finance, etc.)
+    
+    par Multi-Format Discovery
+        Discovery->>Crawler: Web Article URLs
+        Discovery->>Crawler: PDF Report URLs
+        Discovery->>Crawler: Video Transcript Links
+    end
+
+    loop Process Stream
+        alt Format: HTML
+            Crawler->>Extractor: Trafilatura (Clean Text)
+        else Format: PDF
+            Crawler->>Extractor: Docling (Structured Markdown/Tables)
+        else Format: Video/Audio
+            Crawler->>Extractor: Whisper/Transcript Processor
+        end
+        
+        Extractor-->>Crawler: Normalized Markdown Content
+        
+        Crawler->>NLP: Unified Textual Input
+        activate NLP
+        Note over NLP: Joint Entity, Relation & Stance Extraction
+        NLP-->>Crawler: Structured Geopolitical Triples
+        deactivate NLP
+        
+        Crawler->>DB: Persist (Raw Metadata + Graph Topology)
+    end

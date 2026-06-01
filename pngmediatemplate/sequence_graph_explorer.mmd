@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant User as Geopolitical Analyst
+    participant UI as Graph Explorer (React)
+    participant API as FastAPI Backend
+    participant Neo4j as Neo4j Graph DB
+    participant Analyzer as Path Analysis Service
+
+    User->>UI: Select Source & Target Entities
+    UI->>API: POST /api/v1/graph/paths (source_id, target_id)
+    API->>Neo4j: Execute ShortestPath / AllPaths (Cypher)
+    Neo4j-->>API: Raw Graph Topology
+    
+    API->>Analyzer: Analyze Paths & Bridges
+    Note over Analyzer: Calculate hop distances &<br/>identify intermediate nodes
+    Analyzer-->>API: Structured Path Analysis Report
+    
+    API-->>UI: JSON (Nodes, Edges, Executive Summary)
+    
+    UI->>UI: Render Force-Directed Graph
+    UI->>User: Interactive Visualization + Path Descriptions

@@ -1,0 +1,40 @@
+flowchart LR
+    subgraph "External Sources"
+        Web[Web Articles]
+        PDF[PDF Reports]
+        Video[Video Transcripts]
+    end
+
+    subgraph "Ingestion Process (Level 0)"
+        P1[Autonomous Scraper]
+        P2[Normalization Layer]
+        P3[NLP Extraction Pipeline]
+    end
+
+    subgraph "Data Stores"
+        D1[(MongoDB - Raw/Structured)]
+        D2[(Neo4j - Knowledge Graph)]
+        D3[(ZVec - Vector Embeddings)]
+    end
+
+    subgraph "Reasoning Process"
+        P4[Agentic Reasoner]
+        P5[Response Synthesis]
+    end
+
+    subgraph "Output"
+        UI[React Dashboard]
+        API[FastAPI Endpoints]
+    end
+
+    Web & PDF & Video -- "Raw Data" --> P1
+    P1 -- "HTML/PDF/Text" --> P2
+    P2 -- "Unified Markdown" --> P3
+    P3 -- "Metadata & Structured Records" --> D1
+    P3 -- "Relational Triples" --> D2
+    P2 -- "Text Chunks" --> D3
+
+    D1 & D2 & D3 -- "Retrieved Context" --> P4
+    P4 -- "Reasoning Trace" --> P5
+    P5 -- "Grounded Answer" --> API
+    API -- "JSON Payload" --> UI

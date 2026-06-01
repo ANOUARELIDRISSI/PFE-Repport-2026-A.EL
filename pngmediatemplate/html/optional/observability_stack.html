@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Observability Stack</title><style>
+body{margin:0;width:1600px;height:900px;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#111216}*{box-sizing:border-box}.canvas{position:relative;width:1600px;height:900px;padding:40px 70px}h1{margin:0;text-align:center;font-size:34px}.sub{width:980px;margin:10px auto 0;text-align:center;color:#5a606b;font-size:17px;font-weight:650;line-height:1.35}.band{position:absolute;border:2px solid #d9dde5;border-radius:10px;background:#f7f8fa99}.label{position:absolute;top:-14px;left:20px;padding:5px 10px;border:1.5px solid #cfd3dc;border-radius:999px;background:#fff;color:#5a606b;font-size:12px;font-weight:800}.card{position:absolute;width:260px;border:2px solid #cfd3dc;border-radius:8px;background:#fff;box-shadow:0 10px 22px #10111410;text-align:center}.head{padding:12px 14px;background:#eceff3;border-bottom:1.5px solid #cfd3dc;font-size:18px;font-weight:780}.body{padding:10px 14px 14px;font-size:13px;line-height:1.35;font-weight:650}.note{position:absolute;left:220px;right:220px;bottom:24px;text-align:center;color:#5a606b;font-size:15px;font-weight:650;line-height:1.35}svg{position:absolute;inset:0;width:1600px;height:900px;pointer-events:none}.link{stroke:#7d8696;stroke-width:2.2;fill:none;marker-start:url(#start);marker-end:url(#arrow);stroke-linecap:round;stroke-linejoin:round}.b1{left:80px;top:150px;width:1440px;height:170px}.b2{left:80px;top:365px;width:1440px;height:220px}.b3{left:80px;top:625px;width:1440px;height:205px}.svc{left:130px;top:190px}.otel{left:435px;top:190px}.export{left:740px;top:190px}.storage{left:1045px;top:190px}.prom{left:170px;top:415px}.graf{left:470px;top:415px}.jaeg{left:770px;top:415px}.alert{left:1070px;top:415px}.dash{left:260px;top:675px}.logs{left:590px;top:675px}.trace{left:920px;top:675px}
+</style></head><body><main class="canvas"><h1>Observability Stack</h1><div class="sub">Metrics, traces, and logs flow from services to storage and dashboards through a unified telemetry pipeline.</div>
+<div class="band b1"><span class="label">instrumentation</span></div><div class="band b2"><span class="label">collection and storage</span></div><div class="band b3"><span class="label">analysis and visibility</span></div>
+<svg viewBox="0 0 1600 900"><defs><marker id="start" viewBox="0 0 10 10" markerWidth="8" markerHeight="8" refX="5" refY="5" orient="auto" markerUnits="strokeWidth"><circle cx="5" cy="5" r="3" fill="#7d8696"/></marker><marker id="arrow" viewBox="0 0 12 12" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L12,6 L0,12 Z" fill="#7d8696"/></marker></defs>
+<path class="link" d="M390 245 L435 245"/>
+<path class="link" d="M695 245 L740 245"/>
+<path class="link" d="M995 245 L1045 245"/>
+<path class="link" d="M565 320 L300 320 L300 415"/>
+<path class="link" d="M870 320 L600 320 L600 415"/>
+<path class="link" d="M1175 320 L900 320 L900 415"/>
+<path class="link" d="M1175 320 L1200 320 L1200 415"/>
+<path class="link" d="M300 560 L300 635 L390 635 L390 675"/>
+<path class="link" d="M600 560 L600 635 L720 635 L720 675"/>
+<path class="link" d="M900 560 L900 635 L1050 635 L1050 675"/>
+</svg>
+<section class="card svc"><div class="head">Services</div><div class="body">FastAPI, ingestion workers, and frontend send telemetry signals.</div></section>
+<section class="card otel"><div class="head">OpenTelemetry</div><div class="body">Unified tracing and metrics instrumentation with OTLP export.</div></section>
+<section class="card export"><div class="head">Exporters</div><div class="body">Service, container, and database exporters capture runtime signals.</div></section>
+<section class="card storage"><div class="head">Storage Targets</div><div class="body">Time series, traces, and logs persist for inspection.</div></section>
+<section class="card prom"><div class="head">Prometheus</div><div class="body">Metrics scraping, storage, and alert rules.</div></section>
+<section class="card graf"><div class="head">Grafana</div><div class="body">Dashboards for SLIs, latency, and throughput.</div></section>
+<section class="card jaeg"><div class="head">Jaeger</div><div class="body">Trace visualization across reasoning hops.</div></section>
+<section class="card alert"><div class="head">Alerting</div><div class="body">Notifications for ingestion failures and SLI breaches.</div></section>
+<section class="card dash"><div class="head">Dashboards</div><div class="body">Operational views for admins and supervisors.</div></section>
+<section class="card logs"><div class="head">Logs</div><div class="body">Structured logs for audits and debugging.</div></section>
+<section class="card trace"><div class="head">Trace Analysis</div><div class="body">Root cause inspection for slow or faulty queries.</div></section>
+<div class="note">The observability layer keeps evidence pipelines auditable and ties each response to measurable system behavior.</div>
+</main></body></html>

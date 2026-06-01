@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph "Domain-Agnostic Core"
+        Crawler[Agentic Scraper]
+        Storage[Multi-DB Storage Layer]
+        API[FastAPI Gateway]
+    end
+
+    subgraph "Domain-Specific Layer (Geopolitics)"
+        Ontology[Geopolitical Ontology]
+        Prompts[MIPROv2 Optimized Prompts]
+        Resolvers[Wikidata Entity Resolvers]
+    end
+
+    subgraph "Reasoning Framework"
+        RAG[Standard RAG]
+        CoT[Chain-of-Thought]
+        Agentic[Reflexive Reasoning]
+    end
+
+    Crawler --> Storage
+    Ontology -.-> Extractor[Mistral NLP Pipeline]
+    Extractor --> Storage
+    Storage --> Reasoning[Agentic Engine]
+    Reasoning --> API
+    
+    Ontology -. "Replaceable ontology" .-> Prompts

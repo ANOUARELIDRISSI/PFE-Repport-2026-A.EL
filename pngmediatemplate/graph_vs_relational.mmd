@@ -1,0 +1,14 @@
+graph LR
+    subgraph "Relational (SQL)"
+        T1[Table A] -- "Index Join O(log N)" --> T2[Table B]
+        T2 -- "Index Join O(log N)" --> T3[Table C]
+    end
+
+    subgraph "Graph (Neo4j)"
+        N1[Node A] -- "Pointer O(1)" --> N2[Node B]
+        N2 -- "Pointer O(1)" --> N3[Node C]
+    end
+
+    style N1 fill:#f9f,stroke:#333
+    style N2 fill:#f9f,stroke:#333
+    style N3 fill:#f9f,stroke:#333

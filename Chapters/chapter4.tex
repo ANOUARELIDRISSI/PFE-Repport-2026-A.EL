@@ -308,7 +308,7 @@ Observability was also used as an optimization mechanism rather than only as pos
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/deployment_topology.png}
     \caption{Deployment topology of containerized services and data stores.}
-    \label{fig:deployment-topology}
+    \label{fig:implementation-deployment-topology}
 \end{figure}
 
 Resilience measures include API rate limiting with exponential backoff on external LLM calls, inter-document delays during bulk ingestion, graceful degradation when optional services are unavailable, and staged pipeline scripts (graph extract, structured extract, chunk/embed, graph publish) that can be rerun independently. The evaluation harness under \texttt{src/backend/evaluation} calls the same HTTP query endpoint as the frontend, ensuring Chapter~5 measurements reflect deployed behavior rather than isolated unit tests.

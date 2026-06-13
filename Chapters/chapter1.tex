@@ -282,18 +282,29 @@ During the end-of-study internship, stories were drafted for the main analytical
 
 \subsubsection{Kanban Workflow}
 
-\textbf{Kanban} is a visual workflow method in which work items are represented as cards on a board divided into columns that reflect progress states. Figure~\ref{fig:kanban-workflow} is a \emph{conceptual} illustration of this pattern---not a reproduction of the internship board. It shows the column layout commonly used in agile practice: \emph{Backlog} (identified but not yet scheduled), \emph{To Do} (selected for the current cycle), \emph{Doing} (active implementation), \emph{Review} (supervisor or integration check), and \emph{Done} (acceptance criteria met).
+\textbf{Kanban} is a visual workflow method in which work items are represented
+as cards and organized according to their progress. During the end-of-study
+internship, the project was managed through the Trello board shown in
+Figure~\ref{fig:kanban-workflow}. The workflow used five states:
+\emph{Backlog}, \emph{To Do}, \emph{Doing}, \emph{Review}, and \emph{Done}.
 
-In general Kanban usage, a new item enters the \emph{Backlog} after story formulation; prioritized work moves to \emph{To Do}; a developer moves a card to \emph{Doing} while coding or configuring a module; \emph{Review} covers validation against acceptance checks; and \emph{Done} closes the item. Cards progress from left to right; limiting work in progress at each column reduces parallel overload and makes blocked or half-finished tasks visible before new scope is started.
+Tasks were first recorded and clarified in the backlog, then selected according
+to project priorities. Active work was moved to \emph{Doing}, validated in
+\emph{Review}, and transferred to \emph{Done} once its acceptance conditions
+were satisfied. This organization provided continuous visibility into project
+progress and supported iterative planning throughout the internship.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/kanban.png}
-    \caption{Conceptual Kanban board (illustrative columns: Backlog, To Do, Doing, Review, Done).}
+    \caption{Trello Kanban board used to manage the project workflow.}
     \label{fig:kanban-workflow}
 \end{figure}
 
-During the end-of-study internship, this logic was applied through Trello (see below): user stories and decomposed tasks (for example ingestion, graph publication, or reasoning-mode integration) were tracked as cards moving through analogous states. A story was treated as complete only when the associated module produced the evidence artifacts expected for its requirement area (logs, indexed documents, graph edges, traces, or dashboards), which kept validation continuous rather than deferred to a single final gate.
+Trello supported the continuous organization, prioritization, monitoring, and
+validation of project activities. Moving cards across the workflow made the
+current state of work visible and ensured that validation remained integrated
+into development rather than being postponed until the end of the project.
 
 \subsubsection{Project Management Tools}
 

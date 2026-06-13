@@ -12,7 +12,7 @@ Four principles guided architectural decisions throughout the end-of-study inter
 
 \textbf{Separation of concerns.} Acquisition, normalization, extraction, graph publication, vector indexing, retrieval, and synthesis are isolated into distinct services and storage roles. The frontend exposes analytical and administrative routes separately; the backend groups API endpoints by responsibility (ingestion, query, administration, health). Figure~\ref{fig:component-architecture} summarizes the major component boundaries and their interactions across the offline and online paths. Ingestion workers, extraction services, persistence connectors, and the reasoning engine communicate through well-defined interfaces rather than shared mutable state. This separation supports the modularity required by FR-09 and allows partial pipeline reruns when only one derived artifact changes.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/component_architecture.png}
     \caption{Logical component architecture and separation of pipeline responsibilities.}
@@ -21,7 +21,7 @@ Four principles guided architectural decisions throughout the end-of-study inter
 
 \textbf{Hybrid evidence representation.} Political analysis requires both unstructured textual recall and structured relational precision. The design therefore maintains parallel representations: document-centric records and chunks for semantic search, canonical entities and typed edges for traversal, and structured analytical records (legislative, financial, conflict-oriented) where schema-specific views add value. Figures~\ref{fig:vector-space-retrieval} and~\ref{fig:graph-space-traversal} separate the two retrieval paths to clarify their respective responsibilities.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/vector_space_retrieval.png}
     \caption{Vector-space retrieval from question embedding to ranked evidence chunks.}
@@ -30,7 +30,7 @@ Four principles guided architectural decisions throughout the end-of-study inter
 
 \textbf{Vector-space retrieval.} As illustrated in Figure~\ref{fig:vector-space-retrieval}, the user question is encoded into the same dense vector space as the indexed document chunks. ZVec compares the query embedding with stored vectors, ranks candidates by semantic similarity, and returns the strongest passages together with their scores, document provenance, and associated entity identifiers. This path provides efficient topical recall even when the query and source passages use different wording. Its output remains passage-oriented: it identifies relevant textual evidence but does not, by itself, reconstruct explicit multi-hop relations between the entities mentioned in those passages.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/graph_space_traversal.png}
     \caption{Graph-space traversal from seed entities to structured relational evidence.}

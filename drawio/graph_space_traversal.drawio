@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="graph_space_traversal" name="graph_space_traversal">
+    <mxGraphModel dx="1279" dy="839" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#0f172a;fontFamily=Arial;whiteSpace=wrap;" value="&lt;font style=&quot;font-size: 30px;&quot;&gt;Graph Space Traversal&lt;/font&gt;" vertex="1">
+          <mxGeometry height="44" width="1080" x="60" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="panel" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;arcSize=8;fontSize=20;fontStyle=1;fontColor=#334155;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="Relational Retrieval Pipeline" vertex="1">
+          <mxGeometry height="690" width="1060" x="70" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="seed" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;arcSize=10;fontSize=18;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Seed Entity IDs&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Resolved from retrieved chunk metadata or the reasoning plan&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="460" x="370" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="entityA" parent="1" style="ellipse;html=1;whiteSpace=wrap;fillColor=#eff6ff;strokeColor=#2563eb;strokeWidth=2;fontSize=18;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=8;" value="&lt;b&gt;Entity A&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;actor, institution, event, or place&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="230" x="150" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="entityB" parent="1" style="ellipse;html=1;whiteSpace=wrap;fillColor=#ecfdf5;strokeColor=#059669;strokeWidth=2;fontSize=18;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=8;" value="&lt;b&gt;Entity B&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;connected graph node&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="230" x="485" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="entityC" parent="1" style="ellipse;html=1;whiteSpace=wrap;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;fontSize=18;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=8;" value="&lt;b&gt;Entity C&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;neighbor reached through another hop&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="230" x="839" y="413" as="geometry" />
+        </mxCell>
+        <mxCell id="facts" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2;arcSize=10;fontSize=18;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Structured Graph Evidence&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;triples, paths, neighborhoods, temporal validity, confidence, and source provenance&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="600" x="300" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="seed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6366f1;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#4338ca;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" target="entityA" value="seed nodes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="seed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6366f1;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#4338ca;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" target="entityC" value="seed nodes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="entityA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#059669;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#047857;exitX=1;exitY=0.65;entryX=0;entryY=0.4;" target="entityB" value="typed relation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="entityB" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ea580c;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#c2410c;exitX=1;exitY=0.4;entryX=0;entryY=0.65;" target="entityC" value="typed relation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="entityA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#6d28d9;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" target="facts" value="graph facts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="entityB" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#6d28d9;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="facts" value="graph facts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="entityC" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=18;fontColor=#6d28d9;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" target="facts" value="graph facts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

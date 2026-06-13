@@ -1,0 +1,55 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="embedding_vector_indexing" name="embedding_vector_indexing">
+    <mxGraphModel dx="1475" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="chunks" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Document Chunks&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Text with document and entity metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="70" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="model" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Embedding Model&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Encode semantic meaning into dense vectors&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="450" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="vectors" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;384-D Vectors&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Lightweight all-MiniLM-L6-v2 baseline&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="830" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="metadata" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Vector Records&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Chunk ID, document ID and entity IDs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="1210" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="zvec" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;ZVec Index&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Local approximate similarity search&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="1210" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="query" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Query Embedding&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Use the same vector representation&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="450" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="results" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Ranked Chunks&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Cosine similarity + metadata filtering&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="830" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="OFFLINE INDEXING" vertex="1">
+          <mxGeometry height="32" width="220" x="650" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="ONLINE RETRIEVAL" vertex="1">
+          <mxGeometry height="32" width="230" x="650" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="model" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="model" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="vectors" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="vectors" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="metadata" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="zvec" value="index">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="results" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="zvec" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="results" value="cosine search">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

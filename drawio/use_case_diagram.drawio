@@ -1,0 +1,89 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="use_case_diagram" name="use_case_diagram">
+    <mxGraphModel dx="3836" dy="2516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="v0" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=34;fontStyle=1;fontColor=#111216;fontFamily=Arial;whiteSpace=wrap;" value="System Use Cases" vertex="1">
+          <mxGeometry height="42" width="1652" x="90" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="v4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="Graph-RAG Analysis Platform" vertex="1">
+          <mxGeometry height="900" width="1320" x="410" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="v5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="Analytical Use Cases" vertex="1">
+          <mxGeometry height="430" width="1150" x="460" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="v15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="Operational Use Cases" vertex="1">
+          <mxGeometry height="230" width="1150" x="460" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;fontStyle=1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="805" />
+              <mxPoint x="394" y="805" />
+            </Array>
+            <mxPoint x="328" y="765" as="sourcePoint" />
+            <mxPoint x="460" y="805" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dV0pVGBYu8PXKtnzqpoD-3" edge="1" parent="1" source="v2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" target="v5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;fontStyle=1" value="Authenticated User Analyst, journalist, or researcher" vertex="1">
+          <mxGeometry height="200.81" width="278" x="60" y="324.6" as="geometry" />
+        </mxCell>
+        <mxCell id="dV0pVGBYu8PXKtnzqpoD-7" edge="1" parent="1" source="v3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="v2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;fontStyle=1" value="Administrator User with elevated operational access" vertex="1">
+          <mxGeometry height="170" width="300" x="49" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="v6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Ask cited questions" vertex="1">
+          <mxGeometry height="92" width="335.33" x="510" y="292" as="geometry" />
+        </mxCell>
+        <mxCell id="v7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Manage chat sessions" vertex="1">
+          <mxGeometry height="92" width="335.33" x="867.33" y="287" as="geometry" />
+        </mxCell>
+        <mxCell id="v8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Explore graph entities" vertex="1">
+          <mxGeometry height="92" width="335.34" x="1224.66" y="277" as="geometry" />
+        </mxCell>
+        <mxCell id="v9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Analyze graph paths" vertex="1">
+          <mxGeometry height="92" width="335.33" x="508" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="v10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Inspect source documents" vertex="1">
+          <mxGeometry height="92" width="335.33" x="867.33" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="v11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Review trends and conflicts" vertex="1">
+          <mxGeometry height="92" width="335.34" x="1224.66" y="391" as="geometry" />
+        </mxCell>
+        <mxCell id="v12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Compare entity profiles" vertex="1">
+          <mxGeometry height="92" width="335.33" x="510" y="518" as="geometry" />
+        </mxCell>
+        <mxCell id="v13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Track legislative records" vertex="1">
+          <mxGeometry height="92" width="335.33" x="867.33" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="v14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Review finance signals" vertex="1">
+          <mxGeometry height="92" width="335.34" x="1224.66" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="v16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Monitor health and metrics" vertex="1">
+          <mxGeometry height="92" width="249" x="510" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="v17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Manage users" vertex="1">
+          <mxGeometry height="92" width="249" x="777" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="v18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Run scraping jobs" vertex="1">
+          <mxGeometry height="92" width="249" x="1044" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="v19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Manage ingestion pipeline" vertex="1">
+          <mxGeometry height="92" width="249" x="1311" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="dV0pVGBYu8PXKtnzqpoD-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="173" width="96" x="151" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="dV0pVGBYu8PXKtnzqpoD-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;fontStyle=1" value="Include" vertex="1">
+          <mxGeometry height="50" width="140" x="49" y="580" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

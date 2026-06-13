@@ -1,0 +1,62 @@
+% !TeX program = xelatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{xcolor}
+
+\setdefaultlanguage{english}
+\setotherlanguage{arabic}
+\setmainfont{TeX Gyre Pagella}
+\IfFontExistsTF{Amiri}{%
+  \newfontfamily\arabicfont[Script=Arabic,Scale=1.00]{Amiri}%
+}{%
+  \IfFontExistsTF{Noto Naskh Arabic}{%
+    \newfontfamily\arabicfont[Script=Arabic,Scale=1.00]{Noto Naskh Arabic}%
+  }{%
+    \newfontfamily\arabicfont[Script=Arabic,Scale=1.00]{Arabic Typesetting}%
+  }%
+}
+
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.6cm,
+    bottom=2.6cm
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\begingroup
+\setstretch{1.08}
+
+\begin{center}
+{\Huge\bfseries\textarabic{ملخص}}
+\end{center}
+\vspace{0.6cm}
+
+\begin{otherlanguage}{arabic}
+يقدم هذا التقرير تصميم وتنفيذ منصة \textenglish{\textit{Graph-RAG}} متعددة الوسائط بعنوان \textenglish{\textit{Knowledge Graph Exploration and Querying Platform with RAG}}. طورت المنصة في سياق الاستخبارات السياسية، وتجمع بين الزحف الذاتي للويب، والبحث الدلالي الكثيف، والاستكشاف المنظم لرسم بياني معرفي في \textenglish{\textbf{Neo4j}}، وتوليد إجابات موثقة بمساعدة نموذج \textenglish{\textbf{Mistral}}. وتهدف إلى تحويل المعلومات السياسية المتنوعة إلى طبقة معرفية قابلة للتتبع والاستغلال.
+
+يعالج المشروع محدوديات الجيل المعزز بالاسترجاع الكلاسيكي عند تطبيقه على المعطيات السياسية ذات البعد العلائقي. يمكن للاسترجاع التقليدي إيجاد مقاطع ذات صلة، لكنه يواجه صعوبة في الأسئلة متعددة القفزات، وإزالة لبس الكيانات، والتفسير الزمني، وتتبع العلاقات بشكل صريح. ومن خلال دمج الاسترجاع الشعاعي مع أدلة منظمة على شكل رسم بياني، تحسن المنصة المقترحة القدرة على الإجابة عن أسئلة تحليلية معقدة مع الحفاظ على إمكانية الرجوع إلى الوثائق المصدرية.
+
+تتضمن المعمارية المنجزة زاحفا بثلاثة مستويات، ومجدولا إداريا، وخدمات لاستخراج المعلومات بالمعالجة اللغوية، وحلا حتميا للكيانات، وتخزينا للرسم البياني والوثائق، واسترجاعا شعاعيا محليا، وواجهة \textenglish{\textbf{React}} للاستكشاف والاستشارة. يراقب الزاحف تدفقات \textenglish{\textbf{RSS}} مختارة، ويكتشف الأخبار عبر \textenglish{Google News}، ويحلل تقارير \textenglish{PDF}. وقد قيمت المنصة على أسئلة واقعية وعلائقية وزمنية ومقارنة باستعمال مقاييس مستوحاة من \textenglish{\textbf{RAGAS}}، وأظهرت النتائج فائدة الجمع بين الاسترجاع، وأدلة الرسم البياني، والتفكير الانعكاسي.
+\end{otherlanguage}
+
+\vspace{0.4cm}
+\noindent\rule[2pt]{\textwidth}{0.5pt}
+\vspace{0.15cm}
+
+\begin{otherlanguage}{arabic}
+{\textbf{الكلمات المفتاحية:}} \textenglish{Graph-RAG}، رسم بياني معرفي، \textenglish{Neo4j}، \textenglish{Mistral}، زحف ذاتي، استخبارات سياسية، معالجة اللغة الطبيعية، استخراج العلاقات، استرجاع معزز بالتوليد، أنظمة موزعة.
+\end{otherlanguage}
+
+\vspace{0.15cm}
+\noindent\rule[2pt]{\textwidth}{0.5pt}
+\endgroup
+\end{document}

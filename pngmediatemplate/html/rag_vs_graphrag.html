@@ -199,8 +199,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.6;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -215,15 +214,15 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
       </defs>
-      <path class="connector" marker-end="url(#arrow)" d="M 738 220 C 540 236, 318 270, 246 318"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1062 220 C 1260 236, 1482 270, 1554 318"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 738 220 H 246 V 318"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1062 220 H 1554 V 318"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 436 866 C 540 910, 668 924, 760 918"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1364 866 C 1260 910, 1132 924, 1040 918"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 436 866 V 918 H 760"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1364 866 V 918 H 1040"></path>
 
       <path class="connector dash" d="M 900 308 L 900 870"></path>
     </svg>

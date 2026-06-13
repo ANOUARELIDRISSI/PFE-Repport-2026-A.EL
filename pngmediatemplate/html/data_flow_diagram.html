@@ -73,9 +73,12 @@
       left: 24px;
       top: 18px;
       margin: 0;
+      padding-right: 10px;
+      background: rgba(255, 255, 255, 0.94);
       color: var(--deep);
       font-size: 22px;
       font-weight: 780;
+      z-index: 6;
     }
 
     .note {
@@ -84,11 +87,14 @@
       top: 20px;
       width: 620px;
       margin: 0;
+      padding: 4px 0 4px 12px;
+      background: rgba(255, 255, 255, 0.94);
       color: var(--muted);
       text-align: right;
       font-size: 14px;
       line-height: 1.28;
       font-weight: 620;
+      z-index: 6;
     }
 
     .box {
@@ -168,8 +174,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.4;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -230,32 +235,42 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#737887"></path>
         </marker>
       </defs>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 1384 302 C 1220 332 420 330 306 430"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 306 488 L 524 430"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 646 430 L 806 406"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 646 430 L 806 482"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 958 406 L 1142 406"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 958 482 L 1142 482"></path>
+      <!-- Acquisition sources feed the scraper/import layer. -->
+      <path class="connector thin" marker-end="url(#arrow)" d="M 378 257 H 1252"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 636 257 H 1252"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 894 257 H 1252"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1152 257 H 1252"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 834 568 C 650 608 420 636 236 680"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 834 568 C 730 610 626 638 524 680"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1152 568 C 1030 616 924 644 834 680"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1152 568 L 1152 680"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1274 482 C 1426 540 1440 610 1432 680"></path>
+      <!-- Normalized documents enter the transformation pipeline. -->
+      <path class="connector" marker-end="url(#arrow)" d="M 1402 286 V 326 H 430 V 408 H 306 V 430"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 430 459 H 496"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 740 459 V 408 H 806"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 740 459 V 482 H 806"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1050 408 H 1122"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1050 482 H 1122"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 312 900 L 382 900"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 602 900 L 672 900"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 892 900 L 962 900"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1182 900 L 1252 900"></path>
+      <!-- Derived artifacts are written to their persistence targets. -->
+      <path class="connector" marker-end="url(#arrow)" d="M 306 488 V 646 H 215 V 680"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 616 488 V 646 H 524 V 680"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 928 482 V 646 H 834 V 680"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1244 540 V 680"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1244 408 H 1432 V 680"></path>
 
-      <path class="connector dash thin" marker-end="url(#arrow)" d="M 834 784 L 782 862"></path>
-      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1152 784 C 1030 812 900 832 782 862"></path>
-      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1432 784 C 1240 808 930 832 782 862"></path>
+      <!-- Runtime query path. -->
+      <path class="connector" marker-end="url(#arrow)" d="M 404 900 H 474"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 694 900 H 764"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 984 900 H 1054"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1182 900 H 1344"></path>
+
+      <!-- Retrieved evidence feeds the reasoning engine. -->
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 834 742 V 862"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1244 742 V 812 H 782 V 862"></path>
+      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1529 742 V 826 H 782 V 862"></path>
     </svg>
   </main>
 </body>

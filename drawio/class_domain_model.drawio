@@ -1,0 +1,86 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="class_domain_model" name="class_domain_model">
+    <mxGraphModel dx="1918" dy="1258" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="domain-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Domain Data Model&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;The analytical domain is represented as evidence documents, semantic chunks, graph entities, relation assertions, structured records, and vector records.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="document" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;Document&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;MongoDB source evidence&lt;/font&gt;&lt;hr&gt;- id, title, content&lt;br&gt;- source_url, source_name&lt;br&gt;- published_date, scraped_at&lt;br&gt;- graph_extracted, structured_extracted" vertex="1">
+          <mxGeometry height="255" width="316" x="110" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="chunk" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;DocumentChunk&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;MongoDB retrieval unit&lt;/font&gt;&lt;hr&gt;- chunk_id, document_id&lt;br&gt;- chunk_text, enriched_text&lt;br&gt;- section_header, word_count&lt;br&gt;- entity_ids link text to graph nodes" vertex="1">
+          <mxGeometry height="255" width="316" x="110" y="552" as="geometry" />
+        </mxCell>
+        <mxCell id="entity" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;GeopoliticalEntity&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Neo4j canonical node&lt;/font&gt;&lt;hr&gt;- id, name, canonical_name&lt;br&gt;- POLITICIAN, PARTY, COUNTRY&lt;br&gt;- ORGANIZATION, INSTITUTION, EVENT&lt;br&gt;- MINISTRY, COMMITTEE, FOREIGN_ACTOR" vertex="1">
+          <mxGeometry height="255" width="372" x="742" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="relation" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;RelationAssertion&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Neo4j edge and MongoDB assertion&lt;/font&gt;&lt;hr&gt;- from_entity_id, to_entity_id&lt;br&gt;- relation_type, confidence&lt;br&gt;- evidence, source_doc_ids&lt;br&gt;- valid_from, valid_to for temporal relations" vertex="1">
+          <mxGeometry height="255" width="372" x="742" y="544" as="geometry" />
+        </mxCell>
+        <mxCell id="structured" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;StructuredRecord&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;MongoDB analytical collections&lt;/font&gt;&lt;hr&gt;- bills, votes, committees&lt;br&gt;- contributions, conflict_flags&lt;br&gt;- stored with document_id provenance&lt;br&gt;- bills and donors are not graph node labels" vertex="1">
+          <mxGeometry height="255" width="352" x="1318" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="vector" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=20;fontColor=#0f172a;" value="&lt;b&gt;VectorRecord&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;ZVec semantic index&lt;/font&gt;&lt;hr&gt;- chunk_id, embedding vector&lt;br&gt;- content stores enriched text&lt;br&gt;- metadata.document_id&lt;br&gt;- metadata.entity_ids" vertex="1">
+          <mxGeometry height="255" width="352" x="1318" y="592" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo-a" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="MongoDB documents and chunks" vertex="1">
+          <mxGeometry height="92" width="286" x="134" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="neo-store" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="Neo4j entities and relationships" vertex="1">
+          <mxGeometry height="92" width="278" x="790" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo-b" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="MongoDB + ZVec records and vectors" vertex="1">
+          <mxGeometry height="92" width="278" x="1362" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="mentions / grounds" vertex="1">
+          <mxGeometry height="30" width="168" x="455" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="extracted assertions" vertex="1">
+          <mxGeometry height="30" width="184" x="522" y="592" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="connects entities" vertex="1">
+          <mxGeometry height="30" width="160" x="848" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="composed of" vertex="1">
+          <mxGeometry height="30" width="112" x="219" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="l7" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="embedded as" vertex="1">
+          <mxGeometry height="30" width="112" x="1136" y="748" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e1" edge="1" parent="1" source="document" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="entity" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e2" edge="1" parent="1" source="document" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="relation" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e3" edge="1" parent="1" source="entity" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="relation" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e4" edge="1" parent="1" source="document" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="chunk" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e5" edge="1" parent="1" source="chunk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="vector" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="680" />
+              <mxPoint x="540" y="830" />
+              <mxPoint x="1240" y="830" />
+              <mxPoint x="1240" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d-e6" edge="1" parent="1" source="chunk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="mongo-a" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e7" edge="1" parent="1" source="relation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="neo-store" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-e8" edge="1" parent="1" source="vector" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="mongo-b" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

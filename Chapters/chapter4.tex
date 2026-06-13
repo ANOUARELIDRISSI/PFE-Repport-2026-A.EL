@@ -1,14 +1,32 @@
 % Chapter 4 -- structure from table of content.md; impersonal academic style; no shallow subsections
 
-\reportchapter{4}{Implementation and Engineering}{NLP extraction, persistence, retrieval and reasoning services, frontend interfaces, deployment, and observability.}
+\reportchapter{4}{Implementation and Engineering}{}
 
 \section{Introduction}
 
 This chapter describes how the design of Chapter~3 was engineered in code, containers, and user-facing interfaces. The presentation covers the NLP and extraction pipeline, polyglot persistence, hybrid retrieval and reasoning services, the React frontend documented through operational screenshots, and the deployment plus observability stack that supports production-like operation. Implementation choices emphasize explicit service boundaries, deterministic identifiers where possible, and traceability from interface actions back to backend evidence. Evaluation against curated benchmarks is deferred to Chapter~5.
 
+Figure~\ref{fig:implementation-pipeline} provides an implementation-level orientation. Acquired evidence is normalized and checkpointed in MongoDB before DSPy-assisted extraction produces graph and structured artifacts. Chunk embeddings are published to ZVec, canonical relations are published to Neo4j, and FastAPI coordinates these stores for the React analytical workspace. Instrumentation surrounds both background and interactive paths.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/implementation_pipeline.png}
+    \caption{Implemented processing path from acquisition to the monitored analytical workspace.}
+    \label{fig:implementation-pipeline}
+\end{figure}
+
 \section{NLP Pipeline and Extraction}
 
 Joint entity--relation extraction is orchestrated through DSPy modules calling Mistral in JSON mode. Prompt templates are treated as optimizable modules rather than static strings: the MIPROv2 Bayesian optimizer explores alternative instructions and few-shot examples on controlled batches, then retains the configuration that maximizes a composite extraction score. Reported gains on the project benchmark include approximately \textbf{+2.9\%} on the composite score and roughly \textbf{1.18\,s} lower average inference time per document compared with the initial manual prompt. Offline optimization with DSPy is therefore separated from online serving with the production Mistral client, so prompt iteration does not destabilize the live API.
+
+Figure~\ref{fig:dspy-optimization-loop} details this separation. Curated examples and expected outputs define the optimization set; MIPROv2 proposes instructions and demonstrations; Mistral executes each candidate under the same JSON contract; and a composite evaluator scores schema validity, extraction quality, and latency. Only the strongest versioned program is promoted to production extraction.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/dspy_optimization_loop.png}
+    \caption{Offline DSPy and MIPROv2 optimization loop for production extraction programs.}
+    \label{fig:dspy-optimization-loop}
+\end{figure}
 
 The extraction contract requires a single pass over each normalized MongoDB document, emitting entities, typed relations, and structured fields aligned with the geopolitical ontology (Chapter~3). Deterministic identifier generation is enforced in prompt logic so that repeated runs map the same canonical actor to the same graph key, preserving topological consistency between MongoDB assertions and Neo4j nodes. Validation rejects malformed JSON, empty extractions, and role titles mistaken for personal names before graph publication. Failed documents remain in MongoDB with explicit error states for administrator inspection rather than silently polluting Neo4j or ZVec indexes.
 
@@ -20,9 +38,51 @@ The extraction contract requires a single pass over each normalized MongoDB docu
 
 \textbf{ZVec.} Embeddings of \texttt{document\_chunks} are stored locally with chunk, document, and entity metadata for hybrid ranking. At query time the backend embeds the user question, retrieves candidates by cosine similarity, and applies lexical reranking before passing chunks to synthesis. Local persistence supports data-sovereignty constraints and removes dependency on an external vector SaaS. Figure~\ref{fig:zvec-performance} summarizes published benchmark characteristics that motivated this choice \cite{zvec-repo,zvec-benchmarks}.
 
+\textbf{Embedding-model selection.} The first retrieval baseline used \texttt{all-MiniLM-L6-v2}, whose 384-dimensional vectors offered low storage cost and fast local experimentation while the complete indexing and query path was still being validated. The model choice was treated as an engineering trade-off rather than a permanent architectural constraint. Table~\ref{tab:embedding-model-comparison} summarizes representative alternatives considered for stronger semantic capacity or multilingual coverage.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.1cm}>{\centering\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{2.7cm}X@{}}
+\toprule
+\rowcolor{lightblue}
+\normalfont\textbf{Model} & \textbf{Dim.} & \textbf{Language scope} & \textbf{Engineering interest} \\
+\midrule
+\texttt{all-MiniLM-L6-v2} & 384 & Mainly English & Lightweight baseline with fast local indexing and limited storage cost. \\
+\texttt{all-mpnet-base-v2} & 768 & Mainly English & Higher semantic capacity with greater compute and storage requirements. \\
+\texttt{paraphrase-}\newline\texttt{multilingual-MiniLM-}\newline\texttt{L12-v2} & 384 & Multilingual & Compact option for English, French, and Arabic retrieval experiments. \\
+Production-compatible\newline embedding service & Not disclosed & Multilingual & Alignment with SCIENTIAE's deployed, sovereign AI infrastructure. \\
+\bottomrule
+\end{tabularx}
+\caption{Embedding alternatives and retrieval trade-offs considered during implementation.}
+\label{tab:embedding-model-comparison}
+\end{table}
+
+Vector dimension alone does not determine retrieval quality. Chunk coherence, overlap, metadata, query formulation, reranking, and corpus language can outweigh a nominal increase in dimensionality. As the ingestion pipeline expanded toward multilingual sources, the production path moved toward the embedding service already available in SCIENTIAE's Mistral-compatible infrastructure. This reduced integration overhead and kept retrieval within the organization's sovereign deployment boundary without claiming an undocumented model name or vector dimension.
+
+\textbf{Chunking and context expansion.} Documents are indexed as paragraph-aware chunks rather than as complete files. Neighboring chunks retain document identifiers, sequence positions, section headers, source metadata, and entity links. This structure limits the risk that a fixed boundary separates an actor from an action or a claim from its date. When a high-scoring chunk lacks sufficient local context, the retrieval layer can recover adjacent segments from the same document before synthesis. The first search therefore remains precise over compact vectors, while selective expansion improves recall around promising evidence instead of filling the model context with an entire source document. Recursive and structure-aware splitting patterns documented by LangChain and node-based parsing concepts documented by LlamaIndex provide practical reference points for this implementation strategy \cite{langchain-splitters,llamaindex-node-parsers}.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth,keepaspectratio]{images/zvec Performance at Scale.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/document_chunking_strategy.png}
+    \caption{Implemented structure-aware chunking, metadata enrichment, and adjacent-context recovery.}
+    \label{fig:document-chunking-implementation}
+\end{figure}
+
+\textbf{Approximate vector retrieval.} Interactive RAG cannot compare every query embedding exhaustively with every stored chunk as the corpus grows. ZVec provides indexed similarity search so that the first retrieval hop returns a small candidate set for lexical reranking, metadata filtering, adjacent-chunk expansion, and graph enrichment. This follows the same engineering motivation as large-scale approximate nearest-neighbour systems such as Proxima: practical vector search must balance recall, latency, index-construction cost, update behavior, and metadata constraints rather than optimize only exact distance computation \cite{proxima-engine}. In the hybrid architecture, ZVec supplies semantic recall, Neo4j supplies relational precision, MongoDB preserves provenance, and the reasoning engine fuses these signals into the evidence package presented to Mistral.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/embedding_vector_indexing.png}
+    \caption{Offline embedding and indexing followed by online similarity retrieval in ZVec.}
+    \label{fig:embedding-vector-indexing-implementation}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/zvec Performance at Scale.png}
     \caption{ZVec performance at scale (official benchmark overview).}
     \label{fig:zvec-performance}
 \end{figure}
@@ -37,7 +97,7 @@ Figure~\ref{fig:reasoning-modes-implementation} maps the three production modes 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.78\textheight,keepaspectratio]{images/reasoning_modes.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/reasoning_modes.png}
     \caption{Three reasoning modes in the query engine: one-hop RAG, chain-of-thought multi-hop, and reflexive control.}
     \label{fig:reasoning-modes-implementation}
 \end{figure}
@@ -48,7 +108,7 @@ Hybrid ranking combines semantic scores from ZVec, graph distance to seed entiti
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.78\textheight,keepaspectratio]{images/duckduckgo_rag_websearch.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/duckduckgo_rag_websearch.png}
     \caption{Hybrid RAG implementation with optional DuckDuckGo web search at query time.}
     \label{fig:duckduckgo-rag-websearch}
 \end{figure}
@@ -63,7 +123,7 @@ The client is a React and Vite single-page application with React Router, TanSta
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{chat interface.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/chat interface.png}
     \caption{Chat workspace with session history sidebar and reasoning-mode controls.}
     \label{fig:ui-chat-interface}
 \end{figure}
@@ -72,14 +132,14 @@ Figure~\ref{fig:ui-chat-rag} illustrates a completed answer in RAG mode: the ass
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{chat question rag mode.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/chat question rag mode.png}
     \caption{Cited answer produced in standard RAG mode with linked source evidence.}
     \label{fig:ui-chat-rag}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{chat question rag mode reasnoing trace.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/chat question rag mode reasnoing trace.png}
     \caption{Expandable reasoning trace for a RAG-mode query (retrieval and synthesis steps).}
     \label{fig:ui-chat-rag-trace}
 \end{figure}
@@ -88,7 +148,7 @@ Figure~\ref{fig:ui-chat-rag} illustrates a completed answer in RAG mode: the ass
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page documents library.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page documents library.png}
     \caption{Document library for inspecting ingested corpus items and metadata.}
     \label{fig:ui-documents}
 \end{figure}
@@ -97,7 +157,7 @@ The graph explorer (Figure~\ref{fig:ui-graph}) renders force-directed neighborho
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page graph explorer.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page graph explorer.png}
     \caption{Graph explorer with interactive entity neighborhood layout.}
     \label{fig:ui-graph}
 \end{figure}
@@ -106,21 +166,21 @@ The graph explorer (Figure~\ref{fig:ui-graph}) renders force-directed neighborho
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page legislative bills.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page legislative bills.png}
     \caption{Legislative tracker: bills view with structured metadata from extracted records.}
     \label{fig:ui-legislative-bills}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page legislative Votes.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page legislative Votes.png}
     \caption{Legislative tracker: votes view linking legislators to roll-call outcomes.}
     \label{fig:ui-legislative-votes}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page legislative committes.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page legislative committes.png}
     \caption{Legislative tracker: committees view for institutional roles and memberships.}
     \label{fig:ui-legislative-committees}
 \end{figure}
@@ -152,72 +212,72 @@ Figure~\ref{fig:ui-insights-compare-03} presents the narrative layer: \emph{conv
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights finance.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights finance.png}
     \caption{Political insights: campaign finance dashboard.}
     \label{fig:ui-insights-finance}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights trends.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights trends.png}
     \caption{Political insights: temporal trend tracking for entities or topics.}
     \label{fig:ui-insights-trends}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights compare 01.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights compare 01.png}
     \caption{Entity comparison workflow (step 1): selection of actors or topics to compare.}
     \label{fig:ui-insights-compare-01}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights compare 02 matrix.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights compare 02 matrix.png}
     \caption{Entity comparison workflow (step 2): relation matrix between selected entities.}
     \label{fig:ui-insights-compare-02}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights compare 03 conv div conclusion.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights compare 03 conv div conclusion.png}
     \caption{Entity comparison workflow (step 3): convergence, divergence, and narrative conclusion.}
     \label{fig:ui-insights-compare-03}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page insights conflicts.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page insights conflicts.png}
     \caption{Political insights: conflict and opposing-stance visualization.}
     \label{fig:ui-insights-conflicts}
 \end{figure}
 
-\textbf{Administration dashboard.} Administrative screens implement supervised ingestion (Chapter~2). Figure~\ref{fig:ui-admin-dashboard} summarizes service health, corpus counts, graph statistics, and recent activity. Figure~\ref{fig:ui-admin-scraped} controls import of scraped JSON batches into MongoDB and backfill into ZVec. Figure~\ref{fig:ui-admin-cron} exposes cron scheduler configuration and agentic trend-collection jobs. Figure~\ref{fig:ui-admin-topic} provides advanced topic search: administrators enter thematic queries that trigger DuckDuckGo-backed discovery (\emph{AI Search}), after which selected URLs follow the standard scrape--normalize--extract pipeline. Together these panels form the operational cockpit of the autonomous crawler rather than a passive monitoring page.
+\textbf{Administration dashboard.} Administrative screens implement the supervised-ingestion requirements defined in Chapter~1. Figure~\ref{fig:ui-admin-dashboard} summarizes service health, corpus counts, graph statistics, and recent activity. Figure~\ref{fig:ui-admin-scraped} controls import of scraped JSON batches into MongoDB and backfill into ZVec. Figure~\ref{fig:ui-admin-cron} exposes cron scheduler configuration and agentic trend-collection jobs. Figure~\ref{fig:ui-admin-topic} provides advanced topic search: administrators enter thematic queries that trigger DuckDuckGo-backed discovery (\emph{AI Search}), after which selected URLs follow the standard scrape--normalize--extract pipeline. Together these panels form the operational cockpit of the autonomous crawler rather than a passive monitoring page.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page admin dashboard.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page admin dashboard.png}
     \caption{Administration dashboard: health metrics, corpus counts, and pipeline overview.}
     \label{fig:ui-admin-dashboard}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page admin scaped data ingestion.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page admin scaped data ingestion.png}
     \caption{Administration: scraped-data ingestion and vector backfill controls.}
     \label{fig:ui-admin-scraped}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page admin cron scheduler control and agnetic trend collector.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page admin cron scheduler control and agnetic trend collector.png}
     \caption{Administration: cron scheduler and agentic trend-collection configuration.}
     \label{fig:ui-admin-cron}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{page admin advaned topic search.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{Screenshots/page admin advaned topic search.png}
     \caption{Administration: advanced topic search for query-driven source discovery.}
     \label{fig:ui-admin-topic}
 \end{figure}
@@ -226,18 +286,27 @@ Figure~\ref{fig:ui-insights-compare-03} presents the narrative layer: \emph{conv
 
 The stack is orchestrated with Docker Compose: MongoDB, Neo4j, Redis, FastAPI backend, React frontend (nginx), and observability services on a shared bridge network. Health checks on databases gate backend startup so the API does not accept traffic before connectors succeed. Environment variables externalize credentials and model keys, supporting reproducible deployment on sovereign infrastructure without embedding secrets in images.
 
-OpenTelemetry instrumentation exports traces consumed by Jaeger, making multi-hop reasoning visible as a sequence of spans (API entry, retrieval, graph expansion, LLM calls, streaming response). Prometheus scrapes service metrics; Grafana dashboards track query latency, token usage, error rates, and cache behavior. Figure~\ref{fig:observability-stack} summarizes the monitoring topology; Figure~\ref{fig:deployment-topology} shows container relationships in the production compose file.
+OpenTelemetry instrumentation exports traces consumed by Jaeger, making multi-hop reasoning visible as a sequence of spans (API entry, retrieval, graph expansion, LLM calls, streaming response). Prometheus scrapes service metrics; Grafana dashboards track query latency, token usage, error rates, cache behavior, graph size, and vector-index state. The administration dashboard exposes direct links to Grafana, Jaeger, and Prometheus together with the active embedding model and tracing-exporter status.
+
+Observability was also used as an optimization mechanism rather than only as post-deployment monitoring. Jaeger traces identify which span dominates a slow request, distinguishing vector retrieval, Neo4j traversal, Mistral generation, and streaming overhead. Grafana correlates these traces with latency percentiles, throughput, error-rate spikes, token consumption, and cache behavior. The resulting evidence supports targeted adjustments to retrieval \emph{top-k}, graph depth, \texttt{MAX\_HOPS}, cache policy, chunk expansion, retry delays, and model or prompt configuration. Each adjustment is redeployed and measured again under the same dashboards, creating the feedback loop shown in Figure~\ref{fig:observability-optimization-loop}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{images/observability_stack.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/observability_stack.png}
     \caption{Observability stack: metrics, dashboards, and distributed tracing.}
     \label{fig:observability-stack}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth,height=0.72\textheight,keepaspectratio]{images/deployment_topology.png}
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/observability_optimization_loop.png}
+    \caption{Optimization feedback loop from OpenTelemetry signals to measured engineering adjustments.}
+    \label{fig:observability-optimization-loop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/deployment_topology.png}
     \caption{Deployment topology of containerized services and data stores.}
     \label{fig:deployment-topology}
 \end{figure}
@@ -246,4 +315,4 @@ Resilience measures include API rate limiting with exponential backoff on extern
 
 \section{Conclusion}
 
-This chapter detailed the engineering realization of the platform: DSPy-optimized extraction, polyglot persistence with local ZVec retrieval, a three-mode reasoning engine with streaming traces, DuckDuckGo-augmented live search, a full React analytical workspace documented through operational screenshots, and a containerized observability stack. The implementation closes the gap between Chapter~3 design artifacts and runnable software. Chapter~5 will report empirical validation against the criteria defined in Chapter~2.
+This chapter detailed the engineering realization of the platform: DSPy-optimized extraction, polyglot persistence with local ZVec retrieval, a three-mode reasoning engine with streaming traces, DuckDuckGo-augmented live search, a full React analytical workspace documented through operational screenshots, and a containerized observability stack. The implementation closes the gap between Chapter~3 design artifacts and runnable software. Chapter~5 will report empirical validation against the criteria defined in Chapter~1.

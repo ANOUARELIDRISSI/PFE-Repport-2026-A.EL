@@ -60,9 +60,9 @@
       background: rgba(255, 255, 255, 0.84);
     }
 
-    .rag { top: 168px; height: 206px; }
-    .cot { top: 424px; height: 240px; }
-    .reflexive { top: 714px; height: 260px; }
+    .rag { top: 154px; height: 190px; }
+    .cot { top: 386px; height: 220px; }
+    .reflexive { top: 652px; height: 332px; }
 
     .lane-label {
       position: absolute;
@@ -111,20 +111,20 @@
     .medium { width: 264px; }
     .wide { width: 314px; }
 
-    .rag .q { left: 362px; top: 90px; }
-    .rag .r { left: 676px; top: 90px; }
-    .rag .a { left: 1016px; top: 90px; }
+    .rag .q { left: 362px; top: 78px; }
+    .rag .r { left: 676px; top: 78px; }
+    .rag .a { left: 1016px; top: 78px; }
 
-    .cot .plan { left: 336px; top: 106px; }
-    .cot .retrieve { left: 626px; top: 106px; }
-    .cot .follow { left: 938px; top: 106px; }
-    .cot .answer { left: 1284px; top: 106px; }
+    .cot .plan { left: 336px; top: 92px; }
+    .cot .retrieve { left: 626px; top: 92px; }
+    .cot .follow { left: 938px; top: 92px; }
+    .cot .answer { left: 1284px; top: 92px; }
 
-    .reflexive .plan { left: 326px; top: 116px; }
-    .reflexive .retrieve { left: 626px; top: 116px; }
+    .reflexive .plan { left: 326px; top: 172px; }
+    .reflexive .retrieve { left: 626px; top: 172px; }
     .reflexive .decision {
       left: 948px;
-      top: 116px;
+      top: 172px;
       width: 224px;
       min-height: 82px;
       padding: 16px 20px;
@@ -139,8 +139,8 @@
       line-height: 1.22;
     }
 
-    .reflexive .next { left: 1234px; top: 36px; }
-    .reflexive .answer { left: 1270px; top: 174px; }
+    .reflexive .next { left: 1254px; top: 58px; }
+    .reflexive .answer { left: 1270px; top: 230px; }
 
     .tag {
       position: absolute;
@@ -158,8 +158,8 @@
       font-weight: 700;
     }
 
-    .no { left: 1196px; top: 798px; }
-    .yes { left: 1214px; top: 894px; }
+    .no { left: 1204px; top: 780px; }
+    .yes { left: 1208px; top: 888px; }
 
     svg {
       position: absolute;
@@ -172,8 +172,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.6;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -221,23 +220,23 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
       </defs>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 676 299 L 772 299"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 940 299 L 1112 299"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 676 283 H 772"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 940 283 H 1112"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 554 550 L 720 550"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 890 550 L 1034 550"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1252 550 L 1380 550"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 554 520 H 720"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 890 520 H 1034"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1252 520 H 1380"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 532 855 L 722 855"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 890 855 L 1038 855"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1172 835 L 1348 796"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1320 818 C 1124 748, 830 752, 792 816"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1172 892 L 1378 892"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 642 865 H 722"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 890 865 H 1038"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1268 850 H 1308 V 750 H 1350"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1474 710 V 690 H 854 V 816"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1268 906 V 922 H 1378"></path>
     </svg>
   </main>
 </body>

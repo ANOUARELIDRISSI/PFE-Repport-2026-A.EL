@@ -1,0 +1,79 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="rag_core_components" name="rag_core_components">
+    <mxGraphModel dx="1598" dy="1048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="index-panel" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;arcSize=8;fontSize=20;fontStyle=1;fontColor=#475569;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="DOCUMENT INDEXING" vertex="1">
+          <mxGeometry height="245" width="1480" x="60" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="query-panel" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fffaf5;strokeColor=#fed7aa;strokeWidth=2;arcSize=8;fontSize=20;fontStyle=1;fontColor=#9a3412;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="QUESTION RETRIEVAL AND GENERATION" vertex="1">
+          <mxGeometry height="365" width="1480" x="60" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="documents" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Documents&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Articles, reports, PDFs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="240" x="115" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="chunking" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eff6ff;strokeColor=#2563eb;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Chunking Strategy&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Split text while preserving context&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="270" x="440" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="chunk-embedding" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Chunk Embeddings&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Convert chunks into vectors&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="270" x="795" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="vector-db" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;html=1;whiteSpace=wrap;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Vector Database&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Indexed chunks + metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="270" x="1160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="question" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;User Question&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Natural-language query&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="240" x="115" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="query-embedding" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff7ed;strokeColor=#f97316;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Query Embedding&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Convert question into a vector&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="270" x="440" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="search" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff7ed;strokeColor=#f97316;strokeWidth=3;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Vector Search Engine&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Compare vectors and rank matches&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="270" x="795" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="chunks" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ecfdf5;strokeColor=#059669;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Relevant Chunks&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Top evidence + source metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="270" x="1192" y="543" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;LLM Generation&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Generate from selected evidence&lt;/font&gt;" vertex="1">
+          <mxGeometry height="82" width="270" x="795" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="answer" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eff6ff;strokeColor=#0f4c75;strokeWidth=3;arcSize=10;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Grounded Answer&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Response with citations&lt;/font&gt;" vertex="1">
+          <mxGeometry height="82" width="270" x="1160" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="documents" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563eb;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="chunking" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="chunking" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563eb;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="chunk-embedding" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="chunk-embedding" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2563eb;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="vector-db" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="question" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#f97316;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="query-embedding" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="query-embedding" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#f97316;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="search" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="vector-db" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0891b2;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;fontColor=#0e7490;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="search" value="search indexed vectors">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#059669;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;fontColor=#047857;" target="chunks" value="top-k results">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#7c3aed;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;fontColor=#6d28d9;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="llm" value="context">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1327" y="670" />
+              <mxPoint x="1090" y="670" />
+              <mxPoint x="1090" y="731" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="llm" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0f4c75;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="answer" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

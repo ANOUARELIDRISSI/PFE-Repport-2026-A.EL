@@ -138,7 +138,7 @@
       font-size: 18px;
       font-weight: 750;
       line-height: 1.16;
-      z-index: 3;
+      z-index: 4;
     }
 
     .round { border-radius: 999px; }
@@ -313,25 +313,23 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
       </defs>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 900 180 C 630 210 492 300 462 370"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 462 442 C 426 468 374 498 302 546"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 462 442 L 462 604"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 462 442 C 540 478 602 504 682 546"></path>
-      <path class="connector thin" marker-end="url(#arrow)" d="M 464 662 L 464 696"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 462 442 V 492 H 250 V 546"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 462 442 V 604"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 462 442 V 492 H 682 V 546"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 464 662 V 696"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 538 742 C 610 700 668 640 720 544"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1080 544 C 1134 640 1190 700 1262 742"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 606 734 H 720 V 504 H 805"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 995 504 H 1180 V 408 H 1242"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 1338 442 C 1288 480 1248 518 1228 574"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1226 574 C 1282 604 1322 622 1374 666"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1576 574 C 1518 604 1478 622 1430 666"></path>
-      <path class="connector thin" marker-end="url(#arrow)" d="M 1396 678 L 1396 696"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 900 180 C 1150 210 1322 300 1338 370"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1338 442 V 492 H 1228 V 574"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1226 574 V 618 H 1374 V 666"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1576 574 V 618 H 1430 V 666"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1396 678 V 696"></path>
     </svg>
   </main>
 </body>

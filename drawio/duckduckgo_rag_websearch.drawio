@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.0" type="device">
+  <diagram id="duckduckgo_rag_websearch" name="duckduckgo_rag_websearch">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="ddg-web-lane" value="Web search layer" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="96" y="340" width="1608" height="520" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-title" value="&lt;b&gt;Hybrid RAG + Live Web Search&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;General query flow with an optional DuckDuckGo layer for recent public web evidence.&lt;/font&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="0" y="30" width="1800" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-question" value="User question
+Chat interface" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="168" width="280" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-rag" value="Hybrid RAG platform
+Retrieve - reason - synthesize" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="168" width="380" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-answer" value="Cited answer
+Sources + trace" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="168" width="320" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-focus" value="Focus" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="436" y="372" width="86" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-logo" value="DuckDuckGo
+privacy-oriented search" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="1376" y="364" width="280" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-onoff" value="Web On / Off
+Chat toggle" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="144" y="540" width="260" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-searchrun" value="DuckDuckGoSearchRun
+HTML results + Instant Answer fallback" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="444" y="540" width="300" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-snippets" value="Live web snippets
+Merged at synthesis time" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="784" y="540" width="280" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-admin" value="AI Search (admin)
+Topic discovery to ingestion" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=13;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="1104" y="540" width="280" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-rule" value="When it runs: user enables Web search, a reflexive audit needs external evidence, the question signals recency, or an administrator launches topic discovery. Web results stay separate from the local corpus in the LLM context, then fuse into one cited answer." style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#fff7ed;strokeColor=#fb923c;strokeWidth=2;align=center;spacing=10;fontSize=11;fontColor=#0f172a;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="144" y="672" width="1510" height="68" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-optional" value="optional" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="818" y="302" width="88" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-question" target="ddg-rag">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-rag" target="ddg-answer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-rag" target="ddg-searchrun">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-onoff" target="ddg-searchrun">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-searchrun" target="ddg-snippets">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ddg-e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ddg-snippets" target="ddg-admin">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

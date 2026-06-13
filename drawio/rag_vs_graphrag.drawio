@@ -1,0 +1,58 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="rag_vs_graphrag" name="rag_vs_graphrag">
+    <mxGraphModel dx="1923" dy="1573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rvg-classic" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="Classical RAG" vertex="1">
+          <mxGeometry height="620" width="834" x="76" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-graph" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="Graph-RAG" vertex="1">
+          <mxGeometry height="638" width="784" x="1020" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=30;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Classical RAG vs Graph-RAG&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;The core difference is not the LLM, but how external knowledge is represented and retrieved.&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-query" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;" value="User Question political, temporal, or multi-hop analysis" vertex="1">
+          <mxGeometry height="92" width="480" x="710" y="177" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-c1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Represent corpus as chunks Documents are split and embedded into a vector index." vertex="1">
+          <mxGeometry height="92" width="684" x="136" y="456" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-c2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Retrieve similar passages The system returns top-k chunks based mainly on semantic similarity." vertex="1">
+          <mxGeometry height="92" width="674" x="136" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-c3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Generate from retrieved context The answer is grounded in passages, but relationships may remain implicit." vertex="1">
+          <mxGeometry height="92" width="674" x="136" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-g1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Represent corpus as a graph Entities, events, claims, and relations are extracted from the documents." vertex="1">
+          <mxGeometry height="92" width="644" x="1100" y="456" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-g2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Traverse relational evidence Retrieval can follow links across actors, places, events, and time periods." vertex="1">
+          <mxGeometry height="92" width="644" x="1100" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-g3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=24;fontColor=#0f172a;shadow=0;fontStyle=1" value="Generate with structured grounding The answer can combine local evidence with broader graph context." vertex="1">
+          <mxGeometry height="92" width="644" x="1100" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e1" edge="1" parent="1" source="rvg-query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="rvg-c1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e2" edge="1" parent="1" source="rvg-query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="rvg-g1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e3" edge="1" parent="1" source="rvg-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=24;fontStyle=1" target="rvg-c2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e4" edge="1" parent="1" source="rvg-c2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=24;fontStyle=1" target="rvg-c3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e5" edge="1" parent="1" source="rvg-g1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=24;fontStyle=1" target="rvg-g2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rvg-e6" edge="1" parent="1" source="rvg-g2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=24;fontStyle=1" target="rvg-g3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

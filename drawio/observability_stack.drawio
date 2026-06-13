@@ -1,0 +1,95 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="observability_stack" name="observability_stack">
+    <mxGraphModel dx="1709" dy="1398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#0f172a;fontFamily=Arial;whiteSpace=wrap;" value="Observability Stack" vertex="1">
+          <mxGeometry height="44" width="1460" x="70" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontColor=#64748b;fontFamily=Arial;whiteSpace=wrap;" value="Metrics, traces, and logs move through dedicated telemetry paths from application services to operational analysis." vertex="1">
+          <mxGeometry height="28" width="1040" x="280" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="band1" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;arcSize=8;fontSize=24;fontStyle=1;fontColor=#334155;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="Instrumentation" vertex="1">
+          <mxGeometry height="200" width="1450" x="70" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="band2" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;arcSize=8;fontSize=24;fontStyle=1;fontColor=#334155;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="Collection and Storage" vertex="1">
+          <mxGeometry height="240" width="1450" x="70" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="band3" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;arcSize=8;fontSize=24;fontStyle=1;fontColor=#334155;fontFamily=Arial;align=left;verticalAlign=top;spacingTop=14;spacingLeft=18;" value="Analysis and Visibility" vertex="1">
+          <mxGeometry height="250" width="1460" x="60" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="services" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Application Services&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;FastAPI, ingestion workers, and frontend&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="270" x="145" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="otel" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;OpenTelemetry SDK&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;traces, metrics, context propagation&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="270" x="515" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="exporters" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Metrics Exporters&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;service, container, and database signals&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="270" x="855" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Structured Logging&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;application events and audit records&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="250" x="1210" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="prometheus" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Prometheus&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;time-series scraping, storage, and alert rules&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="170" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="collector" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;OTel Collector&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;receives, batches, and routes telemetry&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="510" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="jaeger" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Jaeger&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;distributed trace storage and search&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="867" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="logstore" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Log Store&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;searchable operational and audit logs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="280" x="1190" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="grafana" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Grafana Dashboards&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;latency, throughput, health, and ingestion SLIs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="300" x="210" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="alerting" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#fff1f2;strokeColor=#e11d48;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Alerting&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;notifications for failures and SLI breaches&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="300" x="660" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="analysis" parent="1" style="rounded=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;arcSize=10;fontSize=24;fontColor=#0f172a;fontFamily=Arial;align=center;spacing=10;" value="&lt;b&gt;Trace and Log Analysis&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;root-cause inspection and audit reconstruction&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="300" x="1090" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="services" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6366f1;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#4338ca;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="otel" value="telemetry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0891b2;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#0e7490;exitX=1;exitY=0.35;entryX=0;entryY=0.35;" value="metrics">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="159.2" />
+              <mxPoint x="880" y="159.2" />
+            </Array>
+            <mxPoint x="440" y="194.99999999999994" as="sourcePoint" />
+            <mxPoint x="880" y="194.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="otel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6366f1;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#4338ca;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="collector" value="OTLP">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="exporters" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0891b2;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#0e7490;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="prometheus" value="scrape">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="collector" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#6d28d9;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="jaeger" value="traces">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="logs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ea580c;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#c2410c;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="logstore" value="logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="prometheus" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0891b2;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#0e7490;exitX=0.5;exitY=1;entryX=0.35;entryY=0;" target="grafana" value="queries">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="prometheus" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#e11d48;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#be123c;exitX=0.7;exitY=1;entryX=0.3;entryY=0;" target="alerting" value="rules">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="jaeger" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#6d28d9;exitX=0.5;exitY=1;entryX=0.35;entryY=0;" target="analysis" value="trace search">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="logstore" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ea580c;strokeWidth=2;endArrow=block;endFill=1;fontSize=24;fontColor=#c2410c;exitX=0.5;exitY=1;entryX=0.7;entryY=0;" target="analysis" value="log search">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

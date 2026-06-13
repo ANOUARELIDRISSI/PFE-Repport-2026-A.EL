@@ -57,6 +57,7 @@
       height: 1050px;
       pointer-events: none;
       overflow: visible;
+      z-index: 2;
     }
     .model {
       position: absolute;
@@ -66,6 +67,7 @@
       border-radius: 8px;
       box-shadow: 0 14px 28px rgba(16, 17, 20, 0.08);
       overflow: hidden;
+      z-index: 4;
     }
     .model.wide { width: 360px; }
     .head {
@@ -136,6 +138,7 @@
       text-align: center;
       line-height: 1.25;
       box-shadow: 0 10px 20px rgba(16, 17, 20, 0.05);
+      z-index: 4;
     }
     .note {
       position: absolute;
@@ -160,8 +163,7 @@
     .l1 { left: 455px; top: 330px; }
     .l2 { left: 522px; top: 592px; }
     .l3 { left: 1144px; top: 334px; }
-    .l4 { left: 792px; top: 512px; }
-    .l5 { left: 823px; top: 465px; }
+    .l4 { left: 848px; top: 500px; }
     .l6 { left: 219px; top: 466px; }
     .l7 { left: 1136px; top: 748px; }
   </style>
@@ -173,18 +175,18 @@
 
     <svg class="links" viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#737887"></path>
         </marker>
       </defs>
-      <path d="M426 324 C545 318, 620 302, 742 298" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M426 416 C568 456, 644 512, 742 612" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M928 456 L928 544" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M268 474 L268 552" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M426 690 C650 815, 1110 842, 1318 714" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M268 800 L268 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M928 788 L928 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M1494 810 L1494 888" stroke="#8b91a0" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M426 324 H742" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M426 416 H620 V612 H742" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M928 456 V544" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M268 474 V552" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M426 690 H620 V836 H1260 V714 H1318" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M268 800 V888" stroke="#737887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M928 788 V888" stroke="#737887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1494 810 V888" stroke="#737887" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
     </svg>
 
     <section class="model document">
@@ -255,8 +257,7 @@
 
     <div class="relation-label l1">mentions / grounds</div>
     <div class="relation-label l2">extracted assertions</div>
-    <div class="relation-label l4">relation vocabulary</div>
-    <div class="relation-label l5">connects entities</div>
+    <div class="relation-label l4">connects entities</div>
     <div class="relation-label l6">composed of</div>
     <div class="relation-label l7">embedded as</div>
 

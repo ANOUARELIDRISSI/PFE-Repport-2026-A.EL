@@ -22,7 +22,7 @@
 \else
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage[english,french]{babel}
+  \usepackage[french,english]{babel}
   \usepackage{tgpagella}
   \newcommand{\textenglish}[1]{#1}%
   \newcommand{\textarabic}[1]{#1}%
@@ -44,6 +44,7 @@
 \usepackage{setspace}
 \usepackage{xcolor}
 \usepackage{colortbl}
+\definecolor{navyblue}{RGB}{20,55,95}
 \usepackage{enumitem}
 \usepackage{mdframed}
 \PassOptionsToPackage{hyperfootnotes=false}{hyperref}
@@ -57,6 +58,7 @@
 \WarningFilter{tracklang}{No `datatool' support for dialect}
 \WarningFilter{latex}{Infinite glue shrinkage found in box being split}
 \usepackage{afterpage}
+\usepackage{pdfpages}
 \usepackage[acronym]{glossaries}
 
 \geometry{
@@ -176,4 +178,3 @@
     \addtocounter{page}{-1}%
     \newpage
 }
-

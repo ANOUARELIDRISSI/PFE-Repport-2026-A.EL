@@ -60,6 +60,7 @@
       border: 2px solid var(--border);
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.84);
+      z-index: 1;
     }
 
     .system-title {
@@ -155,6 +156,7 @@
       font-weight: 690;
       line-height: 1.22;
       box-shadow: 0 10px 26px rgba(32, 33, 35, 0.04);
+      z-index: 4;
     }
 
     .case.wide {
@@ -172,8 +174,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.4;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -229,12 +230,12 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 10 5 L 0 10 Z" fill="#737887"></path>
         </marker>
       </defs>
-      <path class="connector" marker-end="url(#arrow)" d="M 328 377 C 374 377, 398 390, 460 425"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 328 765 C 374 765, 398 782, 460 805"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 328 377 H 394 V 425 H 460"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 328 765 H 394 V 805 H 460"></path>
     </svg>
   </main>
 </body>

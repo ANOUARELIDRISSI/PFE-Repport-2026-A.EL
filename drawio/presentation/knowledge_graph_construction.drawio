@@ -1,0 +1,61 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="knowledge_graph_construction" name="knowledge_graph_construction">
+    <mxGraphModel dx="2131" dy="1398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mongo" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;MongoDB Documents&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Normalized text and source metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="70" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="dspy" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;DSPy Module&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Optimized prompt and output schema&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="430" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="mistral" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Mistral&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Joint entity-relation extraction in JSON mode&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="790" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="json" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Structured JSON&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Entities, types and typed relations&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="1150" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="resolution" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Entity Resolution&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Normalize aliases and assign stable IDs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="1150" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="validation" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Validation&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Schema, quality and confidence checks&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="790" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="cypher" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Cypher MERGE&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Create or update nodes and edges&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="430" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="neo4j" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=20;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Neo4j Knowledge Graph&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Canonical entities and typed relationships&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="280" x="70" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="EXTRACTION" vertex="1">
+          <mxGeometry height="32" width="200" x="650" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="GRAPH PUBLICATION" vertex="1">
+          <mxGeometry height="32" width="250" x="650" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="mongo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="dspy" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="dspy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="mistral" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="mistral" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="json" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="json" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="resolution" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="resolution" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="validation" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="validation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="cypher" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="cypher" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;fontColor=#64748b;" target="neo4j" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

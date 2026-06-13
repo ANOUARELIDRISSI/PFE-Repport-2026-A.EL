@@ -1,0 +1,54 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="dspy-loop" name="DSPy Optimization Loop">
+    <mxGraphModel dx="1647" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t" parent="1" style="text;html=1;align=center;fontFamily=Times New Roman;fontSize=30;fontStyle=1;" value="DSPy Extraction Optimization Loop" vertex="1">
+          <mxGeometry height="50" width="700" x="450" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Curated Training Examples&lt;br&gt;documents + expected entities and relations" vertex="1">
+          <mxGeometry height="110" width="360" x="80" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="module" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;fontFamily=Arial;fontSize=21;fontStyle=1;" value="DSPy Extraction Module&lt;br&gt;signature, instructions, demonstrations" vertex="1">
+          <mxGeometry height="110" width="360" x="510" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mipro" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=3;fontFamily=Arial;fontSize=21;fontStyle=1;" value="MIPROv2 Optimizer&lt;br&gt;proposes prompts and few-shot examples" vertex="1">
+          <mxGeometry height="110" width="400" x="940" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Mistral JSON Extraction&lt;br&gt;entities, relations, structured fields" vertex="1">
+          <mxGeometry height="110" width="400" x="940" y="441" as="geometry" />
+        </mxCell>
+        <mxCell id="metric" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff1f2;strokeColor=#e11d48;strokeWidth=2;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Composite Evaluation&lt;br&gt;schema validity | entity quality | relation quality | latency" vertex="1">
+          <mxGeometry height="110" width="380" x="250" y="441" as="geometry" />
+        </mxCell>
+        <mxCell id="best" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=3;fontFamily=Arial;fontSize=22;fontStyle=1;" value="Selected Production Program&lt;br&gt;versioned prompt configuration used by online extraction" vertex="1">
+          <mxGeometry height="110" width="600" x="500" y="711" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="data" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="module">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="module" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="mipro">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="mipro" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="llm" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="metric">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="metric" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;" target="mipro" value="score feedback">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="350" />
+              <mxPoint x="1140" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="metric" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#16a34a;strokeWidth=3;endArrow=block;endFill=1;fontSize=20;" target="best" value="retain best">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

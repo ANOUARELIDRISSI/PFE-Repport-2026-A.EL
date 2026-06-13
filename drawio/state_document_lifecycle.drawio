@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex">
+  <diagram id="state_document_lifecycle" name="state_document_lifecycle">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="life-flags-band" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="Implementation Checkpoints" vertex="1">
+          <mxGeometry height="178" width="1540" x="120" y="552" as="geometry" />
+        </mxCell>
+        <mxCell id="life-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=24;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Document Lifecycle State Model&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;A document becomes retrievable evidence only after acquisition, normalization, quality gating, extraction, and chunk indexing have completed.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="life-acquired" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="1. Acquired Raw document stored source URL, title, date, source name, scraped metadata" vertex="1">
+          <mxGeometry height="140" width="302" x="50" y="171" as="geometry" />
+        </mxCell>
+        <mxCell id="life-normalized" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="2. Normalized Clean text and metadata aligned HTML/PDF noise removed; fields mapped to a common schema" vertex="1">
+          <mxGeometry height="140" width="290" x="372" y="167" as="geometry" />
+        </mxCell>
+        <mxCell id="life-accepted" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="3. Accepted Quality and relevance gate passed low-quality or non-political documents are skipped" vertex="1">
+          <mxGeometry height="130" width="268" x="700" y="181" as="geometry" />
+        </mxCell>
+        <mxCell id="life-enriched" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="4. Enriched Entities, relations, and records extracted graph facts and structured records are produced" vertex="1">
+          <mxGeometry height="130" width="282" x="1014" y="179" as="geometry" />
+        </mxCell>
+        <mxCell id="life-indexed" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="5. Indexed Chunks embedded and linked to entities document_chunks and ZVec vectors support retrieval" vertex="1">
+          <mxGeometry height="160" width="314" x="1326" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="life-f1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="documents collection created" vertex="1">
+          <mxGeometry height="68" width="266" x="222" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="life-f2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="graph_extracted = true" vertex="1">
+          <mxGeometry height="68" width="266" x="544" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="life-f3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="structured_extracted = true" vertex="1">
+          <mxGeometry height="68" width="266" x="866" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="life-f4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="chunks_created = true" vertex="1">
+          <mxGeometry height="68" width="266" x="1188" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="life-ready" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="Ready for retrieval and answer synthesis" vertex="1">
+          <mxGeometry height="92" width="420" x="443" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="life-skip" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;fontStyle=1" value="Skipped or deferred when quality is insufficient" vertex="1">
+          <mxGeometry height="92" width="420" x="948" y="804" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="parse" vertex="1">
+          <mxGeometry height="30" width="86" x="370" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="gate" vertex="1">
+          <mxGeometry height="30" width="86" x="678" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="extract" vertex="1">
+          <mxGeometry height="30" width="86" x="986" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="embed" vertex="1">
+          <mxGeometry height="30" width="86" x="1294" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l5" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="quality fail" vertex="1">
+          <mxGeometry height="30" width="120" x="1160" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="life-l6" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;strokeWidth=2;fontStyle=1" value="all checkpoints complete" vertex="1">
+          <mxGeometry height="30" width="216" x="723" y="737" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e1" edge="1" parent="1" source="life-acquired" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-normalized" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e2" edge="1" parent="1" source="life-normalized" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-accepted" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e3" edge="1" parent="1" source="life-accepted" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-enriched" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e4" edge="1" parent="1" source="life-enriched" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-indexed" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e5" edge="1" parent="1" source="life-acquired" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-f1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e6" edge="1" parent="1" source="life-normalized" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-f2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e7" edge="1" parent="1" source="life-enriched" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-f3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e8" edge="1" parent="1" source="life-indexed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-f4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="life-e9" edge="1" parent="1" source="life-f3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-ready" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="999" y="780" />
+              <mxPoint x="653" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="life-e10" edge="1" parent="1" source="life-accepted" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;fontStyle=1" target="life-skip" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

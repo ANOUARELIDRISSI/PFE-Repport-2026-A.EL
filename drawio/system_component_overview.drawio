@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex">
+  <diagram id="system_component_overview" name="system_component_overview">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="overview-b1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="presentation and operations" vertex="1">
+          <mxGeometry height="245" width="1649" x="70" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-b2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="application services" vertex="1">
+          <mxGeometry height="240" width="1659" x="50" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-b3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="data and platform services" vertex="1">
+          <mxGeometry height="265" width="1720" x="30" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=24;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;System Component Overview&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;The deployed system combines a React interface, FastAPI backend, autonomous ingestion worker, hybrid storage, and an observability stack.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-fe" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;React Frontend&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;chat, graph, documents, legislative views, insights, and admin pages.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="125" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-api" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;FastAPI Backend&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;auth, query, chat, graph, entities, documents, admin, and ingestion routers.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="530" y="213" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-admin" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Admin Console&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;scheduler control, scraping triggers, import, ZVec backfill, metrics, logs, and users.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="138" width="322" x="1026" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-monui" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Monitoring UI&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Grafana dashboards, Prometheus metrics, Jaeger traces, and exporters.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="1381" y="203" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-reason" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Reasoning Runtime&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;RAG, CoT, reflexive retrieval, graph traversal, domain search, and synthesis.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="88" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-ingest" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Ingestion Worker&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;RSS, Google News, PDF sources, direct URL ingest, extraction, chunking, and embedding.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="529" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-domain" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Domain Services&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;entity resolution, ontology validation, structured records, trends, finance, and conflicts.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="935" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-obs" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Observability&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;FastAPI instrumentation, OTLP traces, Prometheus scrape targets, container metrics.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="1349" y="492" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-mongo" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;MongoDB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;documents, chunks, records, sessions, users, query history.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="150" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-neo" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Neo4j&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;canonical entities, typed relations, temporal graph facts.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="515" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-zvec" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;ZVec&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;chunk vectors, metadata, semantic similarity retrieval.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="292" x="860" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-redis" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;cache layer and operational service dependency.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="255" x="1190" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-external" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;External APIs&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Mistral models and source websites.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="190" x="1507" y="812" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="API calls" vertex="1">
+          <mxGeometry height="30" width="96" x="420" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="privileged workflows" vertex="1">
+          <mxGeometry height="30" width="184" x="829" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="evidence preparation" vertex="1">
+          <mxGeometry height="30" width="134" x="386" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="analytics" vertex="1">
+          <mxGeometry height="30" width="96" x="821" y="506" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p5" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="telemetry" vertex="1">
+          <mxGeometry height="30" width="96" x="1234" y="519" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p6" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="hybrid persistence" vertex="1">
+          <mxGeometry height="30" width="168" x="725" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-p7" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=20;fontColor=#4338ca;" value="model and web access" vertex="1">
+          <mxGeometry height="30" width="184" x="1370" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e1" edge="1" parent="1" source="overview-fe" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="overview-api" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e2" edge="1" parent="1" source="overview-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="overview-admin" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e3" edge="1" parent="1" source="overview-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="overview-ingest" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e4" edge="1" parent="1" source="overview-reason" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="overview-ingest" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e5" edge="1" parent="1" source="overview-ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="overview-domain" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e6" edge="1" parent="1" source="overview-domain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=20;" target="overview-obs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e7" edge="1" parent="1" source="overview-ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.665;entryY=-0.019;entryDx=0;entryDy=0;fontSize=20;entryPerimeter=0;" target="overview-mongo" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e8" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="694.0000000000002" y="619" as="sourcePoint" />
+            <mxPoint x="680.0000000000002" y="811.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="overview-e9" edge="1" parent="1" source="overview-ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="overview-zvec" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e10" edge="1" parent="1" source="overview-obs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="overview-redis" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="overview-e11" edge="1" parent="1" source="overview-obs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=20;" target="overview-external" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

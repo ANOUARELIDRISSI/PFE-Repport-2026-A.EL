@@ -198,8 +198,8 @@
 
     .el1 { left: 252px; top: 306px; }
     .el2 { right: 254px; top: 306px; }
-    .el3 { left: 226px; top: 318px; }
-    .el4 { right: 226px; top: 318px; }
+    .el3 { left: 236px; top: 318px; }
+    .el4 { right: 236px; top: 318px; }
 
     svg {
       position: absolute;
@@ -214,6 +214,13 @@
       fill: none;
       stroke: var(--line);
       stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .rel-flow {
+      stroke: var(--line);
+      stroke-width: 2.8;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -268,18 +275,21 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
+        </marker>
+        <marker id="arrow-rel" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
       </defs>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 324 472 C 372 510 406 548 432 572"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 626 472 C 578 510 544 548 520 572"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 324 482 C 360 500 392 532 428 590"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 626 482 C 592 500 560 532 524 590"></path>
       <path class="connector thin" marker-end="url(#arrow)" d="M 474 654 L 474 732"></path>
 
-      <path class="connector dash" marker-end="url(#arrow)" d="M 1088 456 C 1138 500 1174 532 1218 562"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 1470 456 C 1418 500 1382 532 1342 562"></path>
-      <path class="connector dash thin" marker-end="url(#arrow)" d="M 1288 636 L 1288 703"></path>
+      <path class="connector rel-flow" marker-end="url(#arrow-rel)" d="M 1084 506 V 586 H 1228"></path>
+      <path class="connector rel-flow" marker-end="url(#arrow-rel)" d="M 1574 506 V 586 H 1430"></path>
+      <path class="connector rel-flow" marker-end="url(#arrow-rel)" d="M 1328 648 V 704"></path>
     </svg>
   </main>
 </body>

@@ -216,8 +216,8 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.3;
+      stroke: #737887;
+      stroke-width: 2.4;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -283,8 +283,8 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 10 5 L 0 10 Z" fill="#737887"></path>
         </marker>
       </defs>
 
@@ -293,13 +293,13 @@
       <path class="connector" marker-end="url(#arrow)" d="M 968 334 L 1018 334"></path>
       <path class="connector" marker-end="url(#arrow)" d="M 1276 334 L 1326 334"></path>
 
-      <path class="connector thin" marker-end="url(#arrow)" d="M 223 480 L 350 630"></path>
-      <path class="connector thin" marker-end="url(#arrow)" d="M 531 480 L 672 630"></path>
-      <path class="connector thin" marker-end="url(#arrow)" d="M 839 480 L 994 630"></path>
-      <path class="connector thin" marker-end="url(#arrow)" d="M 1455 480 L 1316 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 223 480 V 526 H 355 V 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 531 480 V 526 H 677 V 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 839 480 V 526 H 999 V 630"></path>
+      <path class="connector thin" marker-end="url(#arrow)" d="M 1455 480 V 526 H 1321 V 630"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 900 704 L 690 760"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 840 480 C 1020 548 1220 640 1248 760"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 900 704 V 730 H 660 V 760"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 839 480 V 520 H 1110 V 760"></path>
     </svg>
   </main>
 </body>

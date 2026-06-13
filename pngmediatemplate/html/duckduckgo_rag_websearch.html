@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -57,7 +57,7 @@
 
     .node {
       position: absolute;
-      z-index: 3;
+      z-index: 4;
       display: grid;
       place-items: center;
       min-height: 88px;
@@ -95,7 +95,7 @@
       border: 2px solid var(--web-border);
       border-radius: 14px;
       background: rgba(255, 252, 247, 0.96);
-      z-index: 2;
+      z-index: 1;
     }
 
     .web-lane h2 {
@@ -171,7 +171,7 @@
       font-size: 18px;
       font-weight: 700;
       line-height: 1.22;
-      z-index: 4;
+      z-index: 5;
     }
 
     .web-box span {
@@ -219,7 +219,7 @@
     svg {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 3;
       width: 1800px;
       height: 1050px;
       pointer-events: none;
@@ -227,9 +227,9 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.6;
       stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .connector-web {
@@ -259,7 +259,7 @@
     <p class="subtitle">General query flow with an optional DuckDuckGo layer for recent public web evidence.</p>
 
     <div class="node q">User question<small>Chat interface</small></div>
-    <div class="node soft rag">Hybrid RAG platform<small>Retrieve · reason · synthesize</small></div>
+    <div class="node soft rag">Hybrid RAG platform<small>Retrieve - reason - synthesize</small></div>
     <div class="node ans">Cited answer<small>Sources + trace</small></div>
 
     <div class="label-opt">optional</div>
@@ -279,11 +279,11 @@
       <div class="web-box b1">Web On / Off<small>Chat toggle</small></div>
       <div class="web-box b2">DuckDuckGoSearchRun<small>HTML results + Instant Answer fallback</small></div>
       <div class="web-box b3">Live web snippets<small>Merged at synthesis time</small></div>
-      <div class="web-box b4">AI Search (admin)<small>Topic discovery → ingestion</small></div>
+      <div class="web-box b4">AI Search (admin)<small>Topic discovery to ingestion</small></div>
 
       <div class="web-note">
         <strong>When it runs:</strong> user enables Web search, a reflexive audit needs external evidence,
-        the question signals recency (<em>latest</em>, <em>breaking</em>…), or an administrator launches topic discovery.
+        the question signals recency (<em>latest</em>, <em>breaking</em>...), or an administrator launches topic discovery.
         Web results stay separate from the local corpus in the LLM context, then fuse into one cited answer.
       </div>
     </section>
@@ -294,16 +294,16 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
-        <marker id="arrow-web" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#c9955a"></path>
+        <marker id="arrow-web" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#c9955a"></path>
         </marker>
       </defs>
-      <path class="connector" marker-end="url(#arrow)" d="M 500 212 L 652 212"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1040 212 L 1196 212"></path>
-      <path class="connector connector-web" marker-end="url(#arrow-web)" d="M 850 256 C 850 298, 850 318, 850 340"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 500 212 H 652"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1040 212 H 1196"></path>
+      <path class="connector connector-web" marker-end="url(#arrow-web)" d="M 850 256 V 340"></path>
     </svg>
   </main>
 </body>

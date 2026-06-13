@@ -1,0 +1,72 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="org_chart" name="org_chart">
+    <mxGraphModel dx="3413" dy="1398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="org-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Times New Roman;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=22;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=none;" value="&lt;font&gt;&lt;b&gt;&lt;font&gt;SCIENTIAE Organizational Structure&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="92" width="1400" x="-50" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="org-management" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="General Management" vertex="1">
+          <mxGeometry height="92" width="304" x="548" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="org-admin" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Administrative Department" vertex="1">
+          <mxGeometry height="92" width="382" x="160" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="org-rd" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Research and Development Department" vertex="1">
+          <mxGeometry height="92" width="382" x="847" y="334" as="geometry" />
+        </mxCell>
+        <mxCell id="org-hr" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Human Resources" vertex="1">
+          <mxGeometry height="92" width="230" x="74" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="org-finance" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Finance" vertex="1">
+          <mxGeometry height="93" width="246" x="381" y="521" as="geometry" />
+        </mxCell>
+        <mxCell id="org-software" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Software Engineering" vertex="1">
+          <mxGeometry height="92" width="230" x="674" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="org-data" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=center;spacing=10;fontSize=22;shadow=0;fontStyle=1" value="Data Science Engineering" vertex="1">
+          <mxGeometry height="92" width="230" x="922" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="org-cyber" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;fontStyle=1" value="Cybersecurity Engineering" vertex="1">
+          <mxGeometry height="92" width="210" x="1168" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="org-e1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="301" />
+              <mxPoint x="351" y="301" />
+            </Array>
+            <mxPoint x="700" y="270" as="sourcePoint" />
+            <mxPoint x="350.99999999999955" y="352" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="org-e2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="301" />
+              <mxPoint x="1038" y="301" />
+            </Array>
+            <mxPoint x="700" y="260" as="sourcePoint" />
+            <mxPoint x="1038" y="335" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="org-e3" edge="1" parent="1" source="org-admin" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" target="org-hr" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="org-e4" edge="1" parent="1" source="org-admin" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" target="org-finance" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="org-e5" edge="1" parent="1" source="org-rd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" target="org-software" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="org-e6" edge="1" parent="1" source="org-rd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" target="org-data" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="org-e7" edge="1" parent="1" source="org-rd" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;fontStyle=1" target="org-cyber" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,66 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="geopolitical-ontology" name="Geopolitical Ontology">
+    <mxGraphModel dx="1647" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;fontFamily=Times New Roman;fontSize=30;fontStyle=1;fontColor=#0f172a;" value="Geopolitical Ontology" vertex="1">
+          <mxGeometry height="50" width="600" x="500" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="country" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Country&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;state, region, territory&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="650" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="politician" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Politician&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;office holder, candidate&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="160" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="party" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Political Party&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;coalition, movement&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="140" y="492.5" as="geometry" />
+        </mxCell>
+        <mxCell id="institution" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Institution&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;ministry, parliament, committee&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="1130" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="organization" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Organization&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;NGO, company, foreign actor&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="300" x="1130" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="event" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff1f2;strokeColor=#e11d48;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Political Event&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;election, conflict, agreement, vote&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="300" x="650" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#475569;strokeWidth=3;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Evidence Assertion&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;source document | confidence&lt;br&gt;valid_from | valid_to | extracted_at&lt;/font&gt;" vertex="1">
+          <mxGeometry height="115" width="460" x="570" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="politician" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="country" value="governs / represents">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="politician" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="party" value="member of / leads">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="politician" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="institution" value="holds office in">
+          <mxGeometry relative="1" x="-0.4439" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="310" y="300" />
+              <mxPoint x="1280" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="institution" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="country" value="belongs to">
+          <mxGeometry relative="1" x="-0.3503" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="organization" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="institution" value="allies / opposes / influences">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="party" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e11d48;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="event" value="participates in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="country" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#e11d48;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="event" value="hosts / affected by">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="event" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#475569;strokeWidth=3;endArrow=block;endFill=1;fontFamily=Arial;fontSize=18;" target="evidence" value="grounded by">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -54,6 +54,7 @@
       height: 1050px;
       overflow: visible;
       pointer-events: none;
+      z-index: 2;
     }
     .table {
       position: absolute;
@@ -63,6 +64,7 @@
       background: var(--white);
       overflow: hidden;
       box-shadow: 0 12px 26px rgba(16, 17, 20, 0.075);
+      z-index: 4;
     }
     .table.main {
       width: 350px;
@@ -162,16 +164,16 @@
     .mentions { left: 175px; top: 170px; }
     .relations { left: 175px; top: 520px; }
     .chunks { left: 632px; top: 610px; }
-    .vectors { left: 1046px; top: 610px; }
+    .vectors { left: 1010px; top: 610px; }
     .structured { left: 1312px; top: 165px; width: 322px; }
-    .chat { left: 1312px; top: 520px; width: 322px; }
+    .chat { left: 1338px; top: 462px; width: 294px; }
     .c1 { left: 138px; top: 130px; width: 380px; height: 705px; }
     .c2 { left: 600px; top: 576px; width: 605px; height: 258px; }
     .c3 { left: 1280px; top: 130px; width: 390px; height: 705px; }
     .l1 { left: 505px; top: 260px; }
     .l2 { left: 500px; top: 630px; }
     .l3 { left: 823px; top: 550px; }
-    .l4 { left: 982px; top: 706px; }
+    .l4 { left: 943px; top: 706px; }
     .l5 { left: 1122px; top: 276px; }
   </style>
 </head>
@@ -186,15 +188,15 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#737887"></path>
         </marker>
       </defs>
-      <path d="M725 282 C650 276, 560 272, 467 270" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M725 372 C640 425, 540 520, 467 620" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M900 508 L862 610" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M924 742 C970 742, 1005 742, 1046 742" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M1075 282 C1152 278, 1225 276, 1312 276" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M725 282 H467" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M725 372 H560 V620 H467" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M900 508 V610" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M924 742 H1046" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1075 282 H1312" stroke="#737887" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
     </svg>
 
     <section class="table main documents">

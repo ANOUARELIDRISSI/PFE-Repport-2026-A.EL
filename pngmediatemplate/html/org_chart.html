@@ -115,8 +115,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -133,17 +132,17 @@
 
     <svg viewBox="0 0 1400 900" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 0 0 L 11 5.5 L 0 11 Z" fill="#737887"></path>
         </marker>
       </defs>
-      <path class="connector" marker-end="url(#arrow)" d="M 700 278 L 351 382"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 700 278 L 1049 382"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 351 500 L 187 654"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 351 500 L 501 654"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 805 654"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 1051 654"></path>
-      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 L 1275 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 700 278 V 326 H 351 V 382"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 700 278 V 326 H 1049 V 382"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 351 500 V 584 H 187 V 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 351 500 V 584 H 501 V 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 V 584 H 805 V 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 V 654"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 1049 500 V 584 H 1275 V 654"></path>
     </svg>
 
     <section class="box root">General<br>Management</section>

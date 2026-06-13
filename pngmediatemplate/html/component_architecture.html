@@ -68,9 +68,12 @@
       left: 24px;
       top: 16px;
       margin: 0;
+      padding-right: 10px;
+      background: rgba(255, 255, 255, 0.94);
       color: var(--deep);
       font-size: 21px;
       font-weight: 780;
+      z-index: 6;
     }
 
     .band .note {
@@ -79,11 +82,14 @@
       top: 18px;
       width: 590px;
       margin: 0;
+      padding: 4px 0 4px 12px;
+      background: rgba(255, 255, 255, 0.94);
       color: var(--muted);
       text-align: right;
       font-size: 14px;
       line-height: 1.28;
       font-weight: 600;
+      z-index: 6;
     }
 
     .ui { top: 128px; height: 148px; }
@@ -192,8 +198,7 @@
 
     .connector {
       fill: none;
-      stroke: var(--line);
-      stroke-width: 2.2;
+      stroke: #737887; stroke-width: 2.4;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -264,12 +269,12 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#8e8ea0"></path>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M 1 1 L 10 6 L 1 11 Z" fill="#737887"></path>
         </marker>
       </defs>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 900 276 C 900 294 294 294 294 376"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 900 276 V 318 H 294 V 376"></path>
       <path class="connector" marker-end="url(#arrow)" d="M 294 442 L 294 572"></path>
 
       <path class="connector thin" marker-end="url(#arrow)" d="M 430 602 L 474 602"></path>
@@ -277,13 +282,13 @@
       <path class="connector thin" marker-end="url(#arrow)" d="M 1010 602 L 1054 602"></path>
       <path class="connector thin" marker-end="url(#arrow)" d="M 1300 602 L 1344 602"></path>
 
-      <path class="connector" marker-end="url(#arrow)" d="M 596 672 C 628 718 716 732 782 776"></path>
+      <path class="connector" marker-end="url(#arrow)" d="M 596 672 V 724 H 782 V 776"></path>
       <path class="connector" marker-end="url(#arrow)" d="M 798 672 L 782 776"></path>
       <path class="connector" marker-end="url(#arrow)" d="M 1090 672 L 1018 776"></path>
       <path class="connector dash" marker-end="url(#arrow)" d="M 414 808 L 450 808"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 750 808 750 810 772 810"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 830 760 930 760 1008 810"></path>
-      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 C 940 742 1120 748 1244 810"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 H 772"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 H 1008"></path>
+      <path class="connector dash" marker-end="url(#arrow)" d="M 700 808 H 1244"></path>
 
       <path class="connector dash" marker-end="url(#arrow)" d="M 448 872 L 448 940"></path>
       <path class="connector dash" marker-end="url(#arrow)" d="M 782 872 L 782 940"></path>

@@ -1,0 +1,63 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="polyglot-persistence-roles" name="Polyglot Persistence Roles">
+    <mxGraphModel dx="1510" dy="1048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=30;fontStyle=1;fontColor=#0f172a;" value="Complementary Persistence Roles" vertex="1">
+          <mxGeometry height="55" width="700" x="450" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=19;fontColor=#64748b;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;Each store represents the same evidence for a different analytical responsibility.&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="1000" x="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="source" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#475569;strokeWidth=3;fontFamily=Arial;fontSize=22;fontStyle=1;" value="Normalized Source Document&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;text, metadata, provenance, processing state&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="560" x="520" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=3;fontFamily=Arial;fontSize=20;fontStyle=1;verticalAlign=top;spacingTop=18;" value="MongoDB&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;System of record&lt;/font&gt;&lt;br&gt;&lt;br&gt;Documents and chunks&lt;br&gt;Mentions and assertions&lt;br&gt;Structured analytical records&lt;br&gt;Pipeline checkpoints and provenance" vertex="1">
+          <mxGeometry height="300" width="430" x="70" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="neo4j" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=3;fontFamily=Arial;fontSize=20;fontStyle=1;verticalAlign=top;spacingTop=18;" value="Neo4j&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Relational topology&lt;/font&gt;&lt;br&gt;&lt;br&gt;Canonical entities&lt;br&gt;Typed and temporal relations&lt;br&gt;Neighborhood exploration&lt;br&gt;Multi-hop path traversal" vertex="1">
+          <mxGeometry height="300" width="430" x="585" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="zvec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=3;fontFamily=Arial;fontSize=20;fontStyle=1;verticalAlign=top;spacingTop=18;" value="ZVec&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Semantic retrieval index&lt;/font&gt;&lt;br&gt;&lt;br&gt;Chunk embeddings&lt;br&gt;Document and entity metadata&lt;br&gt;Similarity ranking&lt;br&gt;Passage-level recall" vertex="1">
+          <mxGeometry height="300" width="430" x="1100" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="extract" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#86efac;fontFamily=Arial;fontSize=16;fontColor=#166534;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;derive records&lt;/font&gt;" vertex="1">
+          <mxGeometry height="36" width="150" x="300" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="publish" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#a5b4fc;fontFamily=Arial;fontSize=16;fontColor=#4338ca;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;publish graph&lt;/font&gt;" vertex="1">
+          <mxGeometry height="36" width="150" x="725" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="embed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#67e8f9;fontFamily=Arial;fontSize=16;fontColor=#0e7490;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;embed chunks&lt;/font&gt;" vertex="1">
+          <mxGeometry height="36" width="150" x="1150" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="reasoner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=3;fontFamily=Arial;fontSize=22;fontStyle=1;" value="Hybrid Reasoning Engine&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;combines source evidence, graph facts, and ranked passages&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="660" x="470" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="source" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#16a34a;strokeWidth=3;endArrow=block;endFill=1;" target="mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="source" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6366f1;strokeWidth=3;endArrow=block;endFill=1;" target="neo4j">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="087Fkk0KURx_ppCXpPA9-1" connectable="0" parent="e2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Text" vertex="1">
+          <mxGeometry relative="1" x="0.2232" y="-13" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="source" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0891b2;strokeWidth=3;endArrow=block;endFill=1;" target="zvec">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="mongo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#16a34a;strokeWidth=3;endArrow=block;endFill=1;" target="reasoner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="neo4j" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#6366f1;strokeWidth=3;endArrow=block;endFill=1;" target="reasoner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="zvec" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#0891b2;strokeWidth=3;endArrow=block;endFill=1;" target="reasoner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,198 @@
+<mxfile host="app.diagrams.net" modified="2026-06-05T00:00:00.000Z" agent="Codex" version="26.0.0" type="device">
+  <diagram id="vector_vs_graph_spaces" name="vector_vs_graph_spaces">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="v0" value="Vector Space Retrieval and Graph Space Traversal" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=25;fontStyle=1;fontColor=#111216;fontFamily=Arial;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="72.00" y="44.00" width="1656.00" height="42.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v1" value="Semantic search finds relevant chunks; graph traversal recovers explicit relationships." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#555b66;fontFamily=Arial;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="370.00" y="95.00" width="1060.00" height="24.83" as="geometry"/>
+        </mxCell>
+        <mxCell id="v3" value="Vector Space" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=20;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="88.00" y="210.00" width="710.00" height="676.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v18" value="Graph Space" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=20;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="1002.00" y="210.00" width="710.00" height="676.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="462" y="442" as="sourcePoint"/>
+            <mxPoint x="250" y="546" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="462" y="492"/>
+              <mxPoint x="250" y="492"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="462" y="442" as="sourcePoint"/>
+            <mxPoint x="462" y="604" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="462" y="442" as="sourcePoint"/>
+            <mxPoint x="682" y="546" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="462" y="492"/>
+              <mxPoint x="682" y="492"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="464" y="662" as="sourcePoint"/>
+            <mxPoint x="464" y="696" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="606" y="734" as="sourcePoint"/>
+            <mxPoint x="805" y="504" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="720" y="734"/>
+              <mxPoint x="720" y="504"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="995" y="504" as="sourcePoint"/>
+            <mxPoint x="1242" y="408" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1180" y="504"/>
+              <mxPoint x="1180" y="408"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1338" y="442" as="sourcePoint"/>
+            <mxPoint x="1228" y="574" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1338" y="492"/>
+              <mxPoint x="1228" y="492"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1226" y="574" as="sourcePoint"/>
+            <mxPoint x="1374" y="666" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1226" y="618"/>
+              <mxPoint x="1374" y="618"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1576" y="574" as="sourcePoint"/>
+            <mxPoint x="1430" y="666" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1576" y="618"/>
+              <mxPoint x="1430" y="618"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=12;fontFamily=Arial;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1396" y="678" as="sourcePoint"/>
+            <mxPoint x="1396" y="696" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v2" value="User question" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="555.00" y="132.00" width="690.00" height="54.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v8" value="Query embedding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="328.00" y="372.00" width="234.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v9" value="Chunk candidate 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="144.00" y="512.00" width="204.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v10" value="Chunk candidate 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="343.00" y="606.00" width="204.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v11" value="Chunk candidate 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="538.00" y="512.00" width="204.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v12" value="Chunk metadata includes entity IDs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="282.00" y="698.00" width="326.00" height="78.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v16" value="Step 1. Encode the question and compare it with stored chunk vectors." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="138.00" y="787.00" width="300.00" height="57.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v17" value="Step 2. Return high-scoring text evidence with provenance metadata." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="448.00" y="787.00" width="300.00" height="57.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v23" value="Seed entity IDs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1246.00" y="372.00" width="226.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v24" value="Entity A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1062.00" y="518.00" width="168.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v25" value="Entity B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1275.00" y="612.00" width="168.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v26" value="Entity C" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1484.00" y="518.00" width="168.00" height="72.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v27" value="Triples, paths, and neighborhood facts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1190.00" y="698.00" width="338.00" height="78.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v30" value="Step 3. Lookup seed entities and traverse nearby relationships." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1052.00" y="787.00" width="300.00" height="57.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v31" value="Step 4. Add structured facts to the answer context." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1362.00" y="787.00" width="300.00" height="57.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v32" value="Seed-and-Traverse
+Semantic retrieval provides entry points; graph traversal adds relational precision." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=14;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="805.00" y="448.00" width="190.00" height="153.69" as="geometry"/>
+        </mxCell>
+        <mxCell id="v5" value="embedding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="144.00" y="316.00" width="104.67" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v6" value="cosine score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="374.00" y="316.00" width="115.61" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v7" value="ranked chunks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="613.17" y="316.00" width="128.83" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v13" value="similarity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="268.00" y="466.00" width="83.09" height="32.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v14" value="similarity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="534.91" y="466.00" width="83.09" height="32.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v15" value="rank" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="400.00" y="558.00" width="53.47" height="32.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v20" value="seed nodes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1058.00" y="316.00" width="107.03" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v21" value="typed relations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1288.00" y="316.00" width="129.59" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v22" value="graph facts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1550.53" y="316.00" width="105.47" height="34.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v28" value="relation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1230.00" y="526.00" width="72.97" height="32.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v29" value="relation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=13;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1411.03" y="526.00" width="72.97" height="32.00" as="geometry"/>
+        </mxCell>
+        <mxCell id="v4" value="Dense embeddings organize text chunks by semantic similarity rather than exact keyword overlap." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontColor=#555b66;fontFamily=Arial;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="163.00" y="277.00" width="560.00" height="42.88" as="geometry"/>
+        </mxCell>
+        <mxCell id="v19" value="Entity identifiers seed a graph traversal over typed relationships and evidence-bearing edges." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontColor=#555b66;fontFamily=Arial;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1077.00" y="277.00" width="560.00" height="42.88" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

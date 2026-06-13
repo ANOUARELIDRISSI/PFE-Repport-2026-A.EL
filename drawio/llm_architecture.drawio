@@ -1,0 +1,67 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="llm-architecture" name="LLM Architecture">
+    <mxGraphModel dx="1394" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1F2937;" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;Transformer-Based LLM Architecture&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="460" x="185" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEFE0;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Input Text" vertex="1">
+          <mxGeometry height="50" width="220" x="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="token" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEFE0;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Tokenization" vertex="1">
+          <mxGeometry height="50" width="220" x="300" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="embedding" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEFE0;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Token + Positional Embeddings" vertex="1">
+          <mxGeometry height="55" width="280" x="270" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="transformer" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#CDE8D1;strokeColor=#548B61;fontSize=18;fontStyle=1;" value="Stacked Transformer Blocks" vertex="1">
+          <mxGeometry height="135" width="230" x="295" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="attention" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Multi-Head&#xa;Self-Attention" vertex="1">
+          <mxGeometry height="65" width="220" x="65" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4EA;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Feed-Forward&#xa;Network" vertex="1">
+          <mxGeometry height="65" width="220" x="535" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="norm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F7F3;strokeColor=#89A990;fontSize=18;" value="Residual Connections + Layer Normalization" vertex="1">
+          <mxGeometry height="55" width="280" x="270" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="output" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEFE0;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Output / Decoding Layer" vertex="1">
+          <mxGeometry height="55" width="220" x="300" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="training" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEFE0;strokeColor=#6B9E78;fontSize=18;fontStyle=1;" value="Training and Loss Optimization" vertex="1">
+          <mxGeometry height="55" width="280" x="270" y="875" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="token" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="embedding">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="embedding" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="transformer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="transformer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="attention" value="attention path">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="transformer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="ffn" value="token-wise transformation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="attention" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="norm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="ffn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="norm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="norm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=18;" target="training">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,112 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="graph_vs_relational" name="graph_vs_relational">
+    <mxGraphModel dx="1847" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gvr-graph" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="Graph Model" vertex="1">
+          <mxGeometry height="690" width="770" x="88" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-relational" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" value="Relational Model" vertex="1">
+          <mxGeometry height="690" width="770" x="942" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Graph Traversal vs Relational Join Reconstruction&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;Two data models can answer the same connected-data question, but they encode and recover relationships differently.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-question" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=20;fontColor=#0f172a;shadow=0;" value="Analytical question: how is Entity A connected to Entity C?" vertex="1">
+          <mxGeometry height="78" width="860" x="470" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-vertices" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="vertices" vertex="1">
+          <mxGeometry height="30" width="88" x="156" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-edges" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="typed edges" vertex="1">
+          <mxGeometry height="30" width="112" x="380" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-path-query" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="path query" vertex="1">
+          <mxGeometry height="30" width="104" x="630" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-entity-table" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="entity table" vertex="1">
+          <mxGeometry height="30" width="120" x="1010" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-bridge-table" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="bridge table" vertex="1">
+          <mxGeometry height="30" width="120" x="1234" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-entity-table-c" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="entity table" vertex="1">
+          <mxGeometry height="30" width="120" x="1480" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-a" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Entity A" vertex="1">
+          <mxGeometry height="78" width="170" x="154" y="444" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-b" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Entity B" vertex="1">
+          <mxGeometry height="78" width="170" x="388.5" y="556" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-c" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Entity C" vertex="1">
+          <mxGeometry height="78" width="170" x="622" y="444" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-path" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="A -&amp;gt; B -&amp;gt; C path" vertex="1">
+          <mxGeometry height="78" width="195" x="376" y="742" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-step1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Step 1. Start from an entity and follow stored adjacency links." vertex="1">
+          <mxGeometry height="68" width="302" x="130" y="652" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-step2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Step 2. Return a path, neighborhood, or explanation subgraph." vertex="1">
+          <mxGeometry height="68" width="302" x="514" y="652" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-relates" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="relates_to" vertex="1">
+          <mxGeometry height="30" width="104" x="340" y="514" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-affiliated" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="affiliated_with" vertex="1">
+          <mxGeometry height="30" width="144" x="584" y="514" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-ta" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Entity Table A" vertex="1">
+          <mxGeometry height="78" width="174" x="990" y="396" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-tb" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Relation Table" vertex="1">
+          <mxGeometry height="78" width="178" x="1236" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-tc" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Entity Table C" vertex="1">
+          <mxGeometry height="78" width="174" x="1482" y="396" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-j1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Join A with relation rows" vertex="1">
+          <mxGeometry height="78" width="350" x="1150" y="706" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-j2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Join relation rows with C" vertex="1">
+          <mxGeometry height="78" width="350" x="1151" y="806" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-rstep1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Step 1. Match primary and foreign keys to rebuild one hop." vertex="1">
+          <mxGeometry height="68" width="302" x="979" y="626" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-rstep2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=16;fontColor=#0f172a;shadow=0;" value="Step 2. Add more joins or bridge tables as path length grows." vertex="1">
+          <mxGeometry height="68" width="302" x="1365" y="626" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-fk1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="foreign key" vertex="1">
+          <mxGeometry height="30" width="112" x="1174" y="496" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-fk2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=16;fontColor=#4338ca;" value="foreign key" vertex="1">
+          <mxGeometry height="30" width="112" x="1464" y="496" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e1" edge="1" parent="1" source="gvr-a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" target="gvr-b" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e2" edge="1" parent="1" source="gvr-c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" target="gvr-b" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e3" edge="1" parent="1" source="gvr-b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" target="gvr-path" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e4" edge="1" parent="1" source="gvr-ta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=16;" target="gvr-tb" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e5" edge="1" parent="1" source="gvr-tc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=16;" target="gvr-tb" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e6" edge="1" parent="1" source="gvr-tb" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" target="gvr-j1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gvr-e7" edge="1" parent="1" source="gvr-j1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" target="gvr-j2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

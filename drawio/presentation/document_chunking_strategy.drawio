@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="document_chunking_strategy" name="document_chunking_strategy">
+    <mxGraphModel dx="1475" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="document" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;MongoDB Document&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Clean content, section structure and metadata&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="70" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="paragraphs" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Paragraph Detection&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Preserve natural semantic boundaries&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="450" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="split" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Context-Aware Split&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Create compact coherent passages&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="830" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="overlap" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Controlled Overlap&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Retain context across adjacent chunks&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="1210" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="metadata" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Metadata Enrichment&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Document ID, order, heading, source and entity IDs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="830" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="chunks" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Document Chunks&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Retrieval units stored with provenance&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="450" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="expansion" parent="1" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;fontSize=22;fontColor=#0f172a;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;b&gt;Adjacent Context&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Recover neighboring chunks when needed&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="300" x="70" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=22;fontColor=#4338ca;" value="STRUCTURE-AWARE CHUNKING" vertex="1">
+          <mxGeometry height="32" width="300" x="650" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="document" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;" target="paragraphs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="paragraphs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;" target="split" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="split" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;" target="overlap" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="overlap" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="metadata" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;" target="chunks" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="chunks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;fontSize=22;fontColor=#64748b;" target="expansion" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

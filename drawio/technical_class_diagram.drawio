@@ -1,0 +1,112 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="technical_class_diagram" name="technical_class_diagram">
+    <mxGraphModel dx="1744" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="v0" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#111216;fontFamily=Arial;whiteSpace=wrap;strokeWidth=2;" value="Technical Service Structure" vertex="1">
+          <mxGeometry height="42" width="1660" x="70" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="v1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#555b66;fontFamily=Arial;whiteSpace=wrap;strokeWidth=2;" value="The backend is organized around route modules, reasoning and extraction services, connector classes, persistence stores, and external model calls." vertex="1">
+          <mxGeometry height="48.59" width="1600" x="100" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="v2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="application boundary" vertex="1">
+          <mxGeometry height="760" width="440" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="v3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="service layer" vertex="1">
+          <mxGeometry height="890" width="430" x="510" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="v4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="connectors and model clients" vertex="1">
+          <mxGeometry height="795" width="360" x="1020" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="v5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f8fa;strokeColor=#d9dde5;strokeWidth=2;arcSize=6;fontSize=22;fontStyle=1;fontColor=#555b66;fontFamily=Arial;align=center;verticalAlign=top;spacingTop=10;" value="persistence and observability" vertex="1">
+          <mxGeometry height="680" width="350" x="1418" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="431" y="292" as="sourcePoint" />
+            <mxPoint x="555" y="292" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="905" y="286" as="sourcePoint" />
+            <mxPoint x="1040" y="286" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1370" y="286" as="sourcePoint" />
+            <mxPoint x="1450" y="286" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="917" y="618" />
+            </Array>
+            <mxPoint x="917" y="544" as="sourcePoint" />
+            <mxPoint x="1052" y="618" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="281" y="600" as="sourcePoint" />
+            <mxPoint x="281" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;strokeColor=#737887;strokeWidth=2;fontSize=22;fontFamily=Arial;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="715" y="488" as="sourcePoint" />
+            <mxPoint x="715" y="398" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="FastAPI RoutersHTTP interfacequery, chat, graphentities, documentslegislative, financeauth, admin, ingest" vertex="1">
+          <mxGeometry height="213.13" width="310" x="126" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="v7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="React Clientuser workflowschat and session historygraph explorer and documentslegislative and insights pagesadmin-only operations" vertex="1">
+          <mxGeometry height="213.13" width="310" x="126" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="v8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="ReasoningEnginemode-adaptive answer generationreason(question, mode, max_hops)plan, retrieve, audit, synthesizeZVec chunks, Neo4j facts, domain recordsreturns sources, confidence, thinking steps" vertex="1">
+          <mxGeometry height="213.13" width="365" x="553" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="Mn44MwD2EOaSa0DsPazk-2" edge="1" parent="1" source="v9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" target="v10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="Extraction Servicesoffline evidence constructionDSPyService and Mistral JSON callsEntityResolutionServicegraph extraction and structured extractionsemantic chunking and embedding" vertex="1">
+          <mxGeometry height="213.13" width="365" x="560" y="488" as="geometry" />
+        </mxCell>
+        <mxCell id="v10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="DerivedAnalyticsServiceread models for dashboardsfinance, trends, comparison, conflictslegislative bills, votes, committeescomputed from MongoDB and Neo4j" vertex="1">
+          <mxGeometry height="189.09" width="365" x="558.5" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="v11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;div&gt;Connector Classes&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Infrastructure Access&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;MongoDBConnector&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Neo4jConnector&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;ZVecConnector&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;EmbeddingService&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="320" x="1040" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="v12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="&lt;div&gt;Model Clients&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Generation &amp;amp; Embeddings&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;MistralDirectClient&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;MistralService&lt;/div&gt;&lt;div&gt;- Default Embeddings: Mistral&lt;/div&gt;&lt;div&gt;- Fallback Embeddings: Local&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="310" x="1050" y="589.5" as="geometry" />
+        </mxCell>
+        <mxCell id="v13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=6;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;" value="Runtime Storesstate and telemetryMongoDB documents and recordsNeo4j canonical graphZVec vector filesPrometheus, Grafana, Jaeger" vertex="1">
+          <mxGeometry height="382" width="310" x="1450" y="258" as="geometry" />
+        </mxCell>
+        <mxCell id="v14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="API calls service layer" vertex="1">
+          <mxGeometry height="29" width="101" x="438" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="v15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="uses connectors" vertex="1">
+          <mxGeometry height="29" width="78.98" x="940.02" y="309.07" as="geometry" />
+        </mxCell>
+        <mxCell id="v16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="reads and writes" vertex="1">
+          <mxGeometry height="29" width="82" x="1360" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="v17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="model calls" vertex="1">
+          <mxGeometry height="29" width="95.34" x="936" y="642" as="geometry" />
+        </mxCell>
+        <mxCell id="v18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="frontend requests" vertex="1">
+          <mxGeometry height="29" width="137.06" x="298.94" y="515.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Mn44MwD2EOaSa0DsPazk-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd3dc;strokeWidth=2;arcSize=50;fontSize=22;fontColor=#111216;fontFamily=Arial;align=center;verticalAlign=middle;spacing=8;" value="shared extraction outputs" vertex="1">
+          <mxGeometry height="29" width="190.77" x="530" y="740" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

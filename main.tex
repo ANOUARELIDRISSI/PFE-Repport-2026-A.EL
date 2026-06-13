@@ -5,9 +5,10 @@
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    filecolor=black,
-    urlcolor=blue,
+    linkcolor=navyblue,
+    citecolor=navyblue,
+    filecolor=navyblue,
+    urlcolor=navyblue,
     pdfauthor={ANOUAR EL IDRISSI},
     pdftitle={Knowledge Graph Exploration and Querying Platform with RAG},
     pdfpagemode=UseOutlines
@@ -20,22 +21,17 @@
 \afterpage{\blankpage}
 
 \frontmatter
+\pagenumbering{arabic}
 
 \input{Frontmatter/Dedication}
 \input{Frontmatter/Acknowledgements}
 \input{Frontmatter/AbstractEN}
 \input{Frontmatter/AbstractFR}
-
-% ------------------------------------------------------------------
-% Arabic abstract disabled for pdfLaTeX compilation.
-% Arabic Unicode text and right-to-left typesetting require XeLaTeX.
-%
-% To enable the Arabic abstract:
-% 1. Change the compiler to XeLaTeX.
-% 2. Uncomment the following line:
-%
-% \input{Frontmatter/AbstractAR}
-% ------------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Arabic Abstract}
+\includepdf[pages=-,pagecommand={}]{Frontmatter/AbstractAR_page.pdf}
+\cleardoublepage
 
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
@@ -50,18 +46,28 @@
 \tableofcontents
 \addcontentsline{toc}{chapter}{Table of Contents}
 
-\hypersetup{pageanchor=true}
 \mainmatter
+\hypersetup{pageanchor=true}
 
 % General Introduction
 \input{Frontmatter/GeneralIntroduction}
 
-\input{Chapters/chapter1_framework_state_of_art}
-\input{Chapters/chapter2_requirements_foundations}
-\input{Chapters/chapter3_system_design}
-\input{Chapters/chapter4_implementation}
-\input{Chapters/chapter5_evaluation_conclusion}
+% Compile the reorganized project-context and state-of-the-art chapters.
+\clearpage
+\input{Chapters/chapter1}
+\clearpage
+\input{Chapters/chapter2}
+\clearpage
+\input{Chapters/chapter3}
+\clearpage
+\input{Chapters/chapter4}
+% \clearpage
+\input{Chapters/chapter5}
 
+\clearpage
+\input{Endmatter/ConclusionPerspectives}
+
+\clearpage
 \input{Endmatter/References}
 
 \end{document}

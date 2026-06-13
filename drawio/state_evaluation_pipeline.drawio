@@ -1,0 +1,97 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="state_evaluation_pipeline" name="state_evaluation_pipeline">
+    <mxGraphModel dx="1947" dy="1048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="eval-metrics-band" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=22;fontColor=#475569;" value="RAGAS-style metric family" vertex="1">
+          <mxGeometry height="270" width="1580" x="50" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Evaluation Pipeline Architecture&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;The evaluation runner sends benchmark questions to the live backend, collects answers and evidence, applies judge-based metrics, then aggregates per-mode results.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-dataset" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Curated Benchmark&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;150 factual, relational, temporal, and comparative questions with reference answers.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="152" width="310" x="70" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-runner" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Evaluation Runner&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;loads samples, selects rag, cot, or reflexive, and calls the live API.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="144" width="310" x="480" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-backend" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Backend Query Path&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;retrieves chunks and graph facts, generates answer, returns sources, confidence, and trace data.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="125" width="350" x="950" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-judge" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Mistral Judge&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;scores generated answers and retrieved contexts with structured judge prompts.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="290" x="1480" y="244" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-m1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="Faithfulness claims supported by context" vertex="1">
+          <mxGeometry height="92" width="230" x="245" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-m2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="Answer Relevancy answer addresses question" vertex="1">
+          <mxGeometry height="92" width="230" x="525" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-m3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="Context Precision retrieved chunks are useful" vertex="1">
+          <mxGeometry height="92" width="230" x="805" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-m4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="Context Recall needed evidence is retrieved" vertex="1">
+          <mxGeometry height="92" width="230" x="1085" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-m5" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f1f5f9;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="Answer Correctness alignment with ground truth" vertex="1">
+          <mxGeometry height="92" width="230" x="1365" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-report" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=22;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Evaluation Report&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;stores per-question scores, computes averages, and compares reasoning modes.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="600" x="620" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-p1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=22;fontColor=#4338ca;" value="samples" vertex="1">
+          <mxGeometry height="30" width="86" x="389" y="246" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-p2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=22;fontColor=#4338ca;" value="API request" vertex="1">
+          <mxGeometry height="30" width="112" x="820" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-p3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=22;fontColor=#4338ca;" value="answer + evidence" vertex="1">
+          <mxGeometry height="30" width="160" x="1315" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-p4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=22;fontColor=#4338ca;" value="mode comparison" vertex="1">
+          <mxGeometry height="30" width="144" x="760" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e1" edge="1" parent="1" source="eval-dataset" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" target="eval-runner" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e2" edge="1" parent="1" source="eval-runner" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" target="eval-backend" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e3" edge="1" parent="1" source="eval-backend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=22;" target="eval-judge" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e4" edge="1" parent="1" source="eval-judge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-m1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e5" edge="1" parent="1" source="eval-judge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-m2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e6" edge="1" parent="1" source="eval-judge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-m3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e7" edge="1" parent="1" source="eval-judge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-m4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e8" edge="1" parent="1" source="eval-judge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-m5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e9" edge="1" parent="1" source="eval-m1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-report" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e10" edge="1" parent="1" source="eval-m2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-report" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e11" edge="1" parent="1" source="eval-m3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-report" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e12" edge="1" parent="1" source="eval-m4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-report" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eval-e13" edge="1" parent="1" source="eval-m5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=22;" target="eval-report" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

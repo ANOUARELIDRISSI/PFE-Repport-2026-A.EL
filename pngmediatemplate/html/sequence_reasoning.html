@@ -54,6 +54,7 @@
       height: 1050px;
       pointer-events: none;
       overflow: visible;
+      z-index: 2;
     }
     .lane {
       position: absolute;
@@ -62,6 +63,7 @@
       border: 2px solid #d9dde5;
       border-radius: 10px;
       background: rgba(246, 247, 249, 0.58);
+      z-index: 1;
     }
     .lane .label {
       position: absolute;
@@ -82,6 +84,7 @@
     .l-model { left: 1434px; width: 292px; }
     .node {
       position: absolute;
+      z-index: 4;
       width: 226px;
       min-height: 92px;
       border: 2px solid var(--border);
@@ -121,6 +124,7 @@
     }
     .mode {
       position: absolute;
+      z-index: 4;
       width: 158px;
       padding: 11px 14px;
       border: 2px solid var(--border);
@@ -176,13 +180,13 @@
     .m-cot { left: 596px; top: 370px; }
     .m-reflex { left: 774px; top: 370px; }
     .p1 { left: 328px; top: 300px; }
-    .p2 { left: 778px; top: 260px; }
-    .p3 { left: 858px; top: 228px; }
-    .p4 { left: 878px; top: 506px; }
-    .p5 { left: 878px; top: 652px; }
-    .p6 { left: 1362px; top: 358px; }
-    .p7 { left: 1376px; top: 662px; }
-    .p8 { left: 710px; top: 812px; }
+    .p2 { left: 788px; top: 246px; }
+    .p3 { left: 870px; top: 214px; }
+    .p4 { left: 878px; top: 492px; }
+    .p5 { left: 878px; top: 638px; }
+    .p6 { left: 1370px; top: 344px; }
+    .p7 { left: 1390px; top: 646px; }
+    .p8 { left: 710px; top: 824px; }
   </style>
 </head>
 <body>
@@ -197,24 +201,24 @@
 
     <svg viewBox="0 0 1800 1050" aria-hidden="true">
       <defs>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        <marker id="arrow" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L11,5.5 L0,11 Z" fill="#8b91a0"></path>
         </marker>
-        <marker id="arrow-dashed" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-          <path d="M0,0 L10,5 L0,10 Z" fill="#8b91a0"></path>
+        <marker id="arrow-dashed" markerWidth="11" markerHeight="11" refX="9.5" refY="5.5" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L11,5.5 L0,11 Z" fill="#8b91a0"></path>
         </marker>
       </defs>
-      <path d="M324 300 C370 292, 410 284, 454 276" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M758 270 C980 180, 1260 190, 1466 306" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M606 352 L606 520" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M758 562 C842 472, 902 316, 980 300" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M758 574 C842 520, 902 482, 980 476" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M758 602 C842 630, 902 658, 980 662" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M1206 520 C1302 520, 1380 456, 1466 354" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M1578 382 L1578 610" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M1466 690 C1275 812, 930 842, 830 765" stroke="#8b91a0" stroke-width="2.2" fill="none" stroke-dasharray="9 8" marker-end="url(#arrow-dashed)"></path>
-      <path d="M604 752 C500 730, 405 714, 324 692" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
-      <path d="M211 342 L211 650" stroke="#8b91a0" stroke-width="2.2" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M324 300 H454" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M758 270 H1000 V198 H1466 V306" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M606 352 V520" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M758 562 H864 V300 H980" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M758 574 H980" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M758 602 H864 V662 H980" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1206 520 H1328 V354 H1466" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1578 382 V610" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M1466 690 H1240 V812 H830 V765" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="9 8" marker-end="url(#arrow-dashed)"></path>
+      <path d="M604 752 H460 V692 H324" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
+      <path d="M211 342 V650" stroke="#737887" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" marker-end="url(#arrow)"></path>
     </svg>
 
     <section class="node api">

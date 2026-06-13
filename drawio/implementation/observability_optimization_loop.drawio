@@ -1,0 +1,72 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="obs-loop" name="Observability Optimization Loop">
+    <mxGraphModel dx="1510" dy="1048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t" parent="1" style="text;html=1;align=center;fontFamily=Times New Roman;fontSize=30;fontStyle=1;" value="Observability-Driven Optimization" vertex="1">
+          <mxGeometry height="50" width="700" x="450" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="request" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#475569;strokeWidth=2;fontFamily=Arial;fontSize=22;fontStyle=1;" value="User Query / Ingestion Job" vertex="1">
+          <mxGeometry height="80" width="460" x="570" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="services" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#6366f1;strokeWidth=3;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Instrumented Services&lt;br&gt;FastAPI | reasoning | retrieval | extraction | LLM client" vertex="1">
+          <mxGeometry height="100" width="600" x="500" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="prom" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#0891b2;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Prometheus Metrics&lt;br&gt;latency, throughput, errors, cache, tokens" vertex="1">
+          <mxGeometry height="110" width="390" x="100" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="jaeger" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Jaeger Traces&lt;br&gt;API, ZVec, Neo4j, Mistral, SSE spans" vertex="1">
+          <mxGeometry height="110" width="390" x="605" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#ea580c;strokeWidth=2;fontFamily=Arial;fontSize=20;fontStyle=1;" value="Structured Logs&lt;br&gt;failures, retries, document and query identifiers" vertex="1">
+          <mxGeometry height="110" width="390" x="1110" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="grafana" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff1f2;strokeColor=#e11d48;strokeWidth=3;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Grafana Analysis&lt;br&gt;correlate slow traces, metric spikes, and failures" vertex="1">
+          <mxGeometry height="100" width="660" x="470" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="tune" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=3;fontFamily=Arial;fontSize=21;fontStyle=1;" value="Engineering Adjustments&lt;br&gt;top-k and hop limits | cache policy | chunking | retries | prompt/model settings" vertex="1">
+          <mxGeometry height="90" width="700" x="450" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="request" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="services">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="services" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#0891b2;strokeWidth=2;endArrow=block;endFill=1;" target="prom">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="380" />
+              <mxPoint x="295" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="services" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#7c3aed;strokeWidth=2;endArrow=block;endFill=1;" target="jaeger">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="services" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#ea580c;strokeWidth=2;endArrow=block;endFill=1;" target="logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="prom" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="grafana">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="jaeger" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="grafana">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="logs" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;endArrow=block;endFill=1;" target="grafana">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="grafana" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#16a34a;strokeWidth=3;endArrow=block;endFill=1;" target="tune">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="tune" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#16a34a;strokeWidth=2;endArrow=block;endFill=1;fontSize=20;" target="services" value="redeploy and measure">
+          <mxGeometry relative="1" x="-0.2679" y="-60" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="80" y="835" />
+              <mxPoint x="80" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

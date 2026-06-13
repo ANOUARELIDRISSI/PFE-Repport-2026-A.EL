@@ -1,0 +1,55 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="existing_approaches_comparison" name="existing_approaches_comparison">
+    <mxGraphModel dx="2398" dy="1573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="h1" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#163a5f;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#ffffff;fontFamily=Arial;align=left;spacingLeft=18;" value="Approach" vertex="1">
+          <mxGeometry height="70" width="260" x="75" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#163a5f;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#ffffff;fontFamily=Arial;align=left;spacingLeft=18;" value="Strength" vertex="1">
+          <mxGeometry height="70" width="465" x="335" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#163a5f;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#ffffff;fontFamily=Arial;align=left;spacingLeft=18;" value="Main Limitation" vertex="1">
+          <mxGeometry height="70" width="525" x="800" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="r1a" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f1f5f9;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#334155;fontFamily=Arial;align=left;spacingLeft=18;" value="Keyword Search" vertex="1">
+          <mxGeometry height="105" width="260" x="75" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="r1b" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#334155;fontFamily=Arial;align=left;spacing=18;" value="Fast exact-term lookup across indexed political documents." vertex="1">
+          <mxGeometry height="105" width="465" x="335" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="r1c" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f8fafc;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#334155;fontFamily=Arial;align=left;spacing=18;" value="Misses semantic similarity and hidden relationships between political actors, institutions, and events." vertex="1">
+          <mxGeometry height="105" width="525" x="800" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="r2a" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#dbeafe;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#1e3a8a;fontFamily=Arial;align=left;spacingLeft=18;" value="Classical RAG" vertex="1">
+          <mxGeometry height="105" width="260" x="75" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="r2b" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#eff6ff;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#1e3a8a;fontFamily=Arial;align=left;spacing=18;" value="Retrieves semantically relevant passages and supports source-grounded generation." vertex="1">
+          <mxGeometry height="105" width="465" x="335" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="r2c" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#eff6ff;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#1e3a8a;fontFamily=Arial;align=left;spacing=18;" value="Treats evidence mainly as isolated chunks and remains weak for multi-hop political questions." vertex="1">
+          <mxGeometry height="105" width="525" x="800" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="r3a" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#ede9fe;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#5b21b6;fontFamily=Arial;align=left;spacingLeft=18;" value="Knowledge Graph" vertex="1">
+          <mxGeometry height="105" width="260" x="75" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="r3b" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f5f3ff;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#5b21b6;fontFamily=Arial;align=left;spacing=18;" value="Represents political entities, events, and typed relationships explicitly." vertex="1">
+          <mxGeometry height="105" width="465" x="335" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="r3c" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f5f3ff;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#5b21b6;fontFamily=Arial;align=left;spacing=18;" value="Requires reliable extraction and does not provide conversational natural-language synthesis by itself." vertex="1">
+          <mxGeometry height="105" width="525" x="800" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="r4a" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#0f766e;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#ffffff;fontFamily=Arial;align=left;spacingLeft=18;" value="Graph-RAG&#xa;SELECTED" vertex="1">
+          <mxGeometry height="120" width="260" x="75" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="r4b" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#ccfbf1;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontStyle=1;fontColor=#115e59;fontFamily=Arial;align=left;spacing=18;" value="Combines textual evidence, semantic retrieval, graph traversal, and cited answer generation." vertex="1">
+          <mxGeometry height="120" width="465" x="335" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="r4c" parent="1" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#ccfbf1;strokeColor=#ffffff;strokeWidth=2;fontSize=18;fontColor=#115e59;fontFamily=Arial;align=left;spacing=18;" value="Requires a more complex ingestion, entity-resolution, storage, and reasoning architecture." vertex="1">
+          <mxGeometry height="120" width="525" x="800" y="530" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

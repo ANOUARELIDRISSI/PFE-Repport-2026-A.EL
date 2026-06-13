@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex">
+  <diagram id="sequence_reasoning" name="sequence_reasoning">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="seq-main-band" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=18;fontColor=#475569;" value="main execution path" vertex="1">
+          <mxGeometry height="265" width="1655" x="50" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-support-band" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=18;fontColor=#475569;" value="supporting retrieval and persistence" vertex="1">
+          <mxGeometry height="420" width="1680" x="70" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-title" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=24;fontStyle=1;fontColor=#0f172a;" value="&lt;b&gt;Reasoning Execution Sequence&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;The runtime query path adapts to the selected mode: strict RAG uses semantic retrieval, while Chain-of-Thought and Reflexive modes add planning, graph expansion, domain searches, and optional audit hops.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="92" width="1800" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-api" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;1. Query Request&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;FastAPI receives the question, selected mode, hop limit, and optional web-search setting.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="185" width="245" x="125" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-plan" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;2. Planning&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Builds sub-questions, entity names, topics, and reasoning type for non-strict modes.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="443" y="271" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-mode" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;3. Mode Selection&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;rag vector only cot planned hops reflexive audit loop&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="776" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-retrieve" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;4. Evidence Retrieval&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Searches chunks, resolves entities, traverses graph, and queries domain collections.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="175" width="275" x="1105" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-synth" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;5. Synthesis&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Mistral produces an answer with confidence, key facts, sources, and reasoning trace.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="1445" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-zvec" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;ZVec&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Semantic search over chunk vectors and enriched text.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="250" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-neo" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Neo4j&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Entity lookup and graph traversal from chunk and plan entities.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="545" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-mongo" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;MongoDB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Bills, votes, contributions, conflicts, chunks, and source metadata.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="840" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-audit" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Audit or Follow-up&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Reflexive mode checks sufficiency; CoT mode selects next entities or topics.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="245" x="1135" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-history" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=center;spacing=10;fontSize=18;fontColor=#0f172a;shadow=0;" value="&lt;b&gt;Runtime Persistence&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#475569&quot;&gt;Stores query history, chat messages, answer metadata, citations, and trace data.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="126" width="285" x="1448" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p1" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="request" vertex="1">
+          <mxGeometry height="30" width="86" x="355" y="292" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p2" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="mode" vertex="1">
+          <mxGeometry height="30" width="86" x="690" y="292" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p3" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="retrieve" vertex="1">
+          <mxGeometry height="30" width="88" x="1022" y="292" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p4" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="context" vertex="1">
+          <mxGeometry height="30" width="86" x="1352" y="292" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p5" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="retrieval sources" vertex="1">
+          <mxGeometry height="30" width="160" x="645" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p6" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="optional audit" vertex="1">
+          <mxGeometry height="30" width="136" x="1110" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-p7" parent="1" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=18;fontColor=#4338ca;strokeWidth=2;" value="persist trace" vertex="1">
+          <mxGeometry height="30" width="128" x="1320" y="742" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e1" edge="1" parent="1" source="seq-api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" target="seq-plan" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e2" edge="1" parent="1" source="seq-plan" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" target="seq-mode" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e3" edge="1" parent="1" source="seq-mode" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" target="seq-retrieve" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e4" edge="1" parent="1" source="seq-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" target="seq-synth" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e5" edge="1" parent="1" source="seq-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;" target="seq-zvec" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e6" edge="1" parent="1" source="seq-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;" target="seq-neo" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e7" edge="1" parent="1" source="seq-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;" target="seq-mongo" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="seq-e8" edge="1" parent="1" source="seq-retrieve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;" target="seq-audit" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="430" />
+              <mxPoint x="1300" y="501" />
+              <mxPoint x="1258" y="501" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="seq-e9" edge="1" parent="1" source="seq-audit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;" target="seq-history" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

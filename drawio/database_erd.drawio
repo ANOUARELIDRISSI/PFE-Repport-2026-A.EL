@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Codex" version="26.0.0" type="device">
+  <diagram id="database_erd" name="database_erd">
+    <mxGraphModel dx="1800" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="erd-c1" value="extraction evidence" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="138" y="130" width="380" height="705" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-c2" value="retrieval index" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="600" y="610" width="605" height="325" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-c3" value="domain and runtime collections" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=10;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=2;align=left;verticalAlign=top;spacingTop=12;spacingLeft=14;fontStyle=1;fontSize=20;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="130" width="390" height="825" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-title" value="&lt;b&gt;Physical Persistence Schema&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;MongoDB stores source evidence, derived analytical records, runtime state, and retrieval chunks; Neo4j and ZVec complement it with graph topology and vector search.&lt;/font&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="0" y="30" width="1800" height="92" as="geometry"/>
+        </mxCell>
+        <mxCell id="documents-table" value="&lt;b&gt;documents&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;source collection and pipeline checkpoint state&lt;/font&gt;&lt;hr&gt;- PKid unique sparse&lt;br&gt;- title, content, source_url&lt;br&gt;- source, source_name, published_date&lt;br&gt;- graph_extracted, structured_extracted&lt;br&gt;- chunks_created, quality_score" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="725" y="170" width="350" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="mentions-table" value="&lt;b&gt;entity_mentions&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;one entity occurrence per document&lt;/font&gt;&lt;hr&gt;- IXentity_id&lt;br&gt;- FKdocument_id&lt;br&gt;- entity_name, entity_type&lt;br&gt;- source_name, published_date&lt;br&gt;- created_at" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="175" y="170" width="292" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="relations-table" value="&lt;b&gt;relation_assertions&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;relation evidence mirrored from graph extraction&lt;/font&gt;&lt;hr&gt;- IXfrom_entity_id, to_entity_id&lt;br&gt;- relation_type, confidence&lt;br&gt;- evidence, status&lt;br&gt;- source_doc_ids, created_at" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="175" y="520" width="292" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="chunks-table" value="&lt;b&gt;document_chunks&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;semantic retrieval units stored in MongoDB&lt;/font&gt;&lt;hr&gt;- PKchunk_id unique sparse&lt;br&gt;- FKdocument_id&lt;br&gt;- chunk_text, enriched_text&lt;br&gt;- chunk_index, section_header&lt;br&gt;- entity_ids, source_name" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="632" y="660" width="292" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="vectors-table" value="&lt;b&gt;ZVec vectors&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;external vector index, not a MongoDB collection&lt;/font&gt;&lt;hr&gt;- PKchunk_id&lt;br&gt;- embedding, content&lt;br&gt;- metadata.document_id&lt;br&gt;- metadata.entity_ids&lt;br&gt;- metadata.published_date" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="660" width="292" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="structured-table" value="&lt;b&gt;structured records&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;MongoDB analytical collections from extraction step 2&lt;/font&gt;&lt;hr&gt;- bills: id, status, chamber&lt;br&gt;- votes: id, bill_id, date&lt;br&gt;- committees: id, chamber&lt;br&gt;- contributions: donor_id, recipient_id&lt;br&gt;- conflict_flags: severity, created_at" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="1312" y="165" width="322" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="runtime-table" value="&lt;b&gt;runtime collections&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#64748b&quot;&gt;application state and audit records&lt;/font&gt;&lt;hr&gt;- users: id, email, is_admin&lt;br&gt;- chat_sessions: id, updated_at&lt;br&gt;- chat_messages: session_id, timestamp&lt;br&gt;- query_history: created_at" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=8;fillColor=#ffffff;strokeColor=#64748b;strokeWidth=2;align=left;spacing=12;fontSize=12;fontColor=#0f172a;" vertex="1" parent="1">
+          <mxGeometry x="1338" y="655" width="294" height="255" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-l1" value="contains" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="505" y="260" width="88" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-l2" value="provides evidence" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="486" y="690" width="160" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-l3" value="segmented into" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="790" y="615" width="136" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-l4" value="embedded as" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="955" y="820" width="112" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-l5" value="extracts records" style="html=1;whiteSpace=wrap;fontFamily=Arial;verticalAlign=middle;rounded=1;arcSize=50;fillColor=#eef2ff;strokeColor=#a5b4fc;align=center;fontSize=11;fontColor=#4338ca;" vertex="1" parent="1">
+          <mxGeometry x="1122" y="276" width="152" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="documents-table" target="mentions-table">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="documents-table" target="relations-table">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="documents-table" target="chunks-table">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="chunks-table" target="vectors-table">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="erd-e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="documents-table" target="structured-table">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

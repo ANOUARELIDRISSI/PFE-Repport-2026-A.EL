@@ -2,7 +2,7 @@
 
 \reportchapter{3}{System Design and Architecture}{}
 
-\section{Introduction}
+\section*{Introduction}
 
 This chapter translates the requirements defined in Chapter~1 into a concrete system design for the political Graph-RAG platform. The objective is to specify how evidence is acquired, structured, stored, retrieved, and synthesized without yet entering implementation-level code detail (Chapter~4) or empirical evaluation (Chapter~5). The presentation proceeds from design principles and refined use cases to data flows, ingestion architecture, knowledge representation, physical schemas, and the reasoning loop that connects hybrid retrieval to grounded answers.
 
@@ -28,7 +28,7 @@ Four principles guided architectural decisions throughout the end-of-study inter
     \label{fig:vector-space-retrieval}
 \end{figure}
 
-\textbf{Vector-space retrieval.} As illustrated in Figure~\ref{fig:vector-space-retrieval}, the user question is encoded into the same dense vector space as the indexed document chunks. ZVec compares the query embedding with stored vectors, ranks candidates by semantic similarity, and returns the strongest passages together with their scores, document provenance, and associated entity identifiers. This path provides efficient topical recall even when the query and source passages use different wording. Its output remains passage-oriented: it identifies relevant textual evidence but does not, by itself, reconstruct explicit multi-hop relations between the entities mentioned in those passages.
+\textbf{Vector-space retrieval.} As illustrated in Figure~\ref{fig:vector-space-retrieval}, the user question is encoded into the same dense vector space as the indexed document chunks. ZVec compares the query embedding with stored vectors, ranks candidates by semantic similarity, and returns the strongest passages together with their scores, document provenance, and associated entity identifiers. This path provides efficient topical recall even when the query and source passages use different wording. Its output remains passage oriented: it identifies relevant textual evidence but does not, by itself, reconstruct explicit relations that span several entities or documents.
 
 \begin{figure}[htbp]
     \centering
@@ -39,7 +39,7 @@ Four principles guided architectural decisions throughout the end-of-study inter
 
 \textbf{Graph-space traversal.} Figure~\ref{fig:graph-space-traversal} shows how entity identifiers obtained from chunk metadata or the reasoning plan become traversal seeds in Neo4j. The retrieval engine follows typed edges to neighboring actors, institutions, events, and places while preserving temporal validity, confidence, and source provenance. The resulting triples, paths, and neighborhoods make relationships explicit and support questions that require entity disambiguation, chronology, or several reasoning hops.
 
-\textbf{Evidence fusion.} The two paths are complementary rather than competing. Vector retrieval contributes topical similarity and passage-level grounding, whereas graph traversal contributes relational precision and structural context. The reasoning layer combines ranked chunks with graph facts before synthesis so that generated answers remain both semantically relevant and structurally supported. Neither store alone satisfies FR-04; their fusion implements the hybrid retrieval requirement FR-07.
+\textbf{Evidence fusion.} The two paths are complementary rather than competing. Vector retrieval contributes topical similarity and passage-level grounding, whereas graph traversal contributes relational precision and structural context. The reasoning layer combines ranked chunks with graph facts before synthesis so that generated answers remain both semantically relevant and structurally supported. Neither store alone satisfies FR-04; their fusion implements this hybrid retrieval requirement.
 
 Figure~\ref{fig:hybrid-evidence-fusion} makes this combination explicit. Independently retrieved passages, graph paths, and structured records are normalized into an evidence package, deduplicated, temporally filtered, and reranked before synthesis. This intermediate fusion stage prevents the language model from receiving disconnected retrieval outputs and preserves provenance for every accepted claim.
 
@@ -97,7 +97,7 @@ Figure~\ref{fig:data-flow-diagram} consolidates both paths from external sources
 
 Ingestion implements FR-01, FR-08, FR-09, and FR-10 through a multi-level acquisition strategy, explicit normalization and quality gates, and a document-level state machine.
 
-The ingestion engine combines three complementary levels rather than a single crawler template. \textbf{Level~1} monitors a curated registry of \textbf{57 high-precision outlets} on schedules (RSS, institutional portals, known political feeds). \textbf{Level~2} extends coverage with query-driven deep discovery for thematic gaps (search, link traversal, dynamic rendering, pagination). \textbf{Level~3} handles unstructured documents such as PDF reports through high-fidelity parsers that preserve layout and tables. Figure~\ref{fig:autonomous-crawler-final} details the crawler control flow. A source registry and scheduler populate a prioritized URL frontier; fetch policies enforce robots rules, rate limits, and retries; and a content router selects lightweight extraction or browser-assisted acquisition according to the response. Both paths converge on a unified document, quality gates, MongoDB persistence, and downstream knowledge processing. Failed acquisitions enter a bounded retry and manual-review path instead of silently contaminating the corpus.
+The ingestion engine combines three complementary levels rather than a single crawler template. \textbf{Level~1} monitors a curated registry of \textbf{57 high precision outlets} on schedules (RSS, institutional portals, known political feeds). \textbf{Level~2} extends coverage with deep discovery guided by queries for thematic gaps (search, link traversal, dynamic rendering, pagination). \textbf{Level~3} handles unstructured documents such as PDF reports through high fidelity parsers that preserve layout and tables. Figure~\ref{fig:autonomous-crawler-final} details the crawler control flow. A source registry and scheduler populate a prioritized URL frontier; fetch policies enforce robots rules, rate limits, and retries; and a content router selects lightweight extraction or browser assisted acquisition according to the response. Both paths converge on a unified document, quality gates, MongoDB persistence, and downstream knowledge processing. Failed acquisitions enter a bounded retry and manual review path instead of silently contaminating the corpus.
 
 \begin{figure}[H]
     \centering
@@ -121,7 +121,7 @@ The document lifecycle is modeled as an explicit state machine with checkpoints 
 
 The knowledge layer centers on a geopolitical property graph supplemented by document-grounded structured records and vectorized chunks.
 
-The Neo4j ontology defines canonical node types including \texttt{POLITICIAN}, \texttt{PARTY}, \texttt{ORGANIZATION}, \texttt{INSTITUTION}, \texttt{EVENT}, and related geopolitical categories. Approximately \textbf{32 typed relation families} cover actor ties, geopolitical links, events, financial or influence relations, and evidence-backed assertions. Entity resolution maps surface mentions to stable canonical identifiers so syndicated or variant spellings do not fragment the graph. Figure~\ref{fig:class-domain-model} links graph topology to MongoDB evidence objects and ZVec chunks: bills, votes, contributions, and conflict flags remain document-grounded structured data in MongoDB, while actors, institutions, places, and events form traversable graph structure in Neo4j.
+The Neo4j ontology defines canonical node types including \texttt{POLITICIAN}, \texttt{PARTY}, \texttt{ORGANIZATION}, \texttt{INSTITUTION}, \texttt{EVENT}, and related geopolitical categories. Approximately \textbf{32 typed relation families} cover actor ties, geopolitical links, events, financial or influence relations, and assertions supported by evidence. Entity resolution maps surface mentions to stable canonical identifiers so syndicated or variant spellings do not fragment the graph. Figure~\ref{fig:class-domain-model} links graph topology to MongoDB evidence objects and ZVec chunks: bills, votes, contributions, and conflict flags remain structured data grounded in documents in MongoDB, while actors, institutions, places, and events form traversable graph structure in Neo4j.
 
 \begin{figure}[H]
     \centering
@@ -173,9 +173,9 @@ Figure~\ref{fig:database-erd} presents the integrated physical view across Mongo
 
 \section{Reasoning Architecture}
 
-The reasoning layer implements FR-04, FR-05, and FR-07 through a plan--retrieve--synthesize loop with selectable modes and explicit evidence fusion.
+The reasoning layer implements FR-04, FR-05, and FR-07 through a plan, retrieve, and synthesize loop with selectable modes and explicit evidence fusion.
 
-At design level, each query iteration performs three stages. \textbf{Planning} interprets the question and, in multi-hop modes, decomposes sub-questions or selects seed entities. \textbf{Retrieval} fetches ZVec chunks, Neo4j paths, and optional structured records. \textbf{Synthesis} generates a cited answer from fused context. Reflexive mode adds an audit step that tests evidence sufficiency and may trigger additional hops up to \textbf{MAX\_HOPS = 3}. Optional live web search supplements the local corpus when configured for breaking events not yet ingested. Figure~\ref{fig:sequence-reasoning} shows interactions among the API, reasoning engine, persistence stores, and language model; the loop terminates when acceptance criteria for the selected mode are met or the hop limit is reached.
+At design level, each query iteration performs three stages. \textbf{Planning} interprets the question and, in modes involving several reasoning steps, decomposes sub-questions or selects seed entities. \textbf{Retrieval} fetches ZVec chunks, Neo4j paths, and optional structured records. \textbf{Synthesis} generates a cited answer from fused context. Reflexive mode adds an audit step that tests evidence sufficiency and may trigger additional hops up to \textbf{MAX\_HOPS = 3}. Optional live web search supplements the local corpus when configured for breaking events not yet ingested. Figure~\ref{fig:sequence-reasoning} shows interactions among the API, reasoning engine, persistence stores, and language model; the loop terminates when acceptance criteria for the selected mode are met or the hop limit is reached.
 
 \begin{figure}[H]
     \centering
@@ -186,7 +186,7 @@ At design level, each query iteration performs three stages. \textbf{Planning} i
 
 Three modes are exposed at query time, trading latency against analytical depth. \textbf{Standard RAG (\texttt{rag})} performs one-hop semantic retrieval from ZVec using the user question, then direct synthesis; it suits factual lookups with minimal latency. \textbf{Chain-of-thought (\texttt{cot})} decomposes complex questions into sub-queries and may follow entities or topics across hops before synthesis. \textbf{Reflexive (\texttt{reflexive})} evaluates completeness and consistency after retrieval; insufficient evidence triggers refined retrieval rather than immediate answer generation. Mode selection implements FR-05 at architecture level; Chapter~4 details the \texttt{ReasoningEngine} and DSPy orchestration. Interface-level traces expose steps to satisfy FR-07 regardless of mode.
 
-Figure~\ref{fig:reasoning-modes} compares the control flow of the three modes. Standard RAG follows the shortest retrieval path, chain-of-thought introduces planned sub-questions and graph expansion, and reflexive reasoning adds an evidence-sufficiency decision with a bounded feedback loop.
+Figure~\ref{fig:reasoning-modes} compares the control flow of the three modes. Standard RAG follows the shortest retrieval path, chain-of-thought introduces planned sub-questions and graph expansion, and reflexive reasoning adds a decision on evidence sufficiency with a bounded feedback loop.
 
 \begin{figure}[H]
     \centering
@@ -219,6 +219,6 @@ MongoDB, Neo4j, ZVec, and Redis retain distinct persistence responsibilities and
     \label{fig:deployment-topology}
 \end{figure}
 
-\section{Conclusion}
+\section*{Conclusion}
 
-This chapter specified the design of the political Graph-RAG platform: principles for modularity and traceability, refined use cases with access boundaries, offline and online data flows, multi-level ingestion with quality gates and state checkpoints, hybrid knowledge representation with temporal and provenance links, polyglot physical schemas, and a plan--retrieve--synthesize reasoning architecture with three selectable modes. The design directly addresses the functional and non-functional requirements of Chapter~1. Chapter~4 will describe how these structures are implemented in code, containers, and operational tooling; Chapter~5 will evaluate whether the resulting system meets the validation criteria in practice.
+This chapter specified the design of the political Graph-RAG platform: principles for modularity and traceability, refined use cases with access boundaries, offline and online data flows, multi-level ingestion with quality gates and state checkpoints, hybrid knowledge representation with temporal and provenance links, polyglot physical schemas, and a plan, retrieve, and synthesize reasoning architecture with three selectable modes. The design directly addresses the functional and non-functional requirements of Chapter~1. Chapter~4 will describe how these structures are implemented in code, containers, and operational tooling; Chapter~5 will evaluate whether the resulting system meets the validation criteria in practice.

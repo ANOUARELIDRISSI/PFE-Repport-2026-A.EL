@@ -6,6 +6,9 @@
   \setdefaultlanguage{english}
   \setotherlanguage{french}
   \setotherlanguage{arabic}
+  \makeatletter
+  \nofrench@punctuation
+  \makeatother
   \setmainfont{TeX Gyre Pagella}
   \setsansfont{TeX Gyre Heros}
   \setmonofont{TeX Gyre Cursor}
@@ -81,8 +84,8 @@
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
 
 \onehalfspacing
-\setlength{\parskip}{0.3\baselineskip}
 \setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.12\baselineskip plus 0.04\baselineskip minus 0.04\baselineskip}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 \setlength{\emergencystretch}{3em}

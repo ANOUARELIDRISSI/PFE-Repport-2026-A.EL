@@ -2,9 +2,9 @@
 
 \reportchapter{4}{Implementation and Engineering}{}
 
-\section{Introduction}
+\section*{Introduction}
 
-This chapter describes how the design of Chapter~3 was engineered in code, containers, and user-facing interfaces. The presentation covers the NLP and extraction pipeline, polyglot persistence, hybrid retrieval and reasoning services, the React frontend documented through operational screenshots, and the deployment plus observability stack that supports production-like operation. Implementation choices emphasize explicit service boundaries, deterministic identifiers where possible, and traceability from interface actions back to backend evidence. Evaluation against curated benchmarks is deferred to Chapter~5.
+This chapter describes how the design of Chapter~3 was engineered in code, containers, and interfaces intended for users. The presentation covers the NLP and extraction pipeline, polyglot persistence, hybrid retrieval and reasoning services, the React frontend documented through operational screenshots, and the deployment plus observability stack that supports operation under conditions close to production. Implementation choices emphasize explicit service boundaries, deterministic identifiers where possible, and traceability from interface actions back to backend evidence. Evaluation against curated benchmarks is deferred to Chapter~5.
 
 Figure~\ref{fig:implementation-pipeline} provides an implementation-level orientation. Acquired evidence is normalized and checkpointed in MongoDB before DSPy-assisted extraction produces graph and structured artifacts. Chunk embeddings are published to ZVec, canonical relations are published to Neo4j, and FastAPI coordinates these stores for the React analytical workspace. Instrumentation surrounds both background and interactive paths.
 
@@ -17,7 +17,7 @@ Figure~\ref{fig:implementation-pipeline} provides an implementation-level orient
 
 \section{NLP Pipeline and Extraction}
 
-Joint entity--relation extraction is orchestrated through DSPy modules calling Mistral in JSON mode. Prompt templates are treated as optimizable modules rather than static strings: the MIPROv2 Bayesian optimizer explores alternative instructions and few-shot examples on controlled batches, then retains the configuration that maximizes a composite extraction score. Reported gains on the project benchmark include approximately \textbf{+2.9\%} on the composite score and roughly \textbf{1.18\,s} lower average inference time per document compared with the initial manual prompt. Offline optimization with DSPy is therefore separated from online serving with the production Mistral client, so prompt iteration does not destabilize the live API.
+Joint entity and relation extraction is orchestrated through DSPy modules calling Mistral in JSON mode. Prompt templates are treated as optimizable modules rather than static strings: the MIPROv2 Bayesian optimizer explores alternative instructions and few-shot examples on controlled batches, then retains the configuration that maximizes a composite extraction score. Reported gains on the project benchmark include approximately \textbf{+2.9\%} on the composite score and roughly \textbf{1.18\,s} lower average inference time per document compared with the initial manual prompt. Offline optimization with DSPy is therefore separated from online serving with the production Mistral client, so prompt iteration does not destabilize the live API.
 
 Figure~\ref{fig:dspy-optimization-loop} details this separation. Curated examples and expected outputs define the optimization set; MIPROv2 proposes instructions and demonstrations; Mistral executes each candidate under the same JSON contract; and a composite evaluator scores schema validity, extraction quality, and latency. Only the strongest versioned program is promoted to production extraction.
 
@@ -36,7 +36,7 @@ The extraction contract requires a single pass over each normalized MongoDB docu
 
 \textbf{Neo4j.} The property graph enforces ten canonical entity types and thirty-two relationship types. The \texttt{EntityResolutionService} normalizes surface forms, filters verb-like or generic role phrases, maps aliases to canonical types, and assigns stable identifiers before \texttt{MERGE} operations. Traversal queries use parameterized Cypher with depth limits aligned to the design target (up to three hops under nominal load). Graph writes occur only after MongoDB assertions pass schema and quality checks.
 
-\textbf{ZVec.} Embeddings of \texttt{document\_chunks} are stored locally with chunk, document, and entity metadata for hybrid ranking. At query time the backend embeds the user question, retrieves candidates by cosine similarity, and applies lexical reranking before passing chunks to synthesis. Local persistence supports data-sovereignty constraints and removes dependency on an external vector SaaS. Figure~\ref{fig:zvec-performance} summarizes published benchmark characteristics that motivated this choice \cite{zvec-repo,zvec-benchmarks}.
+\textbf{ZVec.} Embeddings of \texttt{document\_chunks} are stored locally with chunk, document, and entity metadata for hybrid ranking. At query time the backend embeds the user question, retrieves candidates by cosine similarity, and applies lexical reranking before passing chunks to synthesis. Local persistence supports data-sovereignty constraints and removes dependency on an external vector SaaS. The comparative rationale and published ZVec benchmark are discussed in Chapter~2; this chapter focuses on its concrete integration into the platform.
 
 \textbf{Embedding-model selection.} The first retrieval baseline used \texttt{all-MiniLM-L6-v2}, whose 384-dimensional vectors offered low storage cost and fast local experimentation while the complete indexing and query path was still being validated. The model choice was treated as an engineering trade-off rather than a permanent architectural constraint. Table~\ref{tab:embedding-model-comparison} summarizes representative alternatives considered for stronger semantic capacity or multilingual coverage.
 
@@ -62,7 +62,7 @@ Production-compatible\newline embedding service & Not disclosed & Multilingual &
 
 Vector dimension alone does not determine retrieval quality. Chunk coherence, overlap, metadata, query formulation, reranking, and corpus language can outweigh a nominal increase in dimensionality. As the ingestion pipeline expanded toward multilingual sources, the production path moved toward the embedding service already available in SCIENTIAE's Mistral-compatible infrastructure. This reduced integration overhead and kept retrieval within the organization's sovereign deployment boundary without claiming an undocumented model name or vector dimension.
 
-\textbf{Chunking and context expansion.} Documents are indexed as paragraph-aware chunks rather than as complete files. Neighboring chunks retain document identifiers, sequence positions, section headers, source metadata, and entity links. This structure limits the risk that a fixed boundary separates an actor from an action or a claim from its date. When a high-scoring chunk lacks sufficient local context, the retrieval layer can recover adjacent segments from the same document before synthesis. The first search therefore remains precise over compact vectors, while selective expansion improves recall around promising evidence instead of filling the model context with an entire source document. Recursive and structure-aware splitting patterns documented by LangChain and node-based parsing concepts documented by LlamaIndex provide practical reference points for this implementation strategy \cite{langchain-splitters,llamaindex-node-parsers}.
+\textbf{Chunking and context expansion.} Documents are indexed as paragraph aware chunks rather than as complete files. Neighboring chunks retain document identifiers, sequence positions, section headers, source metadata, and entity links. This structure limits the risk that a fixed boundary separates an actor from an action or a claim from its date. When a highly ranked chunk lacks sufficient local context, the retrieval layer can recover adjacent segments from the same document before synthesis. The first search therefore remains precise over compact vectors, while selective expansion improves recall around promising evidence instead of filling the model context with an entire source document. Recursive splitting patterns documented by LangChain and parsing concepts based on nodes documented by LlamaIndex provide practical reference points for this implementation strategy \cite{langchain-splitters,llamaindex-node-parsers}.
 
 \begin{figure}[H]
     \centering
@@ -80,20 +80,13 @@ Vector dimension alone does not determine retrieval quality. Chunk coherence, ov
     \label{fig:embedding-vector-indexing-implementation}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/zvec Performance at Scale.png}
-    \caption{ZVec performance at scale (official benchmark overview).}
-    \label{fig:zvec-performance}
-\end{figure}
-
 \textbf{Redis.} A cache layer stores reasoning traces, session context, and frequently accessed metadata so repeated analytical sessions remain responsive. Cache entries are keyed by session and query identifiers; invalidation follows session lifecycle events rather than corpus-wide flushes, so ingestion backfills do not unnecessarily evict active conversations.
 
 \section{Retrieval and Reasoning Implementation}
 
-The \texttt{ReasoningEngine} service implements the plan--retrieve--synthesize loop described in Chapter~3. Regardless of mode, the skeleton comprises planning (when enabled), ZVec chunk retrieval, optional Neo4j entity lookup and traversal (depth~2 by default, up to \texttt{MAX\_HOPS = 3} iterations in multi-hop modes), synthesis through Mistral with structured citation fields, and serialization of a reasoning trace for the frontend. Optional web search augments the local corpus when the query signals recency or when the user explicitly enables it.
+The \texttt{ReasoningEngine} service implements the plan, retrieve, and synthesize loop described in Chapter~3. Regardless of mode, the skeleton comprises planning (when enabled), ZVec chunk retrieval, optional Neo4j entity lookup and traversal (depth~2 by default, up to \texttt{MAX\_HOPS = 3} iterations in multi-hop modes), synthesis through Mistral with structured citation fields, and serialization of a reasoning trace for the frontend. Optional web search augments the local corpus when the query signals recency or when the user explicitly enables it.
 
-Figure~\ref{fig:reasoning-modes-implementation} maps the three production modes to retrieval depth. \textbf{RAG mode} skips decomposition and graph expansion: the original question queries ZVec once, chunks are deduplicated, and synthesis proceeds immediately---minimizing latency for factual lookups. \textbf{Chain-of-thought mode} runs the planner, executes sub-questions sequentially, accumulates chunks and graph facts across hops, then synthesizes. \textbf{Reflexive mode} adds an audit step after each hop; insufficient evidence triggers refined retrieval before synthesis. Redis caches traces so the UI can replay steps without recomputation.
+Figure~\ref{fig:reasoning-modes-implementation} maps the three production modes to retrieval depth. \textbf{RAG mode} skips decomposition and graph expansion: the original question queries ZVec once, chunks are deduplicated, and synthesis proceeds immediately, which minimizes latency for factual lookups. \textbf{Chain-of-thought mode} runs the planner, executes sub-questions sequentially, accumulates chunks and graph facts across hops, then synthesizes. \textbf{Reflexive mode} adds an audit step after each hop; insufficient evidence triggers refined retrieval before synthesis. Redis caches traces so the UI can replay steps without recomputation.
 
 \begin{figure}[H]
     \centering
@@ -128,7 +121,7 @@ The client is a React and Vite single-page application with React Router, TanSta
     \label{fig:ui-chat-interface}
 \end{figure}
 
-Figure~\ref{fig:ui-chat-rag} illustrates a completed answer in RAG mode: the assistant message includes inline citations, source cards, and confidence cues tied to retrieved chunks. Figure~\ref{fig:ui-chat-rag-trace} expands the reasoning trace panel, exposing sequential steps (ZVec retrieval, synthesis) so the user can verify which evidence supported each claim---implementing FR-07 at interface level.
+Figure~\ref{fig:ui-chat-rag} illustrates a completed answer in RAG mode: the assistant message includes inline citations, source cards, and confidence cues tied to retrieved chunks. Figure~\ref{fig:ui-chat-rag-trace} expands the reasoning trace panel, exposing sequential steps (ZVec retrieval, synthesis) so the user can verify which evidence supported each claim, implementing FR-07 at interface level.
 
 \begin{figure}[H]
     \centering
@@ -187,7 +180,7 @@ The graph explorer (Figure~\ref{fig:ui-graph}) renders force-directed neighborho
 
 \textbf{Political insights dashboards.} The \texttt{/insights/...} module groups four analytical tabs on top of MongoDB structured records, Neo4j neighborhoods, and derived analytics services.
 
-The \textbf{finance} tab (Figure~\ref{fig:ui-insights-finance}) queries campaign-contribution and donor records filtered by electoral cycle, country, entity type, and free-text search. It surfaces top donors, aggregated amounts, and finance-related conflict flags when the same actor appears on both sides of a funding relationship---supporting scrutiny of economic influence without leaving the platform.
+The \textbf{finance} tab (Figure~\ref{fig:ui-insights-finance}) queries campaign-contribution and donor records filtered by electoral cycle, country, entity type, and free-text search. It surfaces top donors, aggregated amounts, and finance-related conflict flags when the same actor appears on both sides of a funding relationship, supporting scrutiny of economic influence without leaving the platform.
 
 The \textbf{trends} tab (Figure~\ref{fig:ui-insights-trends}) plots mention frequency and sentiment volatility for entities or topics over selectable windows (e.g.\ seven days) and optional regional filters. Recharts time-series views help analysts distinguish sustained narrative shifts from short-lived spikes in media coverage.
 
@@ -195,20 +188,20 @@ The \textbf{conflicts} tab (Figure~\ref{fig:ui-insights-conflicts}) lists \textt
 
 The \textbf{compare} tab implements pairwise entity intelligence across eight analytical aspects (or all aspects at once). The user selects two canonical entities via autocomplete (\texttt{/graph/search} suggestions), then chooses an \emph{aspect scope}:
 \begin{itemize}[leftmargin=*, itemsep=2pt]
-\item \textbf{Political stance} --- party alignment, ideology, support/opposition, coalitions, elections;
-\item \textbf{Economic policy} --- budgets, taxation, trade, inflation, subsidies, public spending;
-\item \textbf{Influence and network} --- allies, donors, committees, appointments, lobbying ties;
-\item \textbf{Governance style} --- reform, transparency, accountability, institutional oversight;
-\item \textbf{Legislative record} --- bills, amendments, roll-call votes, committee hearings;
-\item \textbf{Foreign policy} --- diplomacy, alliances, sanctions, security treaties;
-\item \textbf{Public sentiment} --- polls, approval, protests, media backlash, popularity;
-\item \textbf{Risk and conflict exposure} --- scandals, investigations, lawsuits, controversies;
-\item \textbf{All aspects} --- runs the full matrix below in one report.
+\item \textbf{Political stance:} party alignment, ideology, support/opposition, coalitions, elections;
+\item \textbf{Economic policy:} budgets, taxation, trade, inflation, subsidies, public spending;
+\item \textbf{Influence and network:} allies, donors, committees, appointments, lobbying ties;
+\item \textbf{Governance style:} reform, transparency, accountability, institutional oversight;
+\item \textbf{Legislative record:} bills, amendments, roll-call votes, committee hearings;
+\item \textbf{Foreign policy:} diplomacy, alliances, sanctions, security treaties;
+\item \textbf{Public sentiment:} polls, approval, protests, media backlash, popularity;
+\item \textbf{Risk and conflict exposure:} scandals, investigations, lawsuits, controversies;
+\item \textbf{All aspects:} runs the full matrix below in one report.
 \end{itemize}
 
 Figure~\ref{fig:ui-insights-compare-01} shows the selection panel (two entities + aspect dropdown). The backend (\texttt{POST /political/compare}) resolves both subjects in Neo4j, fetches ZVec/MongoDB evidence filtered by aspect keywords, computes shortest-path graph distance, and builds an \textbf{aspect matrix} (Figure~\ref{fig:ui-insights-compare-02}): for each row, evidence scores for entity~A, entity~B, term overlap, shared neighbors, and graph proximity. Cells summarize how strongly each actor is documented on that dimension.
 
-Figure~\ref{fig:ui-insights-compare-03} presents the narrative layer: \emph{convergences} (shared terms, common neighbors, short graph paths), \emph{divergences} (unique evidence terms and asymmetric neighborhoods), an LLM-generated \emph{conclusion}, and optional \emph{graph path} visualization between the two nodes. The report can be exported as JSON for offline review. This three-step flow---configure, matrix, interpret---mirrors analyst practice: quantify overlap on defined dimensions before drawing qualitative judgments.
+Figure~\ref{fig:ui-insights-compare-03} presents the narrative layer: \emph{convergences} (shared terms, common neighbors, short graph paths), \emph{divergences} (unique evidence terms and asymmetric neighborhoods), a conclusion generated by the LLM, and optional \emph{graph path} visualization between the two nodes. The report can be exported as JSON for offline review. This three stage flow (configure, matrix, interpret) mirrors analyst practice: quantify overlap on defined dimensions before drawing qualitative judgments.
 
 \begin{figure}[H]
     \centering
@@ -252,7 +245,7 @@ Figure~\ref{fig:ui-insights-compare-03} presents the narrative layer: \emph{conv
     \label{fig:ui-insights-conflicts}
 \end{figure}
 
-\textbf{Administration dashboard.} Administrative screens implement the supervised-ingestion requirements defined in Chapter~1. Figure~\ref{fig:ui-admin-dashboard} summarizes service health, corpus counts, graph statistics, and recent activity. Figure~\ref{fig:ui-admin-scraped} controls import of scraped JSON batches into MongoDB and backfill into ZVec. Figure~\ref{fig:ui-admin-cron} exposes cron scheduler configuration and agentic trend-collection jobs. Figure~\ref{fig:ui-admin-topic} provides advanced topic search: administrators enter thematic queries that trigger DuckDuckGo-backed discovery (\emph{AI Search}), after which selected URLs follow the standard scrape--normalize--extract pipeline. Together these panels form the operational cockpit of the autonomous crawler rather than a passive monitoring page.
+\textbf{Administration dashboard.} Administrative screens implement the supervised-ingestion requirements defined in Chapter~1. Figure~\ref{fig:ui-admin-dashboard} summarizes service health, corpus counts, graph statistics, and recent activity. Figure~\ref{fig:ui-admin-scraped} controls import of scraped JSON batches into MongoDB and backfill into ZVec. Figure~\ref{fig:ui-admin-cron} exposes cron scheduler configuration and agentic trend-collection jobs. Figure~\ref{fig:ui-admin-topic} provides advanced topic search: administrators enter thematic queries that trigger DuckDuckGo-backed discovery (\emph{AI Search}), after which selected URLs follow the standard scrape, normalize, and extract pipeline. Together these panels form the operational cockpit of the autonomous crawler rather than a passive monitoring page.
 
 \begin{figure}[H]
     \centering
@@ -313,6 +306,6 @@ Observability was also used as an optimization mechanism rather than only as pos
 
 Resilience measures include API rate limiting with exponential backoff on external LLM calls, inter-document delays during bulk ingestion, graceful degradation when optional services are unavailable, and staged pipeline scripts (graph extract, structured extract, chunk/embed, graph publish) that can be rerun independently. The evaluation harness under \texttt{src/backend/evaluation} calls the same HTTP query endpoint as the frontend, ensuring Chapter~5 measurements reflect deployed behavior rather than isolated unit tests.
 
-\section{Conclusion}
+\section*{Conclusion}
 
 This chapter detailed the engineering realization of the platform: DSPy-optimized extraction, polyglot persistence with local ZVec retrieval, a three-mode reasoning engine with streaming traces, DuckDuckGo-augmented live search, a full React analytical workspace documented through operational screenshots, and a containerized observability stack. The implementation closes the gap between Chapter~3 design artifacts and runnable software. Chapter~5 will report empirical validation against the criteria defined in Chapter~1.

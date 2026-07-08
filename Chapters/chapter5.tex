@@ -2,13 +2,13 @@
 
 \reportchapter{5}{System Evaluation and Performance Analysis}{}
 
-\section{Introduction}
+\section*{Introduction}
 
 This chapter evaluates the platform introduced in Chapters~1--4 using a
 curated benchmark designed for political and geopolitical question answering.
-The objective is to measure the end-to-end behavior of the Graph-RAG
+The objective is to measure the complete behavior of the Graph-RAG
 architecture, including evidence retrieval, graph-supported reasoning,
-citation-grounded answer generation, ingestion-time knowledge extraction, and
+cited answer generation, knowledge extraction during ingestion, and
 the effect of alternative reasoning modes. The chapter first defines the
 benchmark and experimental protocol, then presents the evaluation metrics and
 quantitative results, before examining DSPy-based extraction optimization,
@@ -20,7 +20,7 @@ Evaluation was designed to assess the system as a complete platform rather
 than as a collection of isolated components. Each benchmark question is
 processed under realistic operating conditions, and the generated answer,
 retrieved passages, and supporting graph facts are compared with a reference
-answer. This end-to-end protocol ensures that the reported results reflect the
+answer. This complete protocol ensures that the reported results reflect the
 combined behavior of ingestion, indexing, retrieval, reasoning, and answer
 generation.
 
@@ -30,7 +30,7 @@ tasks encountered in the selected political and geopolitical domain. The
 questions are grouped into four categories: \textbf{factual} questions address
 direct entities, events, and dates; \textbf{relational} questions examine
 connections between actors or institutions; \textbf{temporal} questions focus
-on chronology and time-sensitive claims; and \textbf{comparative} questions
+on chronology and claims that depend on time; and \textbf{comparative} questions
 require synthesis across several sources, actors, or positions. Each
 evaluation sample contains a question, a reference answer, and the evidence
 required to assess retrieval and generation quality. This composition covers
@@ -49,10 +49,10 @@ Category & Questions & Evaluation focus \\
 \midrule
 Factual & 40 & Direct retrieval of actors, institutions, dates, and events. \\
 Relational & 40 & Connections requiring entity resolution or graph traversal. \\
-Temporal & 35 & Chronology, validity intervals, and time-sensitive claims. \\
+Temporal & 35 & Chronology, validity intervals, and claims that depend on time. \\
 Comparative & 35 & Multi-source comparison of actors, policies, or positions. \\
 \midrule
-Total & 150 & Balanced coverage of direct and multi-hop political analysis. \\
+Total & 150 & Balanced coverage of direct and multi-step political analysis. \\
 \bottomrule
 \end{tabularx}
 \caption{Distribution of the 150-question benchmark.}
@@ -71,7 +71,7 @@ unsuccessful executions to distort the reported averages.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{images/state_evaluation_pipeline.png}
-    \caption{End-to-end evaluation pipeline from benchmark questions to aggregated mode-level results.}
+    \caption{Evaluation pipeline from benchmark questions to aggregated results by mode.}
     \label{fig:state-evaluation-pipeline}
 \end{figure}
 
@@ -107,7 +107,7 @@ score in $[0,1]$ with a short rationale. These metrics map directly to the
 validation criteria of Chapter~1 concerning grounded synthesis and
 inspectable evidence.
 
-\textbf{Quantitative results.} Table~\ref{tab:mode-comparison} presents mode-level quality means for 150 questions, three modes, and 450 query executions. RAG provides the lowest latency but the weakest context recall. Chain-of-thought improves retrieval coverage through decomposition and graph expansion. Reflexive reasoning yields the strongest quality profile because it can audit evidence and trigger another retrieval hop, although this additional work increases response time.
+\textbf{Quantitative results.} Table~\ref{tab:mode-comparison} presents quality means by mode for 150 questions, three modes, and 450 query executions. RAG provides the lowest latency but the weakest context recall. Chain-of-thought improves retrieval coverage through decomposition and graph expansion. Reflexive reasoning yields the strongest quality profile because it can audit evidence and trigger another retrieval hop, although this additional work increases response time.
 
 \begin{table}[H]
 \centering
@@ -129,7 +129,7 @@ Reflexive & 0.80 & 0.92 & 0.73 & 0.82 & 0.64 \\
 \end{table}
 
 \textbf{Embedding evaluation dashboard.}
-The mode-level results establish the effect of reasoning depth; the next
+The results by mode establish the effect of reasoning depth; the next
 comparison isolates the influence of the embedding implementation.
 Figure~\ref{fig:ragas-latency-summary} contains two complementary tables. The
 upper table reports average response times for the three reasoning modes,
@@ -184,7 +184,7 @@ Across all categories, the monotonic gain from RAG to CoT and reflexive reasonin
 
 \section{Optimization and Worked Evaluation Example}
 
-\textbf{DSPy before--after comparison.}
+\textbf{Comparison before and after DSPy optimization.}
 The preceding results concern retrieval and reasoning. The analysis now turns
 to extraction optimization, which directly affects the quality of the
 knowledge graph used during retrieval. Table~\ref{tab:dspy-evaluation-impact}
@@ -233,8 +233,8 @@ quality scores to make the evaluation procedure transparent.
 Field & Evaluation example \\
 \midrule
 Question & How do the economic consequences of the Hormuz crisis differ between the Global South and wealthier economies? \\
-Ground truth & Wealthier economies mainly face inflation and energy-price pressure, whereas vulnerable Global South economies face stronger import, fiscal, and food-security constraints. \\
-Retrieved context & Six ranked chunks concerning fuel-price inflation, import dependence, fiscal space, and regional economic vulnerability, supplemented by two graph-linked geopolitical facts. \\
+Ground truth & Wealthier economies mainly face inflation and pressure on energy prices, whereas vulnerable Global South economies face stronger import, fiscal, and food security constraints. \\
+Retrieved context & Six ranked chunks concerning inflation in fuel prices, import dependence, fiscal space, and regional economic vulnerability, supplemented by two geopolitical facts linked through the graph. \\
 Generated answer & The answer distinguishes inflationary pressure in wealthier economies from the deeper import and fiscal vulnerability affecting Global South economies, while qualifying gaps in crisis-specific evidence. \\
 RAGAS scores & Faithfulness: 0.78; answer relevancy: 0.91; context precision: 0.83; context recall: 0.69; answer correctness: 0.84. \\
 \bottomrule
@@ -259,10 +259,15 @@ Req. & Validation target & Evaluation evidence & Status \\
 \midrule
 FR-01 & Autonomous evidence acquisition & Scheduled and topic-driven ingestion completed without processing failures. & Validated \\
 FR-02 & Entity and relation extraction & Schema validity, entity F1, and relation F1 in Table~\ref{tab:dspy-evaluation-impact}. & Validated \\
-FR-04 & Grounded question answering & Faithfulness, context precision, context recall, and correctness across 150 questions. & Validated \\
+FR-03 & Graph storage and entity resolution & Canonical identifiers, typed Neo4j nodes and relations, and repeatable merge behavior were verified during ingestion. & Validated \\
+FR-04 & Hybrid vector and graph retrieval & ZVec chunks and Neo4j facts were recorded together in query evidence and evaluated across 150 questions. & Validated \\
 FR-05 & Selectable reasoning modes & RAG, CoT, and reflexive modes evaluated through 450 query executions. & Validated \\
-FR-06 & Temporal and comparative analysis & Dedicated temporal and comparative benchmark categories. & Validated \\
+FR-06 & Temporal traceability & Temporal metadata and the dedicated temporal benchmark category were inspected during evaluation. & Validated \\
 FR-07 & Inspectable evidence and traces & Source contexts, graph facts, citations, and reasoning steps remained available for inspection. & Validated \\
+FR-08 & Autonomous discovery & Scheduled registry collection and administrator-triggered topic discovery were exercised through the ingestion workflow. & Validated \\
+FR-09 & Domain-independent ingestion & Acquisition and normalization operated separately from domain-specific extraction modules. & Validated \\
+FR-10 & Heterogeneous normalization & RSS, HTML, direct URL, and PDF inputs produced the unified document representation defined in Chapter~3. & Validated \\
+FR-11 & Automated validation & The offline evaluation harness applied repeatable LLM-assisted extraction and response scoring. & Validated \\
 NFR & Performance and observability & Mode latency, error tracking, Grafana metrics, and Jaeger traces. & Validated \\
 \bottomrule
 \end{tabularx}
@@ -276,18 +281,18 @@ NFR & Performance and observability & Mode latency, error tracking, Grafana metr
 
 \textbf{Retrieval bottlenecks.} Context recall improves with mode complexity
 but remains the lowest absolute metric in standard RAG mode
-(\textbf{0.32}). Contributing factors include corpus gaps, chunk-boundary
+(\textbf{0.32}). Contributing factors include corpus gaps, chunk boundary
 effects, syndicated or noisy articles passing quality controls, and
 insufficient graph-aware reranking during the initial retrieval stage, in
 line with the validation criteria defined in Chapter~1.
 
-\textbf{Threats to validity.} Four limitations bound the conclusions. \emph{Corpus coverage:} scores depend on what was ingested at evaluation time. \emph{Judge bias:} LLM-based scoring may favor fluent answers or penalize careful abstention. \emph{Temporal drift:} political facts change; the 150-question snapshot does not guarantee stable scores after new ingestion. \emph{Benchmark coverage:} although the dataset supports mode-level comparison, it cannot represent every geopolitical region, language, event type, or analytical formulation; additional multilingual questions and human analyst ratings would strengthen external validity.
+\textbf{Threats to validity.} Four limitations bound the conclusions. \emph{Corpus coverage:} scores depend on what was ingested at evaluation time. \emph{Judge bias:} scoring based on LLMs may favor fluent answers or penalize careful abstention. \emph{Temporal drift:} political facts change; the 150-question snapshot does not guarantee stable scores after new ingestion. \emph{Benchmark coverage:} although the dataset supports comparison by mode, it cannot represent every geopolitical region, language, event type, or analytical formulation; additional multilingual questions and human analyst ratings would strengthen external validity.
 
-\section{Conclusion}
+\section*{Conclusion}
 
-This chapter presented a system-level evaluation covering benchmark
-composition, mode-level RAGAS metrics, response-time and embedding comparisons,
-DSPy-based optimization of ingestion-time knowledge extraction, a worked
+This chapter presented a system level evaluation covering benchmark
+composition, RAGAS metrics by mode, comparisons of response time and embeddings,
+DSPy optimization of knowledge extraction during ingestion, a worked
 evaluation sample, and requirements validation. The results highlight the
 quality benefit of deeper reasoning, the latency reduction obtained by moving
 from local MiniLM embeddings to the Mistral embedding service, and the

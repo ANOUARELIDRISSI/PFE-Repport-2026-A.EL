@@ -1,12 +1,22 @@
 \chapter*{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}
 
+\begingroup
+\setstretch{1.08}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec dapibus justo. Donec sagittis vulputate ante sed porttitor. Suspendisse sit amet nisl massa. Curabitur nec nisl condimentum, egestas ex vitae, dapibus enim. Etiam iaculis, erat faucibus pellentesque sagittis, nisi justo sollicitudin nibh, et condimentum augue massa non turpis. Proin commodo enim fermentum suscipit condimentum. Maecenas molestie, dui nec vestibulum rhoncus, arcu nisl faucibus neque, a ornare nisi massa ac eros. Aenean id velit sit amet lacus mattis varius. Donec fringilla massa sed nisi eleifend, a aliquet mi tempus. Nunc posuere euismod est, nec tristique augue lobortis non. Sed sodales sem ut metus tempus ullamcorper.
+\begin{otherlanguage}{french}
+Ce rapport présente la conception et la mise en œuvre d'une plateforme \textit{Graph-RAG} multimodale intitulée \textit{Knowledge Graph Exploration and Querying Platform with RAG}. Développé dans un contexte d'intelligence politique, le système combine un crawl web autonome, une recherche sémantique dense, l'exploration structurée d'un graphe de connaissances \textbf{Neo4j} et une synthèse de réponses fondée sur les preuves à l'aide du modèle \textbf{Mistral}. Son objectif est de transformer des informations politiques hétérogènes en une couche de connaissance traçable et exploitable.
+
+Le projet répond aux limites de la génération augmentée par récupération classique lorsqu'elle est appliquée à des données politiques relationnelles. Le RAG standard peut retrouver des passages pertinents, mais il peine sur les questions multi-sauts, la désambiguïsation d'entités, l'interprétation temporelle et le suivi explicite des relations. En intégrant la récupération vectorielle à des preuves structurées sous forme de graphe, la plateforme proposée améliore la capacité à répondre à des questions analytiques complexes tout en préservant la traçabilité vers les documents sources.
+
+L'architecture réalisée comprend un crawler à trois niveaux, un planificateur d'administration, des services d'extraction NLP, une résolution déterministe des entités, la persistance du graphe, le stockage documentaire, la recherche vectorielle locale et une interface \textbf{React} d'exploration et de consultation. Le crawler surveille des flux \textbf{RSS} sélectionnés, effectue une découverte d'actualités via \textbf{Google News} et analyse des rapports \textbf{PDF}. La plateforme a été évaluée sur des questions factuelles, relationnelles, temporelles et comparatives à l'aide de métriques inspirées de \textbf{RAGAS}, montrant l'intérêt de combiner récupération, preuves graphiques et raisonnement réflexif.
+\end{otherlanguage}
 
 \noindent\rule[2pt]{\textwidth}{0.5pt}
 
-{\textbf{Mots clés :}}
-xxx, xxx, xxx, xxx.
-\\
+\begin{otherlanguage}{french}
+{\textbf{Mots-clés~:}} Graph-RAG, graphe de connaissances, Neo4j, Mistral, crawl autonome, intelligence politique, traitement du langage naturel, extraction de relations, génération augmentée par récupération, systèmes distribués.
+\end{otherlanguage}
+
 \noindent\rule[2pt]{\textwidth}{0.5pt}
+\endgroup

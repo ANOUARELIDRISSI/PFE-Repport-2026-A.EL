@@ -4,15 +4,15 @@
 \begingroup
 \setstretch{1.08}
 
-This thesis presents the design and implementation of a multimodal Graph-RAG platform entitled \textit{Knowledge Graph Exploration and Querying Platform with RAG}. Developed in the context of political intelligence, the system combines autonomous web crawling, dense semantic search, structured traversal of a Neo4j knowledge graph, and grounded answer synthesis supported by the Mistral language model. Its objective is to transform heterogeneous political information into a traceable and exploitable knowledge layer.
+This report presents the design and implementation of a multimodal Graph-RAG platform entitled \textit{Knowledge Graph Exploration and Querying Platform with RAG}. Developed in the context of political intelligence, the system combines autonomous web crawling, dense semantic search, structured traversal of a Neo4j knowledge graph, and grounded answer synthesis supported by the Mistral language model. Its objective is to transform heterogeneous political information into a traceable and exploitable knowledge layer.
 
 The project addresses the limitations of classical retrieval-augmented generation when applied to relational political data. Standard RAG can retrieve relevant passages, but it struggles with multi-hop questions, entity disambiguation, temporal interpretation, and explicit relationship tracking. By integrating vector retrieval with graph-structured evidence, the proposed platform improves the ability to answer complex analytical questions while preserving traceability to source documents.
 
-The implemented architecture includes a three-level crawler, an administrative scheduler, NLP extraction services, deterministic entity resolution, graph persistence, document storage, local vector retrieval, and a React interface for exploration and consultation. The crawler monitors curated RSS feeds, performs query-driven Google News discovery, and parses PDF reports. The platform was evaluated on factual, relational, temporal, and comparative questions using RAGAS-inspired metrics, showing the value of combining retrieval, graph evidence, and reflexive reasoning.
+The implemented architecture includes a three-level crawler, an administrative scheduler, natural language processing extraction services, deterministic entity resolution, graph persistence, document storage, local vector retrieval, and a React interface for exploration and consultation. The crawler monitors curated RSS feeds, performs query-driven Google News discovery, and parses PDF reports. The platform was evaluated on factual, relational, temporal, and comparative questions using RAGAS-inspired metrics, showing the value of combining retrieval, graph evidence, and reflexive reasoning.
 
 \noindent\rule[2pt]{\textwidth}{0.5pt}
 
-{\textbf{Keywords:}} Graph-RAG, autonomous crawling, knowledge graph, Neo4j, Mistral, political intelligence, NLP, relation extraction, multi-hop reasoning, distributed systems.
+{\textbf{Keywords:}} Graph-RAG, knowledge graph, Neo4j, Mistral, autonomous crawling, political intelligence, natural language processing, relation extraction, retrieval-augmented generation, distributed systems.
 
 \noindent\rule[2pt]{\textwidth}{0.5pt}
 \endgroup

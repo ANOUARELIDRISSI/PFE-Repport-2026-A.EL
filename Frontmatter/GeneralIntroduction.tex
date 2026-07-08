@@ -11,12 +11,12 @@ Within its research and development activities, SCIENTIAE is developing a
 sovereign Graph-RAG framework designed to adapt to different domains rather
 than remain tied to a single use case. The framework provides reusable
 components for data acquisition, LLM-based knowledge extraction, graph
-construction, semantic retrieval, evidence-grounded answer generation, and
+construction, semantic retrieval, answer generation grounded in evidence, and
 system evaluation. A new domain can therefore be integrated by adapting its
 sources, entity and relation models, extraction rules, and evaluation
 questions while preserving the same core architecture.
 
-Politics and geopolitics were selected as the application and validation domain for this work because they provide a demanding environment for testing the framework. Political intelligence analysis often depends on relational questions: a user may need to understand how two actors are connected, which events created a diplomatic shift, how an institution evolved over time, or which documents support a specific claim. Such questions cannot be answered robustly by treating documents as isolated text fragments; they require a representation that combines textual evidence with structured relations.
+Politics and geopolitics were selected as the application and validation domain for this work because they provide a demanding environment for testing the framework. Political intelligence analysis often depends on relational questions: a user may need to understand how two actors are connected, which events created a diplomatic shift, how an institution evolved over time, or which documents support a specific claim. Such questions cannot be answered reliably by treating documents as isolated text fragments; they require a representation that combines textual evidence with structured relations.
 
 The implemented system constitutes a domain-specific instance of this broader
 multimodal Graph-RAG framework. It combines dense semantic retrieval, a Neo4j
@@ -46,7 +46,7 @@ These objectives are translated into concrete engineering goals. The platform mu
 
 From a user perspective, the objective is to provide an integrated analytical workspace. The analyst can ask questions in natural language, inspect sources, explore graph neighborhoods, follow political trends, consult documents, and observe system health. From an engineering perspective, the objective is to build a modular pipeline in which crawling, extraction, graph publication, chunking, embedding, retrieval, and evaluation remain separable and testable.
 
-The expected contribution is therefore both methodological and practical. Methodologically, the project studies how autonomous crawling, knowledge graph construction, and retrieval-augmented generation can be combined in a reusable, domain-adaptable workflow. Practically, it delivers and evaluates a political and geopolitical implementation in which source acquisition, evidence structuring, semantic search, graph exploration, and answer generation are connected through operational backend services and frontend controls.
+The expected contribution is therefore both methodological and practical. Methodologically, the project studies how autonomous crawling, knowledge graph construction, and retrieval-augmented generation can be combined in a reusable workflow adaptable to different domains. Practically, it delivers and evaluates a political and geopolitical implementation in which source acquisition, evidence structuring, semantic search, graph exploration, and answer generation are connected through operational backend services and frontend controls.
 
 The remainder of this report is organized into five chapters. Chapter~1
 introduces the host organization, project context, problem statement,

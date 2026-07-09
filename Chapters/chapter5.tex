@@ -290,10 +290,14 @@ line with the validation criteria defined in Chapter~1.
 
 \section*{Conclusion}
 
-This chapter presented a system level evaluation covering benchmark
-composition, RAGAS metrics by mode, comparisons of response time and embeddings,
-DSPy optimization of knowledge extraction during ingestion, a worked
-evaluation sample, and requirements validation. The results highlight the
-quality benefit of deeper reasoning, the latency reduction obtained by moving
-from local MiniLM embeddings to the Mistral embedding service, and the
-reliability gains achieved during knowledge-graph construction.
+This chapter evaluated the platform through a benchmark comprising
+\textbf{150 questions} and \textbf{450 executions} across three reasoning
+modes. The assessment combined RAGAS-based metrics, embedding comparisons,
+extraction experiments, and requirements validation. The results indicate
+that greater reasoning depth improves answer quality and evidence coverage,
+although it introduces additional latency. Furthermore, Mistral embeddings
+improved retrieval performance, while DSPy optimization increased extraction
+reliability and reduced processing time. Overall, these findings support the
+technical validity of the proposed Graph-RAG approach while identifying
+retrieval completeness, multilingual coverage, and temporal consistency as
+priorities for further investigation.

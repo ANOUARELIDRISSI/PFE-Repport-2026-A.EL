@@ -1,62 +1,114 @@
 \chapter*{Conclusion and Perspectives}
 \addcontentsline{toc}{chapter}{Conclusion and Perspectives}
 
-This report presented the work carried out during the end-of-study internship entitled
-\textit{Knowledge Graph Exploration and Querying Platform with RAG}. The
-project contributed to SCIENTIAE's development of a sovereign and
-domain-adaptable Graph-RAG framework by implementing and evaluating an
-instance dedicated to political and geopolitical analysis. Its purpose was to
-transform heterogeneous public information into a structured, searchable,
-traceable, and explainable knowledge layer capable of supporting factual,
-relational, temporal, and comparative questions.
+\section*{Conclusion}
 
-The resulting platform integrates autonomous acquisition through RSS
-monitoring, query-driven discovery, direct URL ingestion, and PDF parsing.
-Documents are normalized and preserved with their provenance before
-LLM-based entity and relation extraction. DSPy is used at this ingestion stage
-to improve the reliability, structural validity, and efficiency of knowledge
-extraction. Extracted knowledge is published in Neo4j, textual evidence is
-indexed in ZVec, and source documents are retained in MongoDB. These layers
-support a Graph-RAG reasoning engine that combines semantic retrieval, graph
-traversal, cited answer generation, and three selectable reasoning modes. The
-analytical interface connects these capabilities to conversational querying,
-document consultation, graph exploration, specialized views, and
-administrative supervision.
+This report presented the design, implementation, and evaluation of the
+\textit{Knowledge Graph Exploration and Querying Platform with RAG}, developed
+during an end-of-study internship at SCIENTIAE. The work contributed to the
+development of a sovereign and domain-adaptable Graph-RAG framework through a
+political and geopolitical application. Its primary objective was to transform
+heterogeneous public information into a structured, searchable, traceable, and
+explainable knowledge layer. The resulting platform was designed to support
+factual, relational, temporal, and comparative analysis while preserving
+explicit links between generated answers and their supporting evidence.
 
-The system-level evaluation used a curated benchmark of \textbf{150
-questions}, producing \textbf{450 executions} across standard RAG,
-chain-of-thought, and reflexive reasoning. RAGAS-based results showed a
-progressive improvement with reasoning depth: average answer correctness rose
-from \textbf{0.52} for standard RAG to \textbf{0.65} for chain-of-thought and
-\textbf{0.80} for reflexive reasoning. The reflexive mode also achieved the
-strongest overall relevancy, faithfulness, and context-recall profile, although
-its additional retrieval and verification steps increased latency.
+The project addressed a central limitation of conventional retrieval systems.
+Although semantic search can identify passages related to a question, it does
+not explicitly represent the relationships that connect actors, institutions,
+events, and locations across several documents. Classical RAG improves answer
+generation by providing external context to a language model, but its
+passage-oriented retrieval remains insufficient for questions that require
+entity disambiguation, temporal interpretation, or traversal across several
+relations. The proposed approach therefore combines textual retrieval with
+graph-based knowledge representation and reasoning.
 
-The embedding comparison demonstrated that the Mistral embedding
-implementation reduced average response time from \textbf{15 to 5 seconds}
-for standard RAG, from \textbf{30 to 15 seconds} for chain-of-thought, and
-from \textbf{90 to 50 seconds} for reflexive reasoning, while improving the
-reported retrieval-quality indicators. At the ingestion stage, DSPy
-optimization increased the composite extraction score from \textbf{0.723} to
-\textbf{0.883} and reduced mean processing latency from \textbf{4.62} to
-\textbf{3.21 seconds}. Together, these findings show that system quality
-depends on both downstream reasoning and upstream evidence construction.
+The implemented platform covers the complete evidence-processing workflow.
+Public information is acquired through RSS monitoring, query-driven
+discovery, direct URL ingestion, and PDF parsing. Documents are subsequently
+normalized and stored with their provenance before entity and relation
+extraction. DSPy supports the optimization of this extraction stage, while
+deterministic resolution rules reduce entity fragmentation. MongoDB preserves
+source documents and processing artifacts, Neo4j stores canonical entities
+and typed relations, and ZVec indexes textual chunks for semantic retrieval.
+Together, these complementary representations provide the evidence required
+for hybrid vector and graph retrieval.
 
-The principal technical challenges concerned reliable corpus construction,
-entity consistency, retrieval completeness, and operational traceability.
-Heterogeneous and continuously evolving sources required deduplication,
-metadata preservation, scheduling, and administrative visibility. Noisy
-articles and ambiguous names affected graph quality, while missing evidence
-and chunk boundaries limited some answers independently of the reasoning
-model. These constraints motivated deterministic entity resolution,
-DSPy-optimized extraction, hybrid vector-and-graph retrieval, reflexive
-verification, and end-to-end observability.
+The reasoning layer exposes three modes with different levels of analytical
+depth. Standard RAG prioritizes direct retrieval and low response time.
+Chain-of-thought reasoning decomposes complex questions and gathers evidence
+over several steps. Reflexive reasoning additionally evaluates evidence
+sufficiency and can initiate further retrieval before producing an answer.
+The React analytical interface makes these capabilities available through
+conversational querying, source consultation, graph exploration, specialized
+political views, and administrative supervision. Furthermore, containerized
+deployment and observability services provide operational visibility across
+ingestion, retrieval, reasoning, and generation.
 
-From a professional perspective, this project provided valuable experience in the end-to-end construction of an AI-assisted analytical platform. It required work across data acquisition, backend services, NLP pipelines, vector indexing, graph databases, frontend interfaces, containerized deployment, observability, and evaluation. The internship therefore strengthened both technical skills and engineering discipline, especially in debugging distributed components, validating generated answers, and designing systems where traceability is essential.
+The system was evaluated using a curated benchmark of \textbf{150 questions}
+covering factual, relational, temporal, and comparative tasks. Each question
+was executed under the three reasoning modes, resulting in \textbf{450
+executions}. The findings demonstrate a progressive improvement in answer
+quality as reasoning depth increases. Average answer correctness rose from
+\textbf{0.52} for standard RAG to \textbf{0.65} for chain-of-thought reasoning
+and \textbf{0.80} for reflexive reasoning. The reflexive mode also achieved
+the strongest overall results for answer relevancy, faithfulness, context
+precision, and context recall. However, these improvements were accompanied
+by higher latency because additional retrieval and verification operations
+were required.
 
-Although the developed platform reaches a functional and evaluable state, several perspectives remain open. The first direction concerns retrieval improvement. Future work should investigate graph-aware reranking, stronger query expansion, temporal filtering, and more systematic chunking strategies in order to increase context recall and precision. Re-embedding the corpus with higher-dimensional multilingual models would also be relevant, especially as the platform evolves toward French and Arabic political content.
+The embedding comparison also demonstrated the importance of the retrieval
+configuration. The Mistral embedding service reduced average response time
+from \textbf{15 to 5 seconds} for standard RAG, from \textbf{30 to 15 seconds}
+for chain-of-thought reasoning, and from \textbf{90 to 50 seconds} for
+reflexive reasoning. Retrieval-quality indicators improved at the same time.
+At the ingestion stage, DSPy optimization increased the composite extraction
+score from \textbf{0.723} to \textbf{0.883} and reduced mean processing
+latency from \textbf{4.62} to \textbf{3.21 seconds}. These results confirm
+that Graph-RAG quality depends not only on answer generation but also on
+corpus preparation, extraction reliability, knowledge representation, and
+evidence retrieval.
 
-A second perspective concerns the enrichment of the knowledge graph. Future versions could introduce stronger temporal validity intervals on relations, better event normalization, confidence scores for extracted facts, and more advanced entity disambiguation. These improvements would make the graph more reliable for longitudinal political analysis and for questions involving institutional evolution, alliances, conflicts, or changes in position over time.
+Several limitations must nevertheless be considered when interpreting these
+results. Evaluation was performed on a fixed corpus snapshot and a curated
+benchmark; consequently, the reported scores cannot represent every
+geopolitical region, language, event type, or analytical formulation.
+Political information also evolves rapidly, which can affect the temporal
+validity of extracted relations and reference answers. In addition,
+LLM-assisted evaluation may introduce judge bias, while incomplete source
+coverage, unsuitable chunk boundaries, ambiguous entities, and syndicated
+content can limit retrieval independently of the selected reasoning mode.
+These limitations do not invalidate the observed results, but they define the
+conditions under which the conclusions should be understood.
+
+Overall, the project demonstrates the feasibility of an inspectable Graph-RAG
+framework that integrates acquisition, extraction, structuring, retrieval,
+reasoning, and evaluation within a coherent platform. Its political and
+geopolitical implementation shows that unstructured information can be
+transformed into connected evidence and grounded answers with explicit source
+attribution. More broadly, the work confirms that dependable Graph-RAG
+behavior is a system-level property that depends on the combined quality of
+data, models, storage structures, retrieval strategies, operational controls,
+and evaluation procedures.
+
+\section*{Perspectives}
+
+Although the developed platform reached a functional and evaluable state,
+several research and engineering directions remain open. The first direction
+concerns retrieval quality. Future work should investigate graph-aware
+reranking, stronger query expansion, temporal filtering, and more systematic
+chunking strategies. These improvements could increase both context recall
+and precision. Re-embedding the corpus with higher-dimensional multilingual
+models would also support the extension of the platform to French and Arabic
+political content.
+
+A second direction concerns knowledge-graph enrichment. Future versions could
+introduce more precise temporal validity intervals, improved event
+normalization, confidence scores for extracted facts, and more advanced entity
+disambiguation. Such improvements would increase graph reliability for
+longitudinal political analysis. They would also support questions concerning
+institutional evolution, alliances, conflicts, and changes in political
+positions over time.
 
 A third perspective concerns evaluation. Although the 150-question benchmark
 supports comparison across question categories and reasoning modes, it cannot
@@ -65,14 +117,9 @@ formulation. Future evaluation should incorporate human analyst ratings,
 additional multilingual and temporal questions, confidence calibration, and
 adversarial cases requiring abstention or careful qualification.
 
-Finally, the platform could be strengthened operationally through continuous ingestion monitoring, richer administrator dashboards, improved observability, and deployment hardening. These improvements would help transform the prototype into a more robust decision-support tool that can be maintained, audited, and extended in a production environment.
-
-In conclusion, this project demonstrates the feasibility of a sovereign and
-inspectable Graph-RAG framework whose core acquisition, extraction,
-structuring, retrieval, reasoning, and evaluation components can be adapted
-to different domains. Its political and geopolitical implementation shows
-that unstructured information can be transformed into connected evidence and
-grounded answers with explicit sources. It also confirms that dependable
-Graph-RAG behavior is a system-level property: it depends not only on the
-language model, but also on corpus quality, extraction reliability, knowledge
-representation, retrieval strategy, observability, and evaluation design.
+Finally, continuous ingestion monitoring, richer administrative dashboards,
+improved observability, and deployment hardening could strengthen the
+platform operationally. These improvements would facilitate the transition
+from a functional prototype to a robust decision-support tool. In particular,
+they would improve its maintainability, auditability, and extensibility in a
+production environment.

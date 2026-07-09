@@ -221,4 +221,11 @@ MongoDB, Neo4j, ZVec, and Redis retain distinct persistence responsibilities and
 
 \section*{Conclusion}
 
-This chapter specified the design of the political Graph-RAG platform: principles for modularity and traceability, refined use cases with access boundaries, offline and online data flows, multi-level ingestion with quality gates and state checkpoints, hybrid knowledge representation with temporal and provenance links, polyglot physical schemas, and a plan, retrieve, and synthesize reasoning architecture with three selectable modes. The design directly addresses the functional and non-functional requirements of Chapter~1. Chapter~4 will describe how these structures are implemented in code, containers, and operational tooling; Chapter~5 will evaluate whether the resulting system meets the validation criteria in practice.
+This chapter defined the system architecture according to the functional and
+non-functional requirements of the project. The proposed design integrates
+modular ingestion, quality control, hybrid knowledge representation, polyglot
+persistence, provenance management, and three selectable reasoning modes.
+These architectural decisions establish a coherent framework for transforming
+heterogeneous documents into structured evidence and grounded analytical
+responses. Their practical relevance, however, depends on their effective
+translation into reliable, maintainable, and observable software components.

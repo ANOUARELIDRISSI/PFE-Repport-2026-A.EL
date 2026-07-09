@@ -302,7 +302,7 @@ Beyond retrieval format, recent work studies how a language model \emph{uses} ev
 
 \textbf{Interleaved retrieval and reasoning across several steps.} IRCoT interleaves retrieval with ongoing chain-of-thought generation: each reasoning step can trigger a new retrieval call guided by what was learned in the previous step \cite{trivedi-ircot}. This pattern is especially relevant for questions in which bridge entities only become visible after an initial pass. When knowledge is graph-structured, traversal across several steps plays a similar role by following explicit paths between actors and events rather than relying on lexical similarity alone.
 
-\textbf{ReAct and tool-interleaved control.} ReAct combines reasoning traces with actions such as search, graph lookup, or tool invocation \cite{yao-react}. Instead of a fixed retrieve-then-generate sequence, the model alternates between thinking steps and operations on external memory. This architecture is a precursor to modern agentic pipelines in which a controller decides when to retrieve again, when to stop, and when to synthesize.
+\textbf{ReAct and tool-interleaved control.} ReAct combines reasoning traces with actions such as search, graph lookup, or tool invocation \cite{yao-react}. Instead of following a fixed retrieve-then-generate sequence, the model alternates between reasoning steps and operations on external memory. This architecture is a precursor to modern agentic pipelines in which a controller determines when to retrieve additional evidence, terminate the process, or synthesize the final response.
 
 \textbf{Reflection and Self-RAG.} Reflection-based methods add a critique step that evaluates whether the current evidence supports the draft answer. Self-RAG trains the model to decide when retrieval is needed, when generation is sufficient, and when the output should be revised \cite{asai-selfrag}. These approaches reduce unsupported synthesis at the cost of additional model calls and higher latency.
 
@@ -390,7 +390,7 @@ Entity disambiguation & Limited & Yes & Yes & Depends on tools \\
 Temporal reasoning & No & Partial & Yes & Partial \\
 Source citation & Yes & Yes & Partial & Yes \\
 Structured queries & No & Limited & Yes & Depends on tools \\
-Explicit provenance & Passage level & Passage and graph & Fact level & Tool dependent \\
+Explicit provenance & Passage-level & Passage- and graph-level & Fact-level & Tool-dependent \\
 Multilingual support & Model dependent & Model dependent & Schema dependent & Model dependent \\
 Adaptive reasoning & No & Limited & No & Yes \\
 Autonomous ingestion & External pipeline & External pipeline & External pipeline & Possible \\

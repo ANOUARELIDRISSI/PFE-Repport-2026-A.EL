@@ -19,6 +19,7 @@ This repository is a reusable LaTeX template for an end-of-study project report.
 - Keep only diagrams and screenshots that genuinely help a reader understand your work.
 - `Chapters/chapter2.tex` and `Chapters/chapter5.tex` include table examples; `Chapters/chapter4.tex` includes an image placeholder and a copy-ready `\\includegraphics` example.
 - `Endmatter/Acronyms.tex` keeps the original long acronym-table format. Add only acronyms that appear in your report.
+- `Endmatter/References.tex` includes reusable Bibliography and Webography sections. Replace the sample entries with sources cited in your report.
 - The table of contents is followed by automatic lists of figures and tables. Any `figure` or `table` environment with a `\\caption{...}` appears in the matching list after compilation.
 
 ## Writing and visuals

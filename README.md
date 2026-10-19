@@ -21,6 +21,11 @@ This repository is a reusable LaTeX template for an end-of-study project report.
 - `Endmatter/Acronyms.tex` keeps the original long acronym-table format. Add only acronyms that appear in your report.
 - The table of contents is followed by automatic lists of figures and tables. Any `figure` or `table` environment with a `\\caption{...}` appears in the matching list after compilation.
 
+## Writing and visuals
+
+- Read `PFE_STYLE_WRITING.md` for the recommended technical and academic report style.
+- Read `IMAGES_DIAGRAMS.md` for the draw.io, Excalidraw, export, and LaTeX workflow for diagrams and images.
+
 ## Files to compile
 
 - `main.tex`: the complete report.

@@ -31,3 +31,7 @@ This guide defines a consistent technical and academic writing style for an end-
 ## Reference formula
 
 The intended style combines academic structure, technical narrative, explicit transitions, restrained headings, justified examples, and a constant connection to the implemented solution.
+
+## Acknowledgment
+
+Special thanks to Professor Assia El Hadbi for her guidance on the writing style and for her help in creating this beautiful template.
